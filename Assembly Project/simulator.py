@@ -94,14 +94,13 @@ class Simulator:
 
 
 
-
-sequences = Simulator("sample.fasta.txt", 3, 20, 0.01)
-print sequences.header
-#print sequence.raw_data
-print sequences.G
-print sequences.N
-
-print sequences.generate_reads()
-print sequences.mutation_count
+if __name__ == '__main__':
+	sequences = Simulator("sample.fasta.txt", 3, 20, 0.01)
+	print sequences.header
+	#print sequence.raw_data
+	print sequences.G
+	print sequences.N
+	print sequences.generate_reads()
+	print sequences.mutation_count
 
 
