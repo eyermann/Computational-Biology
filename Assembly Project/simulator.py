@@ -92,15 +92,22 @@ class Simulator:
 		return self.reads
 
 
+	def write_file(self, reads):
+		with open("output_reads.txt", "w") as f:
+			#f.write(self.header)
+			for row in self.reads:
+				f.write(row + "\n")
 
 
 if __name__ == '__main__':
-	sequences = Simulator("sample.fasta.txt", 3, 20, 0.01)
+	sequences = Simulator("sample.fasta.txt", 3, 30, 0.01)
 	print sequences.header
 	#print sequence.raw_data
-	print sequences.G
-	print sequences.N
-	print sequences.generate_reads()
-	print sequences.mutation_count
+	# print sequences.G
+	# print sequences.N
+	# print sequences.generate_reads()
+	# print sequences.mutation_count
+	reads = sequences.generate_reads()
+	sequences.write_file(reads)
 
 

@@ -26,7 +26,7 @@ class Edge:
 		self.weight = weight
 
 
-class Graph(dictionary):
+class Graph:
 
 	def __init__(self, graph_data={}):
 		self.graph_data = graph_data
@@ -37,13 +37,17 @@ class Graph(dictionary):
 	def edges(self):
 		return self.get_edges()
 
-	def populate_graph(self):
+	def get_edges(self):
 		edge_list = []
 		for node in self.graph_data:
 			for adj in self.graph_data[node]:
 				if {adj, node} not in edge_list:
 					edge_list.append({node, adj})
 		return edge_list
+
+	def get_node_edges(self,node):
+		if node in self.graph_data:
+			return self.graph_data[node]
 
 	def add_edge(self, edge):
 		(node1,node2) = tuple(edge)
@@ -64,3 +68,7 @@ class Graph(dictionary):
 	def remove_node(self, node):
 		if node in self.graph_data:
 			self.graph_data.remove(node)
+
+
+if __name__ == "__main__":
+	pass
