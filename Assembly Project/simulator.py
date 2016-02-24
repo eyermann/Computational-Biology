@@ -93,14 +93,15 @@ class Simulator:
 
 
 	def write_file(self, reads):
-		with open("output_reads.txt", "w") as f:
-			#f.write(self.header)
+		with open("easy_output_reads.txt", "w") as f:
+			h = ">" + self.header[1:30] + "| coverage: " + str(self.coverage) + "| read length: " + str(self.read_length) + "| error rate: " + str(self.error_rate) + "|\n"
+			f.write(h)
 			for row in self.reads:
 				f.write(row + "\n")
 
 
 if __name__ == '__main__':
-	sequences = Simulator("sample.fasta.txt", 3, 30, 0.01)
+	sequences = Simulator("easy_data_set.txt", 10, 50, 0.01)
 	print sequences.header
 	#print sequence.raw_data
 	# print sequences.G
