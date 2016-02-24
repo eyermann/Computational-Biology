@@ -16,20 +16,22 @@ class Assembler:
 		
 
 	def generate_kmers(self,k):
-		kmer_list = []
+		big_list = []
+		
 		for read in self.reads:
-			#print read
+			kmer_list = []
 			for nucleotide in range(len(read)+1-k):
 				kmer_list.append(read[nucleotide:nucleotide+k])
+			kmer_info = (read, kmer_list)
+			big_list.append(kmer_info)
 		#print len(kmer_list)
-		return (read,kmer_list)
+		return big_list
 
 
-sequences = simulator.Simulator("sample.fasta.txt", 3, 10, 0.01)
+sequences = simulator.Simulator("sample.fasta.txt", 3, 50, 0.01)
 reads = sequences.generate_reads()
-#print len(reads)
 a = Assembler(reads)
-print len(a.generate_kmers(9)[0]), a.generate_kmers(9)[0]
-print len(a.generate_kmers(9)[1])
+print len(a.generate_kmers(3)[1][1])#, a.generate_kmers(9)
+#print len(a.generate_kmers(9)[1])
 
 
