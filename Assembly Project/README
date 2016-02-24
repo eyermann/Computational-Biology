@@ -1,0 +1,3 @@
+Currently the simulator works but has no user interface, so the python file must be edited directly to change parameters. CLI support will come at a later date.
+
+Usage: python simulator.py
