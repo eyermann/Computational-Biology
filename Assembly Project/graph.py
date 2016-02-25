@@ -4,9 +4,13 @@
 class Node:
 	def __init__(self,name):
 		self.name = name
+		self.neighbors = []
 
-	def get_name():
+	def get_name(self):
 		return self.name
+
+	def get_neighbors(self):
+		return self.neighbors
 
 class Edge:
 	def __init__(self, node1, node2):
@@ -24,7 +28,6 @@ class Edge:
 		self.node1 = node1
 		self.node2 = node2
 		self.weight = weight
-
 
 class Graph:
 

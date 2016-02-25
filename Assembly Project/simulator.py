@@ -103,11 +103,6 @@ class Simulator:
 if __name__ == '__main__':
 	sequences = Simulator("easy_data_set.txt", 10, 50, 0.01)
 	print sequences.header
-	#print sequence.raw_data
-	# print sequences.G
-	# print sequences.N
-	# print sequences.generate_reads()
-	# print sequences.mutation_count
 	reads = sequences.generate_reads()
 	sequences.write_file(reads)
 
