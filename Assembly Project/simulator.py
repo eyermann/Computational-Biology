@@ -1,9 +1,10 @@
 # Sequence Read simulator for CS362 Project 3
 # Authors: Charles Eyermann and Sam Hinh
 
-
 import numpy as np
-import sys, os, collections, random
+import sys, os, collections, random, argparse
+
+
 
 class Simulator:
 
@@ -14,12 +15,12 @@ class Simulator:
 		self.read_length = read_length
 		self.error_rate = error_rate
 		
-		with open(input_file, 'rU') as f:
-			for row in f:
-				if row[0] == ">":
-					self.header += row.strip()
-				else:
-					self.raw_data += row.strip()
+		#with open(input_file, 'rU') as f:
+		for row in clargs.fasta_sequence_file:
+			if row[0] == ">":
+				self.header += row.strip()
+			else:
+				self.raw_data += row.strip()
 	
 		self.G = len(self.raw_data)
 		self.N = (self.coverage * self.G)/self.read_length
@@ -81,7 +82,8 @@ class Simulator:
 		return sequence
 
 	def generate_reads(self):
-		index_range = self.G - self.read_length - 1
+		index_range = self.G - self.read_length
+		#print index_range
 		for i in range(self.N):
 			read_start_index = random.randint(0, index_range)
 			read_end_index = read_start_index + self.read_length
@@ -101,9 +103,21 @@ class Simulator:
 
 
 if __name__ == '__main__':
-	sequences = Simulator("easy_data_set.txt", 10, 50, 0.01)
-	print sequences.header
+	parser = argparse.ArgumentParser(description='Sequence Read Simulator.\r\n Written by Charles Eyermann and Sam Hinh for CS362 Winter 2016')
+	parser.add_argument("fasta_sequence_file", type=argparse.FileType('r'), help="The input file should be in FASTA format")
+	parser.add_argument("coverage", type=int, help='How many times the entire genome should be sequenced')
+	parser.add_argument("read_length", type=int, help='The length of each read generated')
+	parser.add_argument("error_rate", type=float, help='Error rate between 0 and 1')
+	clargs = parser.parse_args()
+	#sequences = Simulator("easy_data_set.txt", 10, 50, 0.01)
+	sequences = Simulator(clargs.fasta_sequence_file, clargs.coverage, clargs.read_length, clargs.error_rate)
+	# print " " + "_"*78 + ""
+	# print "|" + " "*78 + "|"
+	# print "|" + " "*78 + "|"
+	# print "|" + "_"*78 + "|"
+	#print sequences.header
 	reads = sequences.generate_reads()
+	#print reads
 	sequences.write_file(reads)
 
 

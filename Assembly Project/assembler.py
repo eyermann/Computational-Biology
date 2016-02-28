@@ -3,25 +3,36 @@
 
 from simulator import *
 from graph import *
+import argparse
 
-#print "hi"
+p = argparse.ArgumentParser(description='Global Affine Alignment Algorithm.\r\n Written by Charles Eyermann for CS362 Winter 2016')
+p.add_argument('read_file', type=argparse.FileType('r'), help="This should be the file containing your sequence reads")
+p.add_argument('kmer_length', type=int, help="Desired k-mer length (integer value).")
+clargs = p.parse_args()
 
 class Assembler:
 
-	def __init__(self,reads):
-		self.reads = reads
+	def __init__(self, reads, k):
+		self.reads = []
 		self.G = {}
 		self.N = {}
+		self.header = ""
+		self.k = k
+
+		for row in clargs.read_file:
+			if row[0] != ">":
+				self.reads.append(row)
+				#print len(row)
 
 	def generate_kmers(self,read,k):
-		for nucleotide in range(len(read)+1-k):
-			yield read[nucleotide:nucleotide+k]
+		for nucleotide in range(len(read)+1-self.k):
+			yield read[nucleotide:nucleotide+self.k]
 
-	def build_DBG(self,k):	
+	def build_DBG(self):	
 		# for each read in set of all reads
 		for read in self.reads:
 			# for each kmer in set of kmers per read 
-			for kmer in self.generate_kmers(read,k):
+			for kmer in self.generate_kmers(read,self.k):
 				# link each left and right k-1mer together
 				lkmer = kmer[:-1]
 				rkmer = kmer[1:]
@@ -43,19 +54,20 @@ class Assembler:
 		output = ""
 		output += "digraph {\n"
 		
-		for k in dbg.iterkeys():
-			for v in dbg[k].get_neighbors():
-				output += "%s -> %s;\n" % (k,v.name)
+		for key in dbg.iterkeys():
+			for v in dbg[key].get_neighbors():
+				output += "%s -> %s;\n" % (key,v.name)
 		output += "}"
 		return output
 
 
 if __name__ == "__main__":
-	sequences = Simulator("sample.fasta.txt", 3, 20, 0.2)
-	reads = sequences.generate_reads()
-	a = Assembler(reads)
-	dbg = a.build_DBG(13)
+	#sequences = Simulator("test.txt", 5, 8, 0.1)
+	#reads = sequences.generate_reads()
+	a = Assembler(clargs.read_file, clargs.kmer_length)
+	dbg = a.build_DBG()
 	dot = a.dot_file_generator(dbg)
+
 	with open("out.dot", "w") as f:
 		f.write(dot)
 		f.close()
