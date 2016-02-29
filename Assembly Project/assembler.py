@@ -174,7 +174,7 @@ class Assembler:
 	def collapse(self):
 		# while the indegree of a node is 1, collapse
 		def concat(node):
-			print "is collapsible: ", node.is_collapsible()
+			#print "is collapsible: ", node.is_collapsible()
 			if node.is_collapsible() and node.get_parents()[0].is_collapsible():
 			#if self.get_parent(node)[0].indegree == 1:
 				#print "prev: ", node.get_parents()[0]
@@ -187,8 +187,8 @@ class Assembler:
 				 	kmer_len = len(parent.name)
 				 	#print kmer_len
 				 	#print "kmer len: ", kmer_len
-				 	print "current node: ", cur.name#, cur
-				 	print "'parent' node: ", parent.name#, parent
+				 	#print "current node: ", cur.name#, cur
+				 	#print "'parent' node: ", parent.name#, parent
 
 				 	if parent.get_parents():
 						real_parent = parent.get_parents()[0]
@@ -201,18 +201,21 @@ class Assembler:
 							real_parent.neighbors.append(newnode)
 							newnode.parents.append(real_parent)
 							newnode.indegree = len(newnode.parents)
-							self.G[real_parent.name].neighbors.remove(real_parent.neighbors[0])
+							#print "real parent: ", real_parent.name, [x.name for x in real_parent.neighbors]#[0].name
+							#self.G[real_parent.name].neighbors.remove(real_parent.neighbors[0])
+							self.G[real_parent.name].neighbors = [x for x in self.G[real_parent.name].neighbors if x.name != parent.name]
+							#print "real parent: ", real_parent.name, [x.name for x in real_parent.neighbors]
 							del self.G[parent.name]
 							del self.G[node.name]
 							#print [x.name for x in real_parent.neighbors]
 
-							print newnode, newnode.name, newnode.parents, newnode.neighbors, newnode.get_degree(), newnode.is_collapsible()
-				 			print "newnode: ", newnode.name, "| indegree: ", newnode.indegree, "outdegree: ", newnode.outdegree
-				 			print "\n"
+							#print newnode, newnode.name, newnode.parents, newnode.neighbors, newnode.get_degree(), newnode.is_collapsible()
+				 			#print "newnode: ", newnode.name, "| indegree: ", newnode.indegree, "outdegree: ", newnode.outdegree
+				 			#print "\n"
 				 			concat(newnode)
 
 		for leaf in self.find_leaves():
-			print "leaf: ", leaf
+			#print "leaf: ", leaf
 			concat(leaf)	
 
 
@@ -240,8 +243,8 @@ if __name__ == "__main__":
 	#dot = a.dot_file_generator(dbg)
 	#print [x for x in a.G.iterkeys()]
 
-	for x in a.G.iterkeys():
-		print x, a.G[x].get_degree(), a.G[x].indegree, a.G[x].outdegree, a.G[x].is_head(), a.G[x].is_collapsible(), a.G[x].parents
+	#for x in a.G.iterkeys():
+	#	print x, a.G[x].get_degree(), a.G[x].indegree, a.G[x].outdegree, a.G[x].is_head(), a.G[x].is_collapsible(), a.G[x].parents
 
 	#print a.eulerian_walk(dbg)
 	#to test eulerian walk output
