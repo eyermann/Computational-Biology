@@ -50,6 +50,8 @@ class Assembler:
 				self.G[lkmer].outdegree += 1
 				self.G[rkmer].indegree += 1
 
+		root = [x for x in self.G.iterkeys() if self.G[x].is_head()][0]
+		self.populate_parents_dfs(self.G,root)
 		return self.G
 				
 	def dot_file_generator(self, dbg):
@@ -107,43 +109,105 @@ class Assembler:
 				paths = visit(self.G[x])
 			return paths
 	
-	def get_parent(self,node):
-		#print "node: ", node.name
-		parents = []
-		for x in self.G.iterkeys():
-			#print self.G[x].name
-			#print "node:",x, "neighbors: ", [y.name for y in self.G[x].neighbors]
-			if node.name in [y.name for y in self.G[x].neighbors]:
-				#print y.name, y
-				parents.append(self.G[x])
-		return parents
+	# def get_parent(self,node):
+	# 	#print "node: ", node.name
+	# 	parents = []
+	# 	for x in self.G.iterkeys():
+	# 		#print self.G[x].name
+	# 		#print "node:",x, "neighbors: ", [y.name for y in self.G[x].neighbors]
+	# 		if node.name in [y.name for y in self.G[x].neighbors]:
+	# 			#print y.name, y
+	# 			parents.append(self.G[x])
+	# 	return parents
 
-	def collapse(self): 
-			# while the indegree of a node is 1, collapse
-			def concat(node):
+	def dfs(self, dbg, start):
+		visited, stack = [], [start]
+		while stack:
+			v = stack.pop()
+			if v not in visited:
+				visited.append(v)
+				q = [item.name for item in dbg[v].neighbors if item not in visited]
+				stack.extend(q)
+		return visited
 
-				if self.get_parent(node)[0].indegree == 1:
-					if len(self.get_parent(node)) == 1:
-						parent = self.get_parent(node)[0]
-						cur = node.name
-						kmer_len = len(parent.name)
-						#print "kmer len: ", kmer_len
-						#print "current node: ", node.name
-						#print "'parent' node: ", parent.name
-						if self.get_parent(self.get_parent(node)[0]):
-							real_parent = self.get_parent(self.get_parent(node)[0])[0]
+	def populate_parents_dfs(self, dbg, start):
+		visited, stack = [], [start]
+		while stack:
+			v = stack.pop()
+			if v not in visited:
+				visited.append(v)
+				q = [item.name for item in dbg[v].neighbors if item not in visited]
+				for n in q:
+					a.G[n].parents.append(v)
+				stack.extend(q)
+		return visited
 
-							if parent.name[1:] == cur[:(kmer_len-1)]:
-								conc = parent.name[0] + cur
-								newnode = self.G[conc] = Node(conc)
-								real_parent.neighbors.append(newnode)
-								real_parent.neighbors.remove(parent)
-								del self.G[parent.name]
-								del self.G[node.name]
-								concat(newnode)
+	# def collapse(self): 
+	# 		# while the indegree of a node is 1, collapse
+	# 		def concat(node):
+	# 			#if node.is_collapsible():
+	# 			if self.get_parent(node)[0].indegree == 1:
+	# 				#print len(self.get_parent(node))
+	# 				if len(self.get_parent(node)) == 1:
+	# 					parent = self.get_parent(node)[0]
+	# 					cur = node.name
+	# 					kmer_len = len(parent.name)
+	# 					#print "kmer len: ", kmer_len
+	# 					#print "current node: ", node.name
+	# 					#print "'parent' node: ", parent.name
+	# 					if self.get_parent(self.get_parent(node)[0]):
+	# 						real_parent = self.get_parent(self.get_parent(node)[0])[0]
+	# 						#print "real parent: ", real_parent.name
+	# 						if parent.name[1:] == cur[:(kmer_len-1)]:
+	# 							conc = parent.name[0] + cur
+	# 							#print "concatenation: ", conc
+	# 							newnode = self.G[conc] = Node(conc)
+	# 							real_parent.neighbors.append(newnode)
+	# 							del self.G[parent.name]
+	# 							del self.G[node.name]
+					
+	# 							concat(newnode)
 
-			for leaf in self.find_leaves():
-				concat(leaf)
+	# 		for leaf in self.find_leaves():
+	# 			concat(leaf)	
+	def collapse(self):
+		# while the indegree of a node is 1, collapse
+		def concat(node):
+			if node.is_collapsible():
+			#if self.get_parent(node)[0].indegree == 1:
+				print len(node.get_parents())
+				if len(node.get_parents()) == 1:
+
+					parent = self.G[node.get_parents()[0]]
+				 	cur = node
+				 	kmer_len = len(parent.name)
+				 	print kmer_len
+				 	print "kmer len: ", kmer_len
+				 	print "current node: ", cur.name
+				 	print "'parent' node: ", parent.name
+
+				 	if parent.get_parents()[0]:
+						real_parent = self.G[parent.get_parents()[0]]
+						print "real parent: ", real_parent.name
+						if parent.name[1:] == cur.name[:(kmer_len-1)]:
+							conc = parent.name[0] + cur.name
+							print "concatenation: ", conc
+							newnode = self.G[conc] = Node(conc)
+							print "parent neighbors: ", parent.get_neighbors()[0].name
+							print "real parent neighbors: ", real_parent.get_neighbors()[0].name
+							real_parent.neighbors.append(newnode)
+							print "neighbors: ", self.G[real_parent.name].neighbors
+							#self.G[real_parent.name].neighbors.remove(parent)
+							del self.G[parent.name]
+							del self.G[node.name]
+							#del real_parent
+				
+				 			concat(newnode)
+
+		for leaf in self.find_leaves():
+			concat(leaf)	
+
+
 
 
 
@@ -158,8 +222,19 @@ if __name__ == "__main__":
 	
 	a = Assembler(clargs.read_file, clargs.kmer_length)
 	dbg = a.build_DBG()
+	#print a.G['o_e'].parents
+	#print "keys: ", [x for x in dbg.iterkeys()]
+	#oot = [x for x in a.G.iterkeys() if a.G[x].is_head()][0]
+	#print "root: ", root
+	#print a.populate_parents_dfs(dbg, root)
 
+
+	#dot = a.dot_file_generator(dbg)
 	#print [x for x in a.G.iterkeys()]
+
+	# for x in a.G.iterkeys():
+	# 	print x, a.G[x].get_degree(), a.G[x].indegree, a.G[x].outdegree, a.G[x].is_head(), a.G[x].is_collapsible(), a.G[x].parents
+
 	#print a.eulerian_walk(dbg)
 	#to test eulerian walk output
 	#superstr = a.eulerian_walk(dbg)
@@ -167,6 +242,8 @@ if __name__ == "__main__":
 	#print "Eulerian walk results: ", superstring
 
 	a.collapse()
+	#print a.dfs(dbg, root)
+	#print [x for x in a.G.iterkeys()]
 	dot = a.dot_file_generator(dbg)
 
 	with open("out.dot", "w") as f:

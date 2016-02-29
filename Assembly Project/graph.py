@@ -5,17 +5,20 @@ class Node:
 	def __init__(self,name):
 		self.name = name
 		self.neighbors = []
+		self.parents = []
 		self.indegree = 0
 		self.outdegree = 0
-		self.degree = self.indegree - self.outdegree
 
-	def __eq__(self, other):
-	    this = self.name
-	    that = other.name
-	    if this == that:
-	        return True
-	    else:
-	        return False
+	# def __eq__(self, other):
+	# 	this = self.name
+	# 	that = other.name
+	# 	if this == that:
+	# 		return True
+	# 	else:
+	# 		return False
+
+	def __hash__(self):
+		return hash(self.name)
 
 	def get_name(self):
 		return self.name
@@ -23,22 +26,35 @@ class Node:
 	def get_neighbors(self):
 		return self.neighbors
 
+	def get_parents(self):
+		return self.parents
+
 	def get_balance(self):
 		if self.in_nodes == self.out_nodes:
-			return true
+			return True
 		else:
-			return false
+			return False
 
 	def get_semi_balance(self):
 		if abs(self.in_nodes - self.out_nodes) == 1:
-			return true
+			return True
 		else:
-			return false
+			return False
 
-	# def remove_neighbor(self, neighbor):
-	# 	if neighbor in self.neighbors:
-	# 		del neighbor
+	def get_degree(self):
+		return self.indegree - self.outdegree
 
+	def is_head(self):
+		if self.get_degree() < 0 and self.indegree == 0:
+			return True
+		else:
+			return False
+
+	def is_collapsible(self):
+		if self.indegree == 1 and (self.outdegree == 0 or 1):
+			return True
+		else:
+			return False
 
 class Edge:
 	def __init__(self, node1, node2):
