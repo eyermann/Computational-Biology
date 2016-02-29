@@ -1,7 +1,7 @@
 # Sequence Read simulator for CS362 Project 3
 # Authors: Charles Eyermann and Sam Hinh
 
-import numpy as np
+import numpy as np 
 import sys, os, collections, random, argparse
 
 

@@ -5,12 +5,40 @@ class Node:
 	def __init__(self,name):
 		self.name = name
 		self.neighbors = []
+		self.indegree = 0
+		self.outdegree = 0
+		self.degree = self.indegree - self.outdegree
+
+	def __eq__(self, other):
+	    this = self.name
+	    that = other.name
+	    if this == that:
+	        return True
+	    else:
+	        return False
 
 	def get_name(self):
 		return self.name
 
 	def get_neighbors(self):
 		return self.neighbors
+
+	def get_balance(self):
+		if self.in_nodes == self.out_nodes:
+			return true
+		else:
+			return false
+
+	def get_semi_balance(self):
+		if abs(self.in_nodes - self.out_nodes) == 1:
+			return true
+		else:
+			return false
+
+	# def remove_neighbor(self, neighbor):
+	# 	if neighbor in self.neighbors:
+	# 		del neighbor
+
 
 class Edge:
 	def __init__(self, node1, node2):
