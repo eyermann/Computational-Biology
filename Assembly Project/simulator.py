@@ -95,7 +95,7 @@ class Simulator:
 
 
 	def write_file(self, reads):
-		with open("easy_output_reads.txt", "w") as f:
+		with open("sample_fasta_output_reads.txt", "w") as f:
 			h = ">" + self.header[1:30] + "| coverage: " + str(self.coverage) + "| read length: " + str(self.read_length) + "| error rate: " + str(self.error_rate) + "|\n"
 			f.write(h)
 			for row in self.reads:

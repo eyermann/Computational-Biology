@@ -144,7 +144,7 @@ class Assembler:
 		return self.G
 
 
-	def eulerian_walk(self,dbg):
+	def eulerian_walk(self):
 		walk = []
 		#choose random node
 		#start = random.choice(self.G.keys())
@@ -169,7 +169,7 @@ class Assembler:
 	def find_main_path(self,dbg):
 		return
 
-	def get_cycle(self, dbg):
+	def get_cycle(self):
 			path = []
 			visited = set()
 			
@@ -208,6 +208,10 @@ class Assembler:
 				q = [item.name for item in self.G[v].neighbors if item not in visited]
 				stack.extend(q)
 		return visited
+
+	def eulerianess(self):
+		return len([a.G[node].name for node in self.G.iterkeys() if a.G[node].get_degree() != 0])
+
 
 
 	def populate_parents_dfs(self, dbg, start):
@@ -296,19 +300,15 @@ if __name__ == "__main__":
 
 	# BEGIN MAIN
 	a = Assembler(clargs.read_file, clargs.kmer_length)
-	print a.G
-	
 	# a1 = Assembler("out.dot")
 	# print a1.G
-
-
-	#print "Building DeBruijn graph... please wait"
+	print "Building DeBruijn graph... please wait"
 	# just as a reminder, dbg is referencing self.G graph in assembler class. (a.G[key] == dbg[key])
-	#dbg = a.build_DBG()
-	#print "Finished building DeBruijn graph!"
-
+	dbg = a.build_DBG()
+	print "Finished building DeBruijn graph!"
+	#print a.eulerianess()
 	# to test eulerian walk output
-	#superstr = a.eulerian_walk(dbg)
+	#superstr = a.eulerian_walk()
 	#print len(superstr)
 	#print superstr
 	#superstring = superstr[0] + ''.join(map(lambda x: x[-1], superstr[1:]))
@@ -358,10 +358,10 @@ if __name__ == "__main__":
 	#maxlen = max([len(x) for x in a.G.iterkeys()])
 	#contigs = [x for x in a.G.iterkeys() if len(x) == maxlen]
 
-	#dot = a.dot_file_generator(dbg)
+	dot = a.weighted_dot_file_generator(dbg)
 	#print dot
 
-	#with open("out.dot", "w") as f:
-	#	f.write(dot)
-	#	f.close()
+	with open("out.dot", "w") as f:
+		f.write(dot)
+		f.close()
 
