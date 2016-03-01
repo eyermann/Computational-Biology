@@ -65,6 +65,37 @@ class Assembler:
 		output += "}"
 		return output
 
+	def weighted_dot_file_generator(self, dbg):
+		wd = {}
+		output = ""
+		output += "digraph {\n"
+		
+		for key in dbg.iterkeys():
+			for v in dbg[key].get_neighbors():
+				k = "%s -> %s" % (key,v.name)
+				if k not in wd:
+					wd[k] = 1
+				else:
+					wd[k] += 1
+				#output += "%s -> %s;\n" % (key,v.name)
+		for z in wd.iterkeys():
+			y = wd[z]
+			output += "%s [ label=\"%s\" ];\n" % (z,y)
+		output += "}"
+		return output
+
+	def weighted_graph_converter(self, dbg):
+		wd = {}
+
+		for key in dbg.iterkeys():
+			for v in dbg[key].get_neighbors():
+				k = "%s -> %s" % (key,v.name)
+				if k not in wd:
+					wd[k] = 1
+				else:
+					wd[k] += 1
+		return wd
+
 	def dot_file_generator_list(self, l):
 		output = ""
 		output += "graph {\n"
@@ -106,6 +137,9 @@ class Assembler:
 			if dbg[x].indegree == 1 and dbg[x].outdegree == 0:
 				leaves.append(dbg[x])
 		return leaves
+
+	def find_main_path(self,dbg):
+		return
 
 
 	def get_cycle(self, dbg):
@@ -233,7 +267,9 @@ if __name__ == "__main__":
 		sys.exit(1)
 	
 	a = Assembler(clargs.read_file, clargs.kmer_length)
+	print "Building DeBruijn graph... please wait"
 	dbg = a.build_DBG()
+	print "Finished building DeBruijn graph!"
 
 	# to test eulerian walk output
 	#superstr = a.eulerian_walk(dbg)
@@ -254,27 +290,26 @@ if __name__ == "__main__":
 	#print max(len(a.bfs(dbg,root)) for root in roots)
 
 	# find longest depth-first path in graph
-	max_root = None
-	max_len = 0
-	for root in roots:
-		z = len(a.dfs(dbg,root))
-		if z > max_len:
-			max_root = root
-			max_len = z
-	print "root with longest path: ", max_root, " has length: ", max_len
-	dfs = [x.name for x in a.dfs(dbg,max_root)]
-	bfs = [x.name for x in a.bfs(dbg,max_root)]
-	print "depth first search results: ", dfs
-	print "breadth first search results: ", bfs
-	
-	#superstring = bfs[0] + ''.join(map(lambda x: x[-1], bfs[1:]))
-	#print superstring
 
-	print "roots found through bfs: ", [x for x in bfs if a.G[x].is_head()]
-	print "leaves found through bfs: ", [x for x in bfs if a.G[x].is_leaf()]
-	
-	print "roots found through bfs: ", [x for x in dfs if a.G[x].is_head()]
-	print "leaves found through dfs: ", [x for x in dfs if a.G[x].is_leaf()]
+	# max_root = None
+	# max_len = 0
+	# for root in roots:
+	# 	z = len(a.dfs(dbg,root))
+	# 	if z > max_len:
+	# 		max_root = root
+	# 		max_len = z
+
+	#print "root with longest path: ", max_root, " has length: ", max_len
+	#dfs = [x.name for x in a.dfs(dbg,max_root)]
+	#print dfs
+	#bfs = [x.name for x in a.bfs(dbg,max_root)]
+	#print "depth first search results: ", dfs
+	#print "breadth first search results: ", bfs
+
+	#print "roots found through bfs: ", [x for x in bfs if a.G[x].is_head()]
+	#print "leaves found through bfs: ", [x for x in bfs if a.G[x].is_leaf()]
+	#print "roots found through bfs: ", [x for x in dfs if a.G[x].is_head()]
+	#print "leaves found through dfs: ", [x for x in dfs if a.G[x].is_leaf()]
 	
 	# count = 0
 	# for x in dbg.iterkeys():
@@ -284,7 +319,8 @@ if __name__ == "__main__":
 	#maxlen = max([len(x) for x in a.G.iterkeys()])
 	#contigs = [x for x in a.G.iterkeys() if len(x) == maxlen]
 
-	dot = a.dot_file_generator(dbg)
+	dot = a.weighted_dot_file_generator(dbg)
+	#print dot
 
 	with open("out.dot", "w") as f:
 		f.write(dot)
