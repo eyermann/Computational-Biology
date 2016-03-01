@@ -5,24 +5,33 @@ from simulator import *
 from graph import * 
 import argparse
 
-
 class Assembler:
 
-	def __init__(self, reads, k):
-		self.reads = []
-		self.G = {}
-		self.N = {}
-		self.header = ""
-		self.k = k
+	def __init__(self, data, k = None):
+		if k is None:
+			self.reads = []
+			self.G = {}
+			self.N = {}
+			self.header = ""
+			self.G = self.dot_file_to_graph(data)
 
-		for row in clargs.read_file:
-			if row[0] != ">":
-				self.reads.append(row.strip())
-				# print len(row)
+		else:
+			self.reads = []
+			self.G = {}
+			self.N = {}
+			self.header = ""
+			self.k = k
+
+			for row in clargs.read_file:
+				if row[0] != ">":
+					self.reads.append(row.strip())
+					# print len(row)
+			self.build_DBG()
 
 	def generate_kmers(self,read,k):
 		for nucleotide in range(0,len(read)+1-self.k):
 			yield read[nucleotide:nucleotide+self.k]
+
 
 	def build_DBG(self):	
 		# for each read in set of all reads
@@ -105,6 +114,36 @@ class Assembler:
 		output += "}"
 		return output
 
+	def dot_file_to_graph(self, dotfile):
+		
+		with open(dotfile, "rU") as f:
+			for row in f:
+				row = row.strip()[:-1]
+				if row:
+					l = row.split(" -> ") 
+					lkmer,rkmer = l[0],l[-1]
+					if lkmer not in self.G:
+						self.G[lkmer] = Node(lkmer)
+
+						if rkmer not in self.G[lkmer].neighbors:
+							self.G[lkmer].neighbors.append(Node(rkmer))
+					else:
+						self.G[lkmer].neighbors.append(Node(rkmer))
+
+					if rkmer not in self.G:
+						self.G[rkmer] = Node(rkmer)
+					else:
+						pass
+
+					self.G[lkmer].outdegree += 1
+					self.G[rkmer].indegree += 1
+
+		roots = [x for x in self.G.iterkeys() if self.G[x].is_head()]
+		for root in roots:
+			self.populate_parents_dfs(self.G,root)
+		return self.G
+
+
 	def eulerian_walk(self,dbg):
 		walk = []
 		#choose random node
@@ -125,22 +164,10 @@ class Assembler:
 		return walk
 
 	def find_leaves(self):
-		leaves = []
-		for x in self.G.iterkeys():
-			if self.G[x].indegree == 1 and self.G[x].outdegree == 0:
-				leaves.append(self.G[x])
-		return leaves
-
-	def find_leaves(self,dbg):
-		leaves = []
-		for x in dbg.iterkeys():
-			if dbg[x].indegree == 1 and dbg[x].outdegree == 0:
-				leaves.append(dbg[x])
-		return leaves
+		return [a.G[x] for x in a.G.iterkeys() if a.G[x].is_leaf()]
 
 	def find_main_path(self,dbg):
 		return
-
 
 	def get_cycle(self, dbg):
 			path = []
@@ -192,7 +219,7 @@ class Assembler:
 				q = [item.name for item in dbg[v].neighbors if item not in visited]
 				for n in q:
 					#print self.G[v]
-					a.G[n].parents.append(self.G[v])
+					self.G[n].parents.append(self.G[v])
 				stack.extend(q)
 		return visited
 
@@ -265,11 +292,20 @@ if __name__ == "__main__":
 		print "\n"
 		print "FATAL: kmer length must be 2 or more! - suggested to use kmer length of 4 at minimum."
 		sys.exit(1)
-	
+	# END ARGPARSE CODE
+
+	# BEGIN MAIN
 	a = Assembler(clargs.read_file, clargs.kmer_length)
-	print "Building DeBruijn graph... please wait"
-	dbg = a.build_DBG()
-	print "Finished building DeBruijn graph!"
+	print a.G
+	
+	# a1 = Assembler("out.dot")
+	# print a1.G
+
+
+	#print "Building DeBruijn graph... please wait"
+	# just as a reminder, dbg is referencing self.G graph in assembler class. (a.G[key] == dbg[key])
+	#dbg = a.build_DBG()
+	#print "Finished building DeBruijn graph!"
 
 	# to test eulerian walk output
 	#superstr = a.eulerian_walk(dbg)
@@ -280,13 +316,16 @@ if __name__ == "__main__":
 
 
 	# Get all leaves in tree, collapse them!
-	#print len(a.find_leaves())
-	#for leaf in a.find_leaves(dbg):
+	#print len([x for x in dbg.iterkeys()])
+	#print a.find_leaves()
+	#for leaf in a.find_leaves():
 	#	a.concat(leaf)
+	#print len([x for x in dbg.iterkeys()])
 
-	# find all roots in tree
-	roots = [x for x in dbg.iterkeys() if dbg[x].is_head()]
-	print "number of roots found: ", len(roots)
+	# find all roots in tree - tested this and works in all edge cases!!!!
+	#roots = [x for x in dbg.iterkeys() if dbg[x].is_head()]
+
+	#print "number of roots found: ", len(roots)
 	#print max(len(a.bfs(dbg,root)) for root in roots)
 
 	# find longest depth-first path in graph
@@ -319,10 +358,10 @@ if __name__ == "__main__":
 	#maxlen = max([len(x) for x in a.G.iterkeys()])
 	#contigs = [x for x in a.G.iterkeys() if len(x) == maxlen]
 
-	dot = a.weighted_dot_file_generator(dbg)
+	#dot = a.dot_file_generator(dbg)
 	#print dot
 
-	with open("out.dot", "w") as f:
-		f.write(dot)
-		f.close()
+	#with open("out.dot", "w") as f:
+	#	f.write(dot)
+	#	f.close()
 
