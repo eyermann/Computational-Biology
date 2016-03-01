@@ -50,6 +50,13 @@ class Node:
 		else:
 			return False
 
+	def is_leaf(self):
+		#print self.indegree, self.outdegree, self.get_degree()
+		if self.indegree != 0 and self.outdegree == 0:
+			return True
+		else:
+			return False
+
 	def is_collapsible(self):
 		if self.indegree == 1 and (self.outdegree == 0 or 1):
 			return True
