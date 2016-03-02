@@ -212,6 +212,16 @@ class Assembler:
 	def eulerianess(self):
 		return len([a.G[node].name for node in self.G.iterkeys() if a.G[node].get_degree() != 0])
 
+	def dfs_collapse(self, dbg, start):
+		dfs = self.G[]
+		visited, stack = [], [start]
+		while stack:
+			v = stack.pop()
+			if self.G[v] not in visited:
+				visited.append(self.G[v])
+				q = [item.name for item in self.G[v].neighbors if item not in visited]
+				stack.extend(q)
+		return visited
 
 
 	def populate_parents_dfs(self, dbg, start):
@@ -226,6 +236,18 @@ class Assembler:
 					self.G[n].parents.append(self.G[v])
 				stack.extend(q)
 		return visited
+
+	def merge_nodes(self,n1,n2):
+		#assume we are collapsing upwards i.e ATTGC + TTGCG = ATTGCG
+		newname = n1.name[0] + n2.name
+		newnode = Node(newname)
+		newnode.parents = n1.parents
+		newnode.neighbors = n2.neighbors
+		newnode.indegree = n1.indegree
+		newnode.outdegree = n2.outdegree
+		a.G[newname] = newnode
+		del a.G[n1]
+		del a.G[n2]
 
 	def concat(self,node):
 		contigs = []
@@ -304,7 +326,7 @@ if __name__ == "__main__":
 	# print a1.G
 	print "Building DeBruijn graph... please wait"
 	# just as a reminder, dbg is referencing self.G graph in assembler class. (a.G[key] == dbg[key])
-	dbg = a.build_DBG()
+	a.build_DBG()
 	print "Finished building DeBruijn graph!"
 	#print a.eulerianess()
 	# to test eulerian walk output
@@ -330,15 +352,20 @@ if __name__ == "__main__":
 
 	# find longest depth-first path in graph
 
-	# max_root = None
-	# max_len = 0
-	# for root in roots:
-	# 	z = len(a.dfs(dbg,root))
-	# 	if z > max_len:
-	# 		max_root = root
-	# 		max_len = z
+	max_root = None
+	max_len = 0
+	for root in roots:
+		z = len(a.dfs(a.G,root))
+		if z > max_len:
+			max_root = root
+			max_len = z
 
-	#print "root with longest path: ", max_root, " has length: ", max_len
+	print "root with longest path: ", max_root, " has length: ", max_len
+	dfsl = dfs(a.G, max_root)
+	for i in range(len(dfsl)-1):
+		if a.G[dfsl[i]].is_collapsible() and a.G[dfsl[i+1]].is_collapsible() and a.G[dfsl[i+1]] in a.G[dfsl[i]].neighbors:
+			merge_nodes(a.G[dfsl[i]],a.G[dfsl[i+1]])
+
 	#dfs = [x.name for x in a.dfs(dbg,max_root)]
 	#print dfs
 	#bfs = [x.name for x in a.bfs(dbg,max_root)]
@@ -358,7 +385,7 @@ if __name__ == "__main__":
 	#maxlen = max([len(x) for x in a.G.iterkeys()])
 	#contigs = [x for x in a.G.iterkeys() if len(x) == maxlen]
 
-	dot = a.weighted_dot_file_generator(dbg)
+	dot = a.weighted_dot_file_generator(a.G)
 	#print dot
 
 	with open("out.dot", "w") as f:
