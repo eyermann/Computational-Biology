@@ -11,9 +11,10 @@ class Assembler:
 		if k is None:
 			self.reads = []
 			self.G = {}
-			self.N = {}
+			self.keys = []
 			self.header = ""
 			self.G = self.dot_file_to_graph(data)
+
 
 		else:
 			self.reads = []
@@ -47,9 +48,9 @@ class Assembler:
 					self.G[lkmer] = Node(lkmer)
 
 					if rkmer not in self.G[lkmer].neighbors:
-						self.G[lkmer].neighbors.append(Node(rkmer))
+						self.G[lkmer].neighbors.append(Node(rkmer).name)
 				else:
-					self.G[lkmer].neighbors.append(Node(rkmer))
+					self.G[lkmer].neighbors.append(Node(rkmer).name)
 
 				if rkmer not in self.G:
 					self.G[rkmer] = Node(rkmer)
@@ -62,6 +63,10 @@ class Assembler:
 		roots = [x for x in self.G.iterkeys() if self.G[x].is_head()]
 		for root in roots:
 			self.populate_parents_dfs(self.G,root)
+		self.keys = self.G.keys()
+		for item in self.G.iterkeys():
+			self.G[item].unique_neighbors = len(set([x for x in self.G[item].neighbors]))
+			self.G[item].unique_parents = len(set([x for x in self.G[item].get_parents()]))
 		return self.G
 				
 	def dot_file_generator(self, dbg):
@@ -70,7 +75,7 @@ class Assembler:
 		
 		for key in dbg.iterkeys():
 			for v in dbg[key].get_neighbors():
-				output += "%s -> %s;\n" % (key,v.name)
+				output += "%s -> %s;\n" % (key,v)
 		output += "}"
 		return output
 
@@ -81,7 +86,7 @@ class Assembler:
 		
 		for key in dbg.iterkeys():
 			for v in dbg[key].get_neighbors():
-				k = "%s -> %s" % (key,v.name)
+				k = "%s -> %s" % (key,v)
 				if k not in wd:
 					wd[k] = 1
 				else:
@@ -97,8 +102,8 @@ class Assembler:
 		wd = {}
 
 		for key in dbg.iterkeys():
-			for v in dbg[key].get_neighbors():
-				k = "%s -> %s" % (key,v.name)
+			for v in dbg[key].neighbors:
+				k = "%s -> %s" % (key,v)
 				if k not in wd:
 					wd[k] = 1
 				else:
@@ -126,9 +131,9 @@ class Assembler:
 						self.G[lkmer] = Node(lkmer)
 
 						if rkmer not in self.G[lkmer].neighbors:
-							self.G[lkmer].neighbors.append(Node(rkmer))
+							self.G[lkmer].neighbors.append(Node(rkmer).name)
 					else:
-						self.G[lkmer].neighbors.append(Node(rkmer))
+						self.G[lkmer].neighbors.append(Node(rkmer).name)
 
 					if rkmer not in self.G:
 						self.G[rkmer] = Node(rkmer)
@@ -164,7 +169,7 @@ class Assembler:
 		return walk
 
 	def find_leaves(self):
-		return [a.G[x] for x in a.G.iterkeys() if a.G[x].is_leaf()]
+		return [x for x in a.G.iterkeys() if a.G[x].is_leaf()]
 
 	def find_main_path(self,dbg):
 		return
@@ -212,42 +217,103 @@ class Assembler:
 	def eulerianess(self):
 		return len([a.G[node].name for node in self.G.iterkeys() if a.G[node].get_degree() != 0])
 
-	def dfs_collapse(self, dbg, start):
-		dfs = self.G[]
-		visited, stack = [], [start]
-		while stack:
-			v = stack.pop()
-			if self.G[v] not in visited:
-				visited.append(self.G[v])
-				q = [item.name for item in self.G[v].neighbors if item not in visited]
-				stack.extend(q)
-		return visited
-
-
 	def populate_parents_dfs(self, dbg, start):
 		visited, stack = [], [start]
 		while stack:
 			v = stack.pop()
 			if v not in visited:
 				visited.append(v)
-				q = [item.name for item in dbg[v].neighbors if item not in visited]
+				q = [item for item in dbg[v].neighbors if item not in visited]
 				for n in q:
 					#print self.G[v]
-					self.G[n].parents.append(self.G[v])
+					self.G[n].parents.append(self.G[v].name)
 				stack.extend(q)
 		return visited
 
 	def merge_nodes(self,n1,n2):
 		#assume we are collapsing upwards i.e ATTGC + TTGCG = ATTGCG
 		newname = n1.name[0] + n2.name
+		#print newname
 		newnode = Node(newname)
 		newnode.parents = n1.parents
 		newnode.neighbors = n2.neighbors
 		newnode.indegree = n1.indegree
 		newnode.outdegree = n2.outdegree
 		a.G[newname] = newnode
-		del a.G[n1]
-		del a.G[n2]
+		del a.G[n1.name]
+		del a.G[n2.name]
+
+	def collapse_driver(self):
+		if self.keys:
+			for k,v in self.G.items():
+				print "\n"
+				print "current list of nodes in dict: ", self.keys
+				cur, nbor_list = k, [x for x in v.neighbors]
+				print "node: '", cur, "' neighbors: ", nbor_list
+				if nbor_list:
+					try:
+
+						# if all nodes in the neighbors list for the current node are the same and they overlap, 
+						# we can collapse the two nodes 
+
+						print a.G[nbor_list[0]].unique_neighbors
+						#print len(a.G[cur].get_parents())
+						next_node = nbor_list[0]
+						if (nbor_list.count(next_node) == len(nbor_list)
+						and (cur[1:] == next_node[:(len(cur)-1)])
+						and (a.G[cur].unique_parents <= 1)
+						and (a.G[next_node].unique_parents <= 1)
+						and (a.G[cur].unique_neighbors <= 1)
+						and (a.G[next_node].unique_neighbors <= 1)):
+
+
+							print "Homogenous neighbor list AND",
+							print "Should be identical (overlap): <" , cur[1:], "==", nbor_list[0][:(len(cur)-1)],">", 
+							print ", so merge these nodes: ", cur, "and ", nbor_list[0]
+							#print 
+
+							n1,n2 = a.G[cur], a.G[nbor_list[0]]
+							#print n1.name,n2.name
+							#self.merge_nodes(a.G[cur],a.G[nbor_list[0]])
+							newname = n1.name[0] + n2.name
+							#print "LOLOLOL", newname
+							
+							newnode = Node(newname)
+							newnode.parents = n1.parents
+							newnode.neighbors = n2.neighbors
+							newnode.unique_parents = len(set(n1.parents))
+							newnode.unique_neighbors = len(set(n2.neighbors))
+							#print "DATA DUMP: ",
+							#newnode.data_dump()
+							#newnode.indegree = n1.indegree
+							#newnode.outdegree = n2.outdegree
+							a.G[newname] = newnode
+							self.keys.append(newname)	
+							
+							del a.G[n1.name]
+							del a.G[n2.name]
+							#print n1,n2
+							self.keys.remove(n1.name)
+							self.keys.remove(n2.name)
+							
+							self.collapse_driver()
+						else:
+							print "If False: ", nbor_list.count(nbor_list[0]) == len(nbor_list), "| AND",
+							print "NOT identical: <" , cur[1:], nbor_list[0][:(len(cur)-1)],">",
+							print "we won't merge these nodes: ", cur, "and ", nbor_list[0]
+							continue
+
+					except KeyError,e:
+
+						print "ABORT ABORT: ", str(e)
+						#self.collapse_driver()
+						break
+					
+				else: 
+					print ""
+					#self.collapse_driver()
+			
+
 
 	def concat(self,node):
 		contigs = []
@@ -255,9 +321,15 @@ class Assembler:
 		#print "is collapsible: ", node.is_collapsible(), 
 		#print len(node.get_parents())
 		#print node.get_parents()[0].get_parents()
+		if type(node) == str:
+			node = self.G[node]
+			#print "this is also a node", node
+		#else:
+			#print "this is a node", node
+
 		if node.get_parents():
-			#print node.is_collapsible() and node.get_parents()[0].is_collapsible(),
-			if node.is_collapsible() and node.get_parents()[0].is_collapsible():
+			#print node.is_collapsible(), self.G[node.get_parents()[0]].is_collapsible()
+			if node.is_collapsible() and self.G[node.get_parents()[0]].is_collapsible():
 			#if self.get_parent(node)[0].indegree == 1:
 				#print "prev: ", node.get_parents()[0]
 				if len(node.get_parents()) == 1:
@@ -266,38 +338,39 @@ class Assembler:
 					parent = node.get_parents()[0]
 					#print parent
 					cur = node
-					kmer_len = len(parent.name)
+					kmer_len = len(parent)
 
-					if parent.get_parents():
-						real_parent = parent.get_parents()[0]
+					if self.G[parent].get_parents():
+						real_parent = self.G[parent].get_parents()[0]
 						#print "real parent: ", real_parent.name, real_parent
 						#print parent.name[1:] == cur.name[:(kmer_len-1)],
-						if parent.name[1:] == cur.name[:(kmer_len-1)]:
-							conc = parent.name[0] + cur.name
+						if parent[1:] == cur.name[:(kmer_len-1)]:
+							conc = parent[0] + cur.name
 							#print "! Concatenation: ", conc
 							newnode = self.G[conc] = Node(conc)
-							real_parent.neighbors.append(newnode)
+							self.G[real_parent].neighbors.append(newnode.name)
 							newnode.parents.append(real_parent)
 							newnode.indegree = len(newnode.parents)
+							newnode.name = conc
 							#print "real parent: ", real_parent.name, [x.name for x in real_parent.neighbors]#[0].name
 							#self.G[real_parent.name].neighbors.remove(real_parent.neighbors[0])
-							self.G[real_parent.name].neighbors = [x for x in self.G[real_parent.name].neighbors if x.name != parent.name]
-							#print "real parent: ", real_parent.name, [x.name for x in real_parent.neighbors]
-							del self.G[parent.name]
+							self.G[real_parent].neighbors = [x for x in self.G[real_parent].neighbors if x != parent]
+							#print "real parent: ", real_parent, [x for x in self.G[real_parent].neighbors]
+							del self.G[parent]
 							del self.G[node.name]
-							self.concat(newnode)
+							self.concat(newnode.name)
 
 			elif node.is_collapsible():
 				parent = node.get_parents()[0]
-				kmer_len = len(parent.name)
+				kmer_len = len(parent)
 				cur = node
-				if parent.name[1:] == cur.name[:(kmer_len-1)]:
-					conc = parent.name[0] + cur.name
+				if parent[1:] == cur.name[:(kmer_len-1)]:
+					conc = parent[0] + cur.name
 					#print conc
 					newnode = self.G[conc] = Node(conc)	
-					#print newnode.name
+					newnode.name = conc
 
-					#del self.G[parent.name]
+					#del self.G[parent]
 					#del self.G[node.name]
 					#print type(conc)
 					
@@ -326,8 +399,10 @@ if __name__ == "__main__":
 	# print a1.G
 	print "Building DeBruijn graph... please wait"
 	# just as a reminder, dbg is referencing self.G graph in assembler class. (a.G[key] == dbg[key])
-	a.build_DBG()
+	#a.build_DBG()
 	print "Finished building DeBruijn graph!"
+	for k,v in a.G.items():
+		print k,v.unique_neighbors, v.unique_parents
 	#print a.eulerianess()
 	# to test eulerian walk output
 	#superstr = a.eulerian_walk()
@@ -335,12 +410,21 @@ if __name__ == "__main__":
 	#print superstr
 	#superstring = superstr[0] + ''.join(map(lambda x: x[-1], superstr[1:]))
 	#print "Eulerian walk results: ", superstring
-
+	a.collapse_driver()
+	# for x in a.G.keys():
+	# 	cur, nbor_list = a.G[x].name, [x.name for x in a.G[x].neighbors]
+	# 	print cur, nbor_list,
+	# 	if nbor_list:
+	# 		print nbor_list.count(nbor_list[0]) == len(nbor_list) 
+	# 		a.merge_nodes(a.G[cur],a.G[nbor_list[0]])
+	# 	else: print ""
+		#print a.G[x+1]
 
 	# Get all leaves in tree, collapse them!
 	#print len([x for x in dbg.iterkeys()])
-	#print a.find_leaves()
+	#print "LEAVES: ", a.find_leaves()
 	#for leaf in a.find_leaves():
+		#print leaf
 	#	a.concat(leaf)
 	#print len([x for x in dbg.iterkeys()])
 
@@ -352,19 +436,19 @@ if __name__ == "__main__":
 
 	# find longest depth-first path in graph
 
-	max_root = None
-	max_len = 0
-	for root in roots:
-		z = len(a.dfs(a.G,root))
-		if z > max_len:
-			max_root = root
-			max_len = z
+	# max_root = None
+	# max_len = 0
+	# for root in roots:
+	# 	z = len(a.dfs(a.G,root))
+	# 	if z > max_len:
+	# 		max_root = root
+	# 		max_len = z
 
-	print "root with longest path: ", max_root, " has length: ", max_len
-	dfsl = dfs(a.G, max_root)
-	for i in range(len(dfsl)-1):
-		if a.G[dfsl[i]].is_collapsible() and a.G[dfsl[i+1]].is_collapsible() and a.G[dfsl[i+1]] in a.G[dfsl[i]].neighbors:
-			merge_nodes(a.G[dfsl[i]],a.G[dfsl[i+1]])
+	# print "root with longest path: ", max_root, " has length: ", max_len
+	# dfsl = dfs(a.G, max_root)
+	# for i in range(len(dfsl)-1):
+	# 	if a.G[dfsl[i]].is_collapsible() and a.G[dfsl[i+1]].is_collapsible() and a.G[dfsl[i+1]] in a.G[dfsl[i]].neighbors:
+	# 		merge_nodes(a.G[dfsl[i]],a.G[dfsl[i+1]])
 
 	#dfs = [x.name for x in a.dfs(dbg,max_root)]
 	#print dfs

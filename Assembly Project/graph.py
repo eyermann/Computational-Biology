@@ -5,9 +5,12 @@ class Node:
 	def __init__(self,name):
 		self.name = name
 		self.neighbors = []
+		self.unique_neighbors = 0
 		self.parents = []
+		self.unique_parents = 0
 		self.indegree = 0
 		self.outdegree = 0
+
 
 	# def __eq__(self, other):
 	# 	this = self.name
@@ -19,6 +22,16 @@ class Node:
 
 	def __hash__(self):
 		return hash(self.name)
+
+	def data_dump(self):
+		print "|name: ", self.name,
+		print "|neighbors: ", [x for x in self.neighbors],
+		print "|unique neighbors: ", self.unique_neighbors,
+		print "|parents: ", [x for x in self.parents],
+		print "|unique parents: ", self.unique_parents,
+		print "|indegree: ", self.indegree,
+		print "|outdegree: ", self.outdegree, "|"
+
 
 	def get_name(self):
 		return self.name
