@@ -25,9 +25,9 @@ class Node:
 
 	def data_dump(self):
 		print "|name: ", self.name,
-		print "|neighbors: ", [x for x in self.neighbors],
+		#print "|neighbors: ", [x for x in self.neighbors],
 		print "|unique neighbors: ", self.unique_neighbors,
-		print "|parents: ", [x for x in self.parents],
+		#print "|parents: ", [x for x in self.parents],
 		print "|unique parents: ", self.unique_parents,
 		print "|indegree: ", self.indegree,
 		print "|outdegree: ", self.outdegree, "|"
@@ -43,13 +43,13 @@ class Node:
 		return self.parents
 
 	def get_balance(self):
-		if self.in_nodes == self.out_nodes:
+		if self.indegree == self.outdegree:
 			return True
 		else:
 			return False
 
 	def get_semi_balance(self):
-		if abs(self.in_nodes - self.out_nodes) == 1:
+		if abs(self.indegree - self.outdegree) == 1:
 			return True
 		else:
 			return False
