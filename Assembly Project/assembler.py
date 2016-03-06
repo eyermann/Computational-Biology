@@ -2,7 +2,7 @@
 # Authors: Charles Eyermann and Sam Hinh
 
 from simulator import *
-from graph import * 
+from node import * 
 import argparse, copy
 
 class Assembler:
@@ -467,18 +467,9 @@ class Assembler:
 			counter += 1
 			path.append(cur)
 			cur = a.G[cur.neighbors[0]]
-		#print len(path), path
 		for node in path[1:]:
 			del a.G[node.name]
-		
-		# if counter > length_threshold:
-		# 	while counter != 0:
-		# 		if cur.parents:
-		# 			prev = cur
-		# 			cur = a.G[cur.parents[0]]
-		# 			counter -= 1
-		# 			del a.G[prev.name]
-		#return counter
+
 
 
 	def trim_branches(self):
