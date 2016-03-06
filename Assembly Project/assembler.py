@@ -4,6 +4,7 @@
 from simulator import *
 from node import * 
 import argparse, copy
+from collections import Counter
 
 class Assembler:
 
@@ -466,8 +467,12 @@ class Assembler:
 		while cur.unique_neighbors != 0:
 			counter += 1
 			path.append(cur)
-			cur = a.G[cur.neighbors[0]]
-		for node in path[1:]:
+			# print len(cur.neighbors)
+			#b = min(set(cur.neighbors) key=cur.neighbors.count)
+			least_common = Counter(cur.neighbors).most_common()[-1][0]
+			cur = a.G[least_common]
+
+		for node in path:
 			del a.G[node.name]
 
 
@@ -527,7 +532,7 @@ if __name__ == "__main__":
 		print "\n"
 
 	print len(a.G)
-	#a.trim_branches()
+	a.trim_branches()
 	print len(a.G)
 	#a.trim_cycles()
 	#c = a.get_contigs()
