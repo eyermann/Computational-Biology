@@ -2,9 +2,10 @@
 # Authors: Charles Eyermann and Sam Hinh
 
 from simulator import *
-from node import * 
-import argparse, copy
+from node import *
+import argparse, copy, csv, timeit
 from collections import Counter
+
 
 class Assembler:
 
@@ -60,11 +61,11 @@ class Assembler:
 		for nucleotide in range(0,len(read)+1-self.k):
 			yield read[nucleotide:nucleotide+self.k]
 
-	def build_DBG(self):	
+	def build_DBG(self):
 		# for each read in set of all reads
 		for read in self.reads:
 			#print "read: ", read
-			# for each kmer in set of kmers per read 
+			# for each kmer in set of kmers per read
 			for kmer in self.generate_kmers(read,self.k):
 				# link each left and right k-1mer together
 				lkmer = kmer[:-1]
@@ -99,14 +100,14 @@ class Assembler:
 				self.semi_balanced_nodes += 1
 			else:
 				self.unbalanced_nodes += 1
-		
+
 		return self.G
 
-				
+
 	def dot_file_generator(self, dbg):
 		output = ""
 		output += "digraph {\n"
-		
+
 		for key in dbg.iterkeys():
 			for v in dbg[key].get_neighbors():
 				output += "%s -> %s;\n" % (key,v)
@@ -117,7 +118,7 @@ class Assembler:
 		wd = {}
 		output = ""
 		output += "digraph {\n"
-		
+
 		for key in dbg.iterkeys():
 			for v in dbg[key].get_neighbors():
 				k = "%s -> %s" % (key,v)
@@ -155,7 +156,7 @@ class Assembler:
 			for row in f:
 				row = row.strip()[:-1]
 				if row:
-					l = row.split(" -> ") 
+					l = row.split(" -> ")
 					lkmer,rkmer = l[0],l[-1]
 					if lkmer not in self.G:
 						self.G[lkmer] = Node(lkmer)
@@ -205,14 +206,14 @@ class Assembler:
 		return set([x for x in self.G.iterkeys() if self.G[x].is_leaf()])
 
 	def get_eulerianess(self):
-		return ((self.unbalanced_nodes == 0 and self.semi_balanced_nodes == 0) or 
+		return ((self.unbalanced_nodes == 0 and self.semi_balanced_nodes == 0) or
 				(self.unbalanced_nodes == 0 and self.semi_balanced_nodes == 2))
 
 	def get_cycle(self, dbg):
 		path = []
 		pathset = set()
 		visited = set()
-		
+
 		def visit(node):
 			if node in visited:
 				return None
@@ -221,7 +222,7 @@ class Assembler:
 			pathset.add(node)
 			neighbors = self.G[node].neighbors
 			for neighbor in neighbors:
-				try: 
+				try:
 					if neighbor in pathset or visit(neighbor):
 							return path
 				except RuntimeError as e:
@@ -234,7 +235,7 @@ class Assembler:
 			paths = visit(self.G[key].name)
 		return pathset, path
 
-	def bfs(self, dbg, start):		
+	def bfs(self, dbg, start):
 		visited, q = set(), [start]
 		while q:
 			v = q.pop(0)
@@ -306,7 +307,7 @@ class Assembler:
 								newnode.parents.append(real_parent)
 								newnode.indegree = len(newnode.parents)
 								newnode.unique_parents = len(set(self.G[real_parent].parents))
-								newnode.unique_neighbors = 0								
+								newnode.unique_neighbors = 0
 								newnode.name = conc
 								self.G[real_parent].neighbors = [x for x in self.G[real_parent].neighbors if x != parent]
 								del self.G[parent.name]
@@ -320,13 +321,13 @@ class Assembler:
 
 					if parent[1:] == cur.name[:(kmer_len-1)]:
 						conc = parent[0] + cur.name
-						newnode = self.G[conc] = Node(conc)	
+						newnode = self.G[conc] = Node(conc)
 						newnode.name = conc
 			except KeyError,e:
 				print "keyerror"
 				pass
 
-			
+
 	def collapse_driver(self):
 			if self.keys:
 				for k,v in self.G.items():
@@ -337,8 +338,8 @@ class Assembler:
 					if nbor_list:
 						try:
 
-							# if all nodes in the neighbors list for the current node are the same and they overlap, 
-							# we can collapse the two nodes 
+							# if all nodes in the neighbors list for the current node are the same and they overlap,
+							# we can collapse the two nodes
 
 							#print self.G[nbor_list[0]].unique_neighbors
 							#print len(self.G[cur].get_parents())
@@ -352,7 +353,7 @@ class Assembler:
 							and (self.G[next_node].unique_neighbors <= 1)):
 
 								#print "Homogenous neighbor list AND",
-								#print "Should be identical (overlap): <" , cur[1:], "==", nbor_list[0][:(len(cur)-1)],">", 
+								#print "Should be identical (overlap): <" , cur[1:], "==", nbor_list[0][:(len(cur)-1)],">",
 								#print ", so merge these nodes: ", cur, "and ", nbor_list[0]
 
 								n1,n2 = self.G[cur], self.G[next_node]
@@ -369,10 +370,10 @@ class Assembler:
 
 								print "DATA DUMP: ",
 								newnode.data_dump()
-							
+
 								self.G[newname] = newnode
 								self.keys.append(newname)
-														
+
 								#if n1.name in self.keys:
 								self.keys.remove(n1.name)
 								#if n2.name in self.keys:
@@ -387,14 +388,14 @@ class Assembler:
 							else:
 								#print "If False: ", nbor_list.count(nbor_list[0]) == len(nbor_list), "| AND",
 								#print "NOT identical: <" , cur[1:], nbor_list[0][:(len(cur)-1)],">",
-								#print "we won't merge these nodes: ", cur, "and ", nbor_list[0]						
+								#print "we won't merge these nodes: ", cur, "and ", nbor_list[0]
 								continue
 
 						except KeyError,e:
-							print "ABORT ABORT: ", str(e)						
-							break	
-					else: 
-						pass	
+							print "ABORT ABORT: ", str(e)
+							break
+					else:
+						pass
 
 			return self.G
 
@@ -419,7 +420,7 @@ class Assembler:
 		passed_over = 0
 		if clargs.verbose:
 			print "Generating contigs: ", len(roots), "possible"
-			counter = len(roots)
+		counter = len(roots)
 		for root in roots:
 			try:
 				superstr = self.eulerian_walk(root)
@@ -430,16 +431,16 @@ class Assembler:
 				self.contigs.append(results)
 				counter -= 1
 
-				if clargs.verbose:
+				#if clargs.verbose:
 					#print "CONTIG: ", results
 					#print "\n"
-					print counter
+					#print counter
 			except RuntimeError as e:
 				if clargs.verbose:
 					#print "cycle found - passing over this contig!\n"
 					passed_over += 1
 					counter -= 1
-					print counter
+					#print counter
 				continue
 		if clargs.verbose:
 			print "Finished generating contigs"
@@ -481,7 +482,7 @@ class Assembler:
 		length_threshold = 2*self.k #cutoff for branch being considered junk
 		branch_nodes = [x for x in self.G.iterkeys() if a.G[x].is_branching() and a.G[x].unique_neighbors > 1]
 		merger_nodes = [x for x in self.G.iterkeys() if a.G[x].is_branching() and a.G[x].unique_parents > 1]
-		print len(branch_nodes), len(merger_nodes)
+		#print len(branch_nodes), len(merger_nodes)
 		to_trim = []
 		if clargs.verbose:
 			counter = len(branch_nodes)
@@ -498,13 +499,13 @@ class Assembler:
 				pass
 
 
-
 if __name__ == "__main__":
 	# BEGIN ARGPARSE CODE
 	p = argparse.ArgumentParser(description='de Bruijn Graph-Driven Sequence Assembler.\r\n Written by Charles Eyermann and Sam Hinh for CS362 Winter 2016')
 	p.add_argument('read_file', type=argparse.FileType('r'), help="This should be the file containing your sequence reads")
 	p.add_argument('kmer_length', type=int, help="Desired k-mer length (integer value).")
 	p.add_argument('-v', '--verbose', help="Print out some more info about the program at runtime", action="store_true")
+	p.add_argument('-l', '--logging', help="Write run information to log file", action="store_true")
 	clargs = p.parse_args()
 
 	if clargs.kmer_length < 2:
@@ -518,7 +519,12 @@ if __name__ == "__main__":
 	if clargs.verbose:
 		print "\nVERBOSE MODE ON\n"
 
+	start = timeit.default_timer()
+
 	a = Assembler(clargs.read_file, clargs.kmer_length)
+
+	stop = timeit.default_timer()
+	runtime = stop-start
 
 	if clargs.verbose:
 
@@ -529,16 +535,27 @@ if __name__ == "__main__":
 		print "\tTotal nodes: ", a.unbalanced_nodes + a.balanced_nodes + a.semi_balanced_nodes
 		print "\tBranching nodes: ", a.branching_nodes
 		print "\tGraph is Eulerian: ", a.get_eulerianess()
+		print "\tGraph generation time: ", runtime
 		print "\n"
 
-	print len(a.G)
-	a.trim_branches()
-	print len(a.G)
+	if clargs.logging:
+			with open('log.csv', 'ab') as f:
+				writer = csv.writer(f)
+				row = (clargs.read_file.name, str(clargs.kmer_length),
+				str(a.unbalanced_nodes), str(a.balanced_nodes),
+				str(a.semi_balanced_nodes), str(len(a.G)),
+				str(a.branching_nodes), str(a.get_eulerianess()),runtime)
+				writer.writerow(row)
+
+	#print len(a.G)
+	# a.trim_branches()
+	#a.collapse_driver()
+	#print len(a.G)
 	#a.trim_cycles()
-	#c = a.get_contigs()
-	#a.flush_contigs(c)
+	c = a.get_contigs()
+	a.flush_contigs(c)
 	#print [x for x in a.G.keys() if a.G[x].is_branching()]
-	
+
 
 	#if not a.is_connected():
 	# roots = [x for x in a.G.iterkeys() if a.G[x].is_head()]
@@ -619,7 +636,7 @@ if __name__ == "__main__":
 	#print "leaves found through bfs: ", [x for x in bfs if a.G[x].is_leaf()]
 	#print "roots found through bfs: ", [x for x in dfs if a.G[x].is_head()]
 	#print "leaves found through dfs: ", [x for x in dfs if a.G[x].is_leaf()]
-	
+
 	# count = 0
 	# for x in dbg.iterkeys():
 	# 	if dbg[x].is_head():
@@ -630,7 +647,6 @@ if __name__ == "__main__":
 
 	dot = a.weighted_dot_file_generator(a.G)
 
-	with open("pretrim.dot", "w") as f:
+	with open("out.dot", "w") as f:
 		f.write(dot)
 		f.close()
-

@@ -99,7 +99,7 @@ class Simulator:
 		Simply write the reads out to a file with a header giving
 		information about the parameters used during read simulation.
 		'''
-		with open("output_reads.txt", "w") as f:
+		with open("tnf_reads.txt", "w") as f:
 			h = ">" + self.header[1:30] + "| coverage: " + str(self.coverage) + "| read length: " + str(self.read_length) + "| error rate: " + str(self.error_rate) + "|\n"
 			f.write(h)
 			for row in self.reads:
