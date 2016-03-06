@@ -449,14 +449,14 @@ class Assembler:
 
 	def flush_contigs(self,contigs):
 		out = ""
-		with open("our_contigs.txt", "w") as f:
+		with open("contigs.txt", "w") as f:
 			header = "> Contigs generated: "+str(len(self.contigs))+" | Contigs skipped due to cycles: "+str(contigs[1])+" | Source Header: '"+self.header[1:]+"'"
 			out += header+"\n"
 			for contig in self.contigs:
 				out += contig[::-1]+"\n"
 			f.write(out)
 		if clargs.verbose:
-			print "Wrote contigs file to 'our_contigs.txt'"
+			print "Wrote contigs file to 'contigs.txt'"
 
 	def trimmer(self,node):
 		length_threshold = 2*self.k #cutoff for branch being considered junk
@@ -508,10 +508,10 @@ if __name__ == "__main__":
 	p.add_argument('-l', '--logging', help="Write run information to log file", action="store_true")
 	clargs = p.parse_args()
 
-	if clargs.kmer_length < 2:
+	if clargs.kmer_length < 3:
 		p.print_help()
 		print "\n"
-		print "FATAL: kmer length must be 2 or more! - suggested to use kmer length of 4 at minimum."
+		print "FATAL: kmer length must be 3 or more! - suggested to use kmer length of 4 at minimum."
 		sys.exit(1)
 	# END ARGPARSE CODE
 
@@ -529,6 +529,7 @@ if __name__ == "__main__":
 	if clargs.verbose:
 
 		print "Initial graph statistics:"
+		print "\tInput file: ", clargs.read_file.name
 		print "\tUnbalanced nodes: ", a.unbalanced_nodes
 		print "\tBalanced nodes: ", a.balanced_nodes
 		print "\tSemi-balanced nodes: ", a.semi_balanced_nodes
@@ -548,7 +549,7 @@ if __name__ == "__main__":
 				writer.writerow(row)
 
 	#print len(a.G)
-	# a.trim_branches()
+	#a.trim_branches()
 	#a.collapse_driver()
 	#print len(a.G)
 	#a.trim_cycles()

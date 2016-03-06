@@ -1,1 +1,17 @@
 Filename,Kmer Length,Unbalanced Nodes,Balanced Nodes,Semi-balanced Nodes,Total Nodes,Branching Nodes,Is Eulerian?,Graph Build Time
+tnf_reads.txt,6,0,198,16,214,48,False,0.0019099712371826172
+tnf_reads.txt,10,0,247,16,263,0,False,0.0018420219421386719
+tnf_reads.txt,11,0,246,14,260,0,False,0.0015869140625
+tnf_reads.txt,32,0,130,16,146,0,False,0.0009021759033203125
+tnf_reads.txt,5,0,119,16,135,75,False,0.0014410018920898438
+tnf_reads.txt,7,0,237,16,253,17,False,0.001550912857055664
+tnf_reads.txt,7,0,237,16,253,17,False,0.0015790462493896484
+tnf_reads.txt,3,2,8,6,16,16,False,0.0008571147918701172
+tnf_reads.txt,2,0,2,2,4,4,True,0.000782012939453125
+tnf_reads.txt,3,2,8,6,16,16,False,0.0010170936584472656
+tnf_reads.txt,3,2,8,6,16,16,False,0.0008499622344970703
+tnf_reads.txt,3,2,8,6,16,16,False,0.0008568763732910156
+tnf_reads.txt,7,0,237,16,253,17,False,0.0015637874603271484
+tnf_reads.txt,7,0,237,16,253,17,False,0.0015201568603515625
+tnf_reads.txt,7,0,237,16,253,17,False,0.0015170574188232422
+tnf_reads.txt,7,0,237,16,253,17,False,0.0015299320220947266
