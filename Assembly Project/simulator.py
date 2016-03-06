@@ -15,7 +15,6 @@ class Simulator:
 		self.read_length = read_length
 		self.error_rate = error_rate
 		
-		#with open(input_file, 'rU') as f:
 		for row in clargs.fasta_sequence_file:
 			if row[0] == ">":
 				self.header += row.strip()
@@ -46,36 +45,30 @@ class Simulator:
 			error = random.randint(1,100)
 			# check to see if mutation occured
 			if error <= error_percent:
-				#print "mutation occured at position i: ", i
 				
 				# edge case if mutation occurs in first index of string
 				if i == 0:
-					#print "<"+self.mutate(sequence[i])+">"+sequence[1:]
 					sequence = self.mutate(sequence[i]) + sequence[1:]
 					self.mutation_count += 1
 				
 				# edge case if mutation occurs in second index of string
 				elif i == 1:
-					#print sequence[0]+"<"+self.mutate(sequence[1])+">"+sequence[2:]
 					sequence = sequence[0] + self.mutate(sequence[1]) + sequence[2:]
 					self.mutation_count += 1
 
 				# edge case if mutation occurs in second to last index of string
 				elif i == (len(sequence) - 2):
-					#print sequence[:-3]+"<"+self.mutate(sequence[i])+">"+sequence[-1:]
 					sequence = sequence[:-3] + self.mutate(sequence[i]) + sequence[-1:]
 					self.mutation_count += 1
 
 				# edge case if mutation occurs in last index of string
 				elif i == (len(sequence) - 1):
-					#print sequence[:i]+"<"+self.mutate(sequence[i])+">"
 					sequence[:i] + self.mutate(sequence[i])
 					self.mutation_count += 1
 
 				# handle non-edge cases
 				else:
 					if len(sequence) == self.read_length:
-						#print sequence[:i]+"<"+self.mutate(sequence[i])+">"+sequence[i+1:]	
 						sequence = sequence[:i] + self.mutate(sequence[i]) + sequence[i+1:]
 						self.mutation_count += 1
 						
@@ -83,7 +76,6 @@ class Simulator:
 
 	def generate_reads(self):
 		index_range = self.G - self.read_length
-		#print index_range
 		for i in range(self.N):
 			read_start_index = random.randint(0, index_range)
 			read_end_index = read_start_index + self.read_length
@@ -95,7 +87,7 @@ class Simulator:
 
 
 	def write_file(self, reads):
-		with open("sample_fasta_output_reads.txt", "w") as f:
+		with open("getty_output_reads.txt", "w") as f:
 			h = ">" + self.header[1:30] + "| coverage: " + str(self.coverage) + "| read length: " + str(self.read_length) + "| error rate: " + str(self.error_rate) + "|\n"
 			f.write(h)
 			for row in self.reads:
@@ -109,15 +101,8 @@ if __name__ == '__main__':
 	parser.add_argument("read_length", type=int, help='The length of each read generated')
 	parser.add_argument("error_rate", type=float, help='Error rate between 0 and 1')
 	clargs = parser.parse_args()
-	#sequences = Simulator("easy_data_set.txt", 10, 50, 0.01)
 	sequences = Simulator(clargs.fasta_sequence_file, clargs.coverage, clargs.read_length, clargs.error_rate)
-	# print " " + "_"*78 + ""
-	# print "|" + " "*78 + "|"
-	# print "|" + " "*78 + "|"
-	# print "|" + "_"*78 + "|"
-	#print sequences.header
 	reads = sequences.generate_reads()
-	#print reads
 	sequences.write_file(reads)
 
 

@@ -4,6 +4,7 @@
 from simulator import *
 from graph import * 
 import argparse, copy
+from difflib import SequenceMatcher
 
 class Assembler:
 
@@ -11,6 +12,8 @@ class Assembler:
 		if k is None:
 			self.reads = []
 			self.G = {}
+			self.subgraphs = []
+			self.contigs = []
 			self.keys = []
 			self.header = ""
 			self.G = self.dot_file_to_graph(data)
@@ -21,7 +24,8 @@ class Assembler:
 		else:
 			self.reads = []
 			self.G = {}
-			self.N = {}
+			self.subgraphs = []
+			self.contigs = []
 			self.header = ""
 			self.k = k
 			self.balanced_nodes = 0
@@ -67,9 +71,6 @@ class Assembler:
 				self.G[lkmer].outdegree += 1
 				self.G[rkmer].indegree += 1
 
-		#roots = [x for x in self.G.iterkeys() if self.G[x].is_head()]
-		#for root in roots:
-		#	self.populate_parents_dfs(self.G,root)
 		self.populate_parents()
 		self.keys = self.G.keys()
 		for item in self.G.iterkeys():
@@ -222,6 +223,10 @@ class Assembler:
 				p = [item for item in self.G[v].neighbors if item not in visited]
 				q.extend(p)
 		return visited
+
+	def is_connected(self):
+		#return len(self.dfs(self.G,root)) == len(self.G.keys())
+		return len([x for x in a.G.iterkeys() if a.G[x].is_head()]) == 1
 
 	def dfs(self, dbg, start):
 		visited, stack = [], [start]
@@ -394,24 +399,43 @@ if __name__ == "__main__":
 	a = Assembler(clargs.read_file, clargs.kmer_length)
 	print "unbalanced nodes: ", a.unbalanced_nodes
 	print "balanced nodes: ", a.balanced_nodes
-	print "semi-balanced ndoes: ", a.semi_balanced_nodes
-	print a.get_eulerianess()
+	print "semi-balanced nodes: ", a.semi_balanced_nodes
+	#roots = [x for x in a.G.iterkeys() if a.G[x].is_head()]
+	#print a.get_eulerianess()
 	#a.prettyprint()
+	#if not a.is_connected():
+	roots = [x for x in a.G.iterkeys() if a.G[x].is_head()]
+	leaves = [x for x in a.G.iterkeys() if a.G[x].is_leaf()]
+	print "There exist", len(roots), "roots"
+	print "There exist", len(leaves), "leaves"
+	# 	for root in roots:
+	# 		sub = a.dfs(a.G,root)
+	# 		a.subgraphs.append(sub)
+
+	# print len(a.subgraphs)
+
 	#print len(a.G.keys())
 	#print a.get_cycle()
 	#a.eulerianess()
 	# roots = [x for x in a.G.iterkeys() if a.G[x].is_head()]
 	#print a.eulerian_walk(roots[0])
-	# for root in roots:
-	# 	superstr = a.eulerian_walk(root)
-	# 	#print superstr
-	# 	results = superstr[0]
-	# 	for string in superstr:
-	# 		#print string
-	# 		results += string[-1]
 
-	# 	print "CONTIG: ", results
-	# 	print "\n"
+	for root in roots:
+		try:
+			superstr = a.eulerian_walk(root)
+			#print superstr
+		 	results = superstr[0]
+		 	for i in range(1,len(superstr)):
+		 		if superstr[i] != superstr[i-1]:
+		 			results += superstr[i][-1]
+		 		#results += string[-1]
+		 	#a.contigs.append(results)
+		 	print "CONTIG: ", results
+		 	print "\n"
+		except RuntimeError as e:
+			#print "cycle found - passing over this contig!\n"
+			continue
+
 
 	# 	superstring = superstr[0] + ''.join(map(lambda x: x[-1], superstr[1:]))
 	# 	print "Eulerian walk results: ", superstring
