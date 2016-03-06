@@ -12,13 +12,13 @@ class Node:
 		self.outdegree = 0
 
 
-	# def __eq__(self, other):
-	# 	this = self.name
-	# 	that = other.name
-	# 	if this == that:
-	# 		return True
-	# 	else:
-	# 		return False
+	def __eq__(self, other):
+		this = self.name
+		that = other.name
+		if this == that:
+			return True
+		else:
+			return False
 
 	def __hash__(self):
 		return hash(self.name)

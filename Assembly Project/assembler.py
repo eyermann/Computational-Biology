@@ -4,11 +4,16 @@
 from simulator import *
 from graph import * 
 import argparse, copy
-from difflib import SequenceMatcher
 
 class Assembler:
 
 	def __init__(self, data, k = None):
+		'''
+		Pseudo-overloaded constructor to allow graphs to be built from scratch
+		with reads files, but also allows partial graph reconstruction from dot
+		files. This feature is a work in progress.
+		'''
+
 		if k is None:
 			self.reads = []
 			self.G = {}
@@ -33,12 +38,19 @@ class Assembler:
 			self.unbalanced_nodes = 0
 
 			for row in clargs.read_file:
-				if row[0] != ">":
+				if row[0] == ">":
+					self.header += row.strip()
+				else:
 					self.reads.append(row.strip())
-	
-			print "Building DeBruijn graph... please wait"
+
+
+			if clargs.verbose:
+				print "Building DeBruijn graph with", str(clargs.kmer_length) + "-mers... please wait!"
+
 			self.build_DBG()
-			print "Finished building DeBruijn graph!"
+
+			if clargs.verbose:
+				print "Finished building DeBruijn graph!\n"
 
 
 	def generate_kmers(self,read,k):
@@ -195,31 +207,59 @@ class Assembler:
 		return ((self.unbalanced_nodes == 0 and self.semi_balanced_nodes == 0) or 
 				(self.unbalanced_nodes == 0 and self.semi_balanced_nodes == 2))
 
-	def get_cycle(self):
-			gc = copy.deepcopy(a.G)
-			path = []
-			visited = set()
+	# def get_cycle(self):
+	# 		gc = copy.deepcopy(self.G)
+	# 		path = []
+	# 		visited = set()
 			
-			def visit(node):
-				if node in visited:
-					return None
-				visited.add(node)
-				path.append(node)
-				neighbors = [x for x in gc[node].neighbors]
-				for neighbor in neighbors:
-					if neighbor in path or visit(neighbor):
-						return path
-				path.remove(node)
-			for x in gc.iterkeys():
-				paths = visit(x)
-			return paths
+	# 		def visit(node):
+	# 			if node in visited:
+	# 				return None
+	# 			visited.add(node)
+	# 			path.append(node)
+	# 			neighbors = [x for x in gc[node].neighbors]
+	# 			for neighbor in neighbors:
+	# 				if neighbor in path or visit(neighbor):
+	# 					return path
+	# 			path.remove(node)
+	# 		for x in gc.iterkeys():
+	# 			paths = visit(x)
+	# 		return paths
+
+	def get_cycle(self, dbg):
+		path = []
+		pathset = set()
+		visited = set()
+		
+		def visit(node):
+			if node in visited:
+				return None
+			visited.add(node)
+			path.append(node)
+			pathset.add(node)
+			neighbors = self.G[node].neighbors
+			#print node, neighbors
+			for neighbor in neighbors:
+				try: 
+					if neighbor in pathset or visit(neighbor):
+							return path
+				except RuntimeError as e:
+					"recursion depth exceeded D:"
+					pass
+			pathset.remove(node)
+			path.remove(node)
+
+		for key in self.G.iterkeys():
+			#print self.G[key].name
+			paths = visit(self.G[key].name)
+		return pathset, path
 
 	def bfs(self, dbg, start):		
-		visited, q = [], [start]
+		visited, q = set(), [start]
 		while q:
 			v = q.pop(0)
 			if self.G[v] not in visited:
-				visited.append(self.G[v])
+				visited.add(self.G[v])
 				p = [item for item in self.G[v].neighbors if item not in visited]
 				q.extend(p)
 		return visited
@@ -229,11 +269,11 @@ class Assembler:
 		return len([x for x in a.G.iterkeys() if a.G[x].is_head()]) == 1
 
 	def dfs(self, dbg, start):
-		visited, stack = [], [start]
+		visited, stack = set(), [start]
 		while stack:
 			v = stack.pop()
 			if self.G[v] not in visited:
-				visited.append(self.G[v])
+				visited.add(self.G[v])
 				q = [item for item in self.G[v].neighbors if item not in visited]
 				stack.extend(q)
 		return visited
@@ -381,11 +421,69 @@ class Assembler:
 
 			return self.G
 
+	def trim_cycles(self):
+		if clargs.verbose:
+			print "Graph size pre-trim: ", len(self.G)
+		if self.get_cycle(self.G)[0]:
+			while self.get_cycle(self.G)[0]:
+				lst_set =  self.get_cycle(self.G)[0]
+				lst1 = [x for x in self.get_cycle(self.G)[1]]
+				for item in lst_set:
+					del self.G[item]
+				out = lst1[0]
+				for i in range(1, len(lst1)):
+					out += lst1[i]
+		if clargs.verbose:
+			print "Graph size post-trim: ", len(self.G)
+
+
+
+	def get_contigs(self):
+		roots = [x for x in self.G.iterkeys() if self.G[x].is_head()]
+		passed_over = 0
+		if clargs.verbose:
+			print "Generating contigs..."
+		for root in roots:
+			try:
+				superstr = self.eulerian_walk(root)
+				#print superstr
+				results = superstr[0]
+				for i in range(1,len(superstr)):
+					if superstr[i] != superstr[i-1]:
+						results += superstr[i][-1]
+				self.contigs.append(results)
+				if clargs.verbose:
+					print "CONTIG: ", results
+					print "\n"
+			except RuntimeError as e:
+				if clargs.verbose:
+					print "cycle found - passing over this contig!\n"
+					passed_over += 1
+				continue
+		if clargs.verbose:
+			print "Finished generating contigs"
+
+		return self.contigs, passed_over
+
+	def flush_contigs(self,contigs):
+		out = ""
+		with open("our_contigs.txt", "w") as f:
+			header = "> Contigs generated: "+str(len(self.contigs))+" | Contigs skipped due to cycles: "+str(contigs[1])+" | Source Header: '"+self.header[1:]+"'"
+			out += header+"\n"
+			for contig in self.contigs:
+				out += contig+"\n"
+			f.write(out)
+		if clargs.verbose:
+			print "Wrote contigs file to 'our_contigs.txt'"
+
+
+
 if __name__ == "__main__":
 	# BEGIN ARGPARSE CODE
 	p = argparse.ArgumentParser(description='Global Affine Alignment Algorithm.\r\n Written by Charles Eyermann and Sam Hinh for CS362 Winter 2016')
 	p.add_argument('read_file', type=argparse.FileType('r'), help="This should be the file containing your sequence reads")
 	p.add_argument('kmer_length', type=int, help="Desired k-mer length (integer value).")
+	p.add_argument('-v', '--verbose', help="Print out some more info about the program at runtime", action="store_true")
 	clargs = p.parse_args()
 
 	if clargs.kmer_length < 2:
@@ -396,85 +494,51 @@ if __name__ == "__main__":
 	# END ARGPARSE CODE
 
 	# BEGIN MAIN CODE
+	if clargs.verbose:
+		print "\nVERBOSE MODE ON\n"
+
 	a = Assembler(clargs.read_file, clargs.kmer_length)
-	print "unbalanced nodes: ", a.unbalanced_nodes
-	print "balanced nodes: ", a.balanced_nodes
-	print "semi-balanced nodes: ", a.semi_balanced_nodes
-	#roots = [x for x in a.G.iterkeys() if a.G[x].is_head()]
-	#print a.get_eulerianess()
-	#a.prettyprint()
+
+	if clargs.verbose:
+
+		print "Initial graph statistics:"
+		print "\tunbalanced nodes: ", a.unbalanced_nodes
+		print "\tbalanced nodes: ", a.balanced_nodes
+		print "\tsemi-balanced nodes: ", a.semi_balanced_nodes
+		print "\ttotal nodes: ", a.unbalanced_nodes + a.balanced_nodes + a.semi_balanced_nodes
+		print "\tIs graph Eulerian: ", a.get_eulerianess()
+
+	#a.trim_cycles()
+	c = a.get_contigs()
+	a.flush_contigs(c)
+
+	
+
 	#if not a.is_connected():
-	roots = [x for x in a.G.iterkeys() if a.G[x].is_head()]
-	leaves = [x for x in a.G.iterkeys() if a.G[x].is_leaf()]
-	print "There exist", len(roots), "roots"
-	print "There exist", len(leaves), "leaves"
+	# roots = [x for x in a.G.iterkeys() if a.G[x].is_head()]
+	# leaves = [x for x in a.G.iterkeys() if a.G[x].is_leaf()]
+	# print "There exist", len(roots), "roots"
+	# print "There exist", len(leaves), "leaves"
 	# 	for root in roots:
 	# 		sub = a.dfs(a.G,root)
 	# 		a.subgraphs.append(sub)
-
-	# print len(a.subgraphs)
-
-	#print len(a.G.keys())
 	#print a.get_cycle()
-	#a.eulerianess()
-	# roots = [x for x in a.G.iterkeys() if a.G[x].is_head()]
-	#print a.eulerian_walk(roots[0])
+	# print len(a.subgraphs)
+	#print a.get_cycle(a.G)[1]
 
-	for root in roots:
-		try:
-			superstr = a.eulerian_walk(root)
-			#print superstr
-		 	results = superstr[0]
-		 	for i in range(1,len(superstr)):
-		 		if superstr[i] != superstr[i-1]:
-		 			results += superstr[i][-1]
-		 		#results += string[-1]
-		 	#a.contigs.append(results)
-		 	print "CONTIG: ", results
-		 	print "\n"
-		except RuntimeError as e:
-			#print "cycle found - passing over this contig!\n"
-			continue
-
-
-	# 	superstring = superstr[0] + ''.join(map(lambda x: x[-1], superstr[1:]))
-	# 	print "Eulerian walk results: ", superstring
-	# a1 = Assembler("out.dot")
-	# print a1.G
-	#a.prettyprint()
-	#for k,v in a.G.items():
-	#	print k, v.unique_neighbors, v.unique_parents
-	#print a.eulerianess()
 	# to test eulerian walk output
 	#superstr = a.eulerian_walk()
 	#print len(superstr)
 	#print superstr
 	#superstring = superstr[0] + ''.join(map(lambda x: x[-1], superstr[1:]))
 	#print "Eulerian walk results: ", superstring
-	#print [x[1].neighbors for x in a.G.iteritems()]
-	#for k,v in a.G.iteritems():
-	#	print k, v.neighbors
-	#print a.G['_lon'].parents	
-	
-	#print a.collapse_driver()
-	#a.collapse_driver()
+
 	#for k,v in a.G.items():
 	#	print k, v.unique_neighbors, v.unique_parents
 	#a.collapse_driver()
 	# for k,v in a.G.items():
 	# 	print k,v.unique_neighbors, v.unique_parents
 
-	#for k,v in a.G.iteritems():
-	#	print k, v.neighbors
-
-	# for x in a.G.keys():
-	# 	cur, nbor_list = a.G[x].name, [x.name for x in a.G[x].neighbors]
-	# 	print cur, nbor_list,
-	# 	if nbor_list:
-	# 		print nbor_list.count(nbor_list[0]) == len(nbor_list) 
-	# 		a.merge_nodes(a.G[cur],a.G[nbor_list[0]])
-	# 	else: print ""
-		#print a.G[x+1]
 
 	# Get all leaves in tree, collapse them!
 	#print len([x for x in dbg.iterkeys()])
@@ -539,7 +603,6 @@ if __name__ == "__main__":
 	#contigs = [x for x in a.G.iterkeys() if len(x) == maxlen]
 
 	dot = a.weighted_dot_file_generator(a.G)
-	#print dot
 
 	with open("out.dot", "w") as f:
 		f.write(dot)

@@ -100,7 +100,11 @@ if __name__ == '__main__':
 	parser.add_argument("coverage", type=int, help='How many times the entire genome should be sequenced')
 	parser.add_argument("read_length", type=int, help='The length of each read generated')
 	parser.add_argument("error_rate", type=float, help='Error rate between 0 and 1')
+	p.add_argument('-v', '--verbose', help="Print out some more info about the program at runtime", action="store_true")
 	clargs = parser.parse_args()
+	if clargs.verbose:
+		print "Generating simulated read data with following parameters: ",
+		print "Coverage:", clargs.coverage, "Read length:", clargs.read_length, "Error rate:", clargs.error_rate
 	sequences = Simulator(clargs.fasta_sequence_file, clargs.coverage, clargs.read_length, clargs.error_rate)
 	reads = sequences.generate_reads()
 	sequences.write_file(reads)
