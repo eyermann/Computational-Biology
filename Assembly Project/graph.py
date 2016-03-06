@@ -63,6 +63,9 @@ class Node:
 		else:
 			return False
 
+	def is_branching(self):
+		return (self.unique_neighbors*self.unique_parents) > 1
+
 	def is_leaf(self):
 		#print self.indegree, self.outdegree, self.get_degree()
 		#if self.indegree != 0 and self.outdegree == 0:

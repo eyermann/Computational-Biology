@@ -87,7 +87,7 @@ class Simulator:
 
 
 	def write_file(self, reads):
-		with open("getty_output_reads.txt", "w") as f:
+		with open("sample_fasta_output_reads.txt", "w") as f:
 			h = ">" + self.header[1:30] + "| coverage: " + str(self.coverage) + "| read length: " + str(self.read_length) + "| error rate: " + str(self.error_rate) + "|\n"
 			f.write(h)
 			for row in self.reads:
@@ -100,7 +100,7 @@ if __name__ == '__main__':
 	parser.add_argument("coverage", type=int, help='How many times the entire genome should be sequenced')
 	parser.add_argument("read_length", type=int, help='The length of each read generated')
 	parser.add_argument("error_rate", type=float, help='Error rate between 0 and 1')
-	p.add_argument('-v', '--verbose', help="Print out some more info about the program at runtime", action="store_true")
+	parser.add_argument('-v', '--verbose', help="Print out some more info about the program at runtime", action="store_true")
 	clargs = parser.parse_args()
 	if clargs.verbose:
 		print "Generating simulated read data with following parameters: ",

@@ -25,6 +25,7 @@ class Assembler:
 			self.balanced_nodes = 0
 			self.semi_balanced_nodes = 0
 			self.unbalanced_nodes = 0
+			self.branching_nodes = 0
 
 		else:
 			self.reads = []
@@ -36,6 +37,7 @@ class Assembler:
 			self.balanced_nodes = 0
 			self.semi_balanced_nodes = 0
 			self.unbalanced_nodes = 0
+			self.branching_nodes = 0
 
 			for row in clargs.read_file:
 				if row[0] == ">":
@@ -45,12 +47,12 @@ class Assembler:
 
 
 			if clargs.verbose:
-				print "Building DeBruijn graph with", str(clargs.kmer_length) + "-mers... please wait!"
+				print "Building de Bruijn graph with", str(clargs.kmer_length) + "-mers... please wait!"
 
 			self.build_DBG()
 
 			if clargs.verbose:
-				print "Finished building DeBruijn graph!\n"
+				print "Finished building de Bruijn graph!\n"
 
 
 	def generate_kmers(self,read,k):
@@ -88,7 +90,8 @@ class Assembler:
 		for item in self.G.iterkeys():
 			self.G[item].unique_neighbors = len(set([x for x in self.G[item].neighbors]))
 			self.G[item].unique_parents = len(set([x for x in self.G[item].parents]))
-
+			if self.G[item].is_branching():
+				self.branching_nodes += 1
 			if self.G[item].get_balance():
 				self.balanced_nodes += 1
 			elif self.G[item].get_semi_balance():
@@ -200,31 +203,9 @@ class Assembler:
 	def find_leaves(self):
 		return set([x for x in self.G.iterkeys() if self.G[x].is_leaf()])
 
-	def find_main_path(self,dbg):
-		return
-
 	def get_eulerianess(self):
 		return ((self.unbalanced_nodes == 0 and self.semi_balanced_nodes == 0) or 
 				(self.unbalanced_nodes == 0 and self.semi_balanced_nodes == 2))
-
-	# def get_cycle(self):
-	# 		gc = copy.deepcopy(self.G)
-	# 		path = []
-	# 		visited = set()
-			
-	# 		def visit(node):
-	# 			if node in visited:
-	# 				return None
-	# 			visited.add(node)
-	# 			path.append(node)
-	# 			neighbors = [x for x in gc[node].neighbors]
-	# 			for neighbor in neighbors:
-	# 				if neighbor in path or visit(neighbor):
-	# 					return path
-	# 			path.remove(node)
-	# 		for x in gc.iterkeys():
-	# 			paths = visit(x)
-	# 		return paths
 
 	def get_cycle(self, dbg):
 		path = []
@@ -238,19 +219,17 @@ class Assembler:
 			path.append(node)
 			pathset.add(node)
 			neighbors = self.G[node].neighbors
-			#print node, neighbors
 			for neighbor in neighbors:
 				try: 
 					if neighbor in pathset or visit(neighbor):
 							return path
 				except RuntimeError as e:
-					"recursion depth exceeded D:"
+					"recursion depth exceeded"
 					pass
 			pathset.remove(node)
 			path.remove(node)
 
 		for key in self.G.iterkeys():
-			#print self.G[key].name
 			paths = visit(self.G[key].name)
 		return pathset, path
 
@@ -265,7 +244,6 @@ class Assembler:
 		return visited
 
 	def is_connected(self):
-		#return len(self.dfs(self.G,root)) == len(self.G.keys())
 		return len([x for x in a.G.iterkeys() if a.G[x].is_head()]) == 1
 
 	def dfs(self, dbg, start):
@@ -412,10 +390,8 @@ class Assembler:
 								continue
 
 						except KeyError,e:
-							#self.collapse_driver()
 							print "ABORT ABORT: ", str(e)						
-							break
-						
+							break	
 					else: 
 						pass	
 
@@ -437,28 +413,32 @@ class Assembler:
 			print "Graph size post-trim: ", len(self.G)
 
 
-
 	def get_contigs(self):
 		roots = [x for x in self.G.iterkeys() if self.G[x].is_head()]
 		passed_over = 0
 		if clargs.verbose:
-			print "Generating contigs..."
+			print "Generating contigs: ", len(roots), "possible"
+			counter = len(roots)
 		for root in roots:
 			try:
 				superstr = self.eulerian_walk(root)
-				#print superstr
 				results = superstr[0]
 				for i in range(1,len(superstr)):
 					if superstr[i] != superstr[i-1]:
 						results += superstr[i][-1]
 				self.contigs.append(results)
+				counter -= 1
+
 				if clargs.verbose:
-					print "CONTIG: ", results
-					print "\n"
+					#print "CONTIG: ", results
+					#print "\n"
+					print counter
 			except RuntimeError as e:
 				if clargs.verbose:
-					print "cycle found - passing over this contig!\n"
+					#print "cycle found - passing over this contig!\n"
 					passed_over += 1
+					counter -= 1
+					print counter
 				continue
 		if clargs.verbose:
 			print "Finished generating contigs"
@@ -471,16 +451,61 @@ class Assembler:
 			header = "> Contigs generated: "+str(len(self.contigs))+" | Contigs skipped due to cycles: "+str(contigs[1])+" | Source Header: '"+self.header[1:]+"'"
 			out += header+"\n"
 			for contig in self.contigs:
-				out += contig+"\n"
+				out += contig[::-1]+"\n"
 			f.write(out)
 		if clargs.verbose:
 			print "Wrote contigs file to 'our_contigs.txt'"
+
+	def trimmer(self,node):
+		length_threshold = 2*self.k #cutoff for branch being considered junk
+		counter = 0
+		start = self.G[node]
+		cur = self.G[node]
+		path = []
+
+		while cur.unique_neighbors != 0:
+			counter += 1
+			path.append(cur)
+			cur = a.G[cur.neighbors[0]]
+		#print len(path), path
+		for node in path[1:]:
+			del a.G[node.name]
+		
+		# if counter > length_threshold:
+		# 	while counter != 0:
+		# 		if cur.parents:
+		# 			prev = cur
+		# 			cur = a.G[cur.parents[0]]
+		# 			counter -= 1
+		# 			del a.G[prev.name]
+		#return counter
+
+
+	def trim_branches(self):
+		length_threshold = 2*self.k #cutoff for branch being considered junk
+		branch_nodes = [x for x in self.G.iterkeys() if a.G[x].is_branching() and a.G[x].unique_neighbors > 1]
+		merger_nodes = [x for x in self.G.iterkeys() if a.G[x].is_branching() and a.G[x].unique_parents > 1]
+		print len(branch_nodes), len(merger_nodes)
+		to_trim = []
+		if clargs.verbose:
+			counter = len(branch_nodes)
+		for branch_root in branch_nodes:
+			# if the branch is below the 2k threshold as cited in Pevzner et al. 2001, mark it for trimming
+			if clargs.verbose:
+				if (counter % 25) == 0:
+					print counter, "Paths left"
+				counter -= 1
+			try:
+				self.trimmer(branch_root)
+			except KeyError,e:
+				#print "already removed this node"
+				pass
 
 
 
 if __name__ == "__main__":
 	# BEGIN ARGPARSE CODE
-	p = argparse.ArgumentParser(description='Global Affine Alignment Algorithm.\r\n Written by Charles Eyermann and Sam Hinh for CS362 Winter 2016')
+	p = argparse.ArgumentParser(description='de Bruijn Graph-Driven Sequence Assembler.\r\n Written by Charles Eyermann and Sam Hinh for CS362 Winter 2016')
 	p.add_argument('read_file', type=argparse.FileType('r'), help="This should be the file containing your sequence reads")
 	p.add_argument('kmer_length', type=int, help="Desired k-mer length (integer value).")
 	p.add_argument('-v', '--verbose', help="Print out some more info about the program at runtime", action="store_true")
@@ -502,16 +527,21 @@ if __name__ == "__main__":
 	if clargs.verbose:
 
 		print "Initial graph statistics:"
-		print "\tunbalanced nodes: ", a.unbalanced_nodes
-		print "\tbalanced nodes: ", a.balanced_nodes
-		print "\tsemi-balanced nodes: ", a.semi_balanced_nodes
-		print "\ttotal nodes: ", a.unbalanced_nodes + a.balanced_nodes + a.semi_balanced_nodes
-		print "\tIs graph Eulerian: ", a.get_eulerianess()
+		print "\tUnbalanced nodes: ", a.unbalanced_nodes
+		print "\tBalanced nodes: ", a.balanced_nodes
+		print "\tSemi-balanced nodes: ", a.semi_balanced_nodes
+		print "\tTotal nodes: ", a.unbalanced_nodes + a.balanced_nodes + a.semi_balanced_nodes
+		print "\tBranching nodes: ", a.branching_nodes
+		print "\tGraph is Eulerian: ", a.get_eulerianess()
+		print "\n"
 
+	print len(a.G)
+	#a.trim_branches()
+	print len(a.G)
 	#a.trim_cycles()
-	c = a.get_contigs()
-	a.flush_contigs(c)
-
+	#c = a.get_contigs()
+	#a.flush_contigs(c)
+	#print [x for x in a.G.keys() if a.G[x].is_branching()]
 	
 
 	#if not a.is_connected():
@@ -565,7 +595,7 @@ if __name__ == "__main__":
 
 	# print "root with longest path: ", max_root, " has length: ", max_len
 
-	# rtd = [x for x in roots if x != 'AGCGCTCTCG']#max_root]
+	# rtd = [x for x in roots if x != max_root]
 	# for r in rtd:
 	# 	cur = a.G[r]
 	# 	nxt = a.G[cur.neighbors[0]]
@@ -604,7 +634,7 @@ if __name__ == "__main__":
 
 	dot = a.weighted_dot_file_generator(a.G)
 
-	with open("out.dot", "w") as f:
+	with open("pretrim.dot", "w") as f:
 		f.write(dot)
 		f.close()
 
