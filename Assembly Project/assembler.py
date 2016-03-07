@@ -58,16 +58,16 @@ class Assembler:
 
 
 	def generate_kmers(self,read,k):
+		'''Generate all possible kmers for a given sequence'''
 		for nucleotide in range(0,len(read)+1-self.k):
 			yield read[nucleotide:nucleotide+self.k]
 
 	def build_DBG(self):
-		# for each read in set of all reads
+		'''Primary function to build de Bruijn graph, which is stored within the
+		assembler object'''
 		for read in self.reads:
-			#print "read: ", read
-			# for each kmer in set of kmers per read
 			for kmer in self.generate_kmers(read,self.k):
-				# link each left and right k-1mer together
+				# split each kmer into its left and right "k-1 mer"
 				lkmer = kmer[:-1]
 				rkmer = kmer[1:]
 
@@ -105,6 +105,7 @@ class Assembler:
 
 
 	def dot_file_generator(self, dbg):
+		'''build a DOT file from the de Bruijn graph'''
 		output = ""
 		output += "digraph {\n"
 
@@ -115,6 +116,7 @@ class Assembler:
 		return output
 
 	def weighted_dot_file_generator(self, dbg):
+		'''build a weighted DOT file from the de Bruijn graph'''
 		wd = {}
 		output = ""
 		output += "digraph {\n"
@@ -133,6 +135,7 @@ class Assembler:
 		return output
 
 	def weighted_graph_converter(self, dbg):
+		'''build a DOT file from the de Bruijn graph'''
 		wd = {}
 		for key in dbg.iterkeys():
 			for v in dbg[key].neighbors:
@@ -143,15 +146,8 @@ class Assembler:
 					wd[k] += 1
 		return wd
 
-	def dot_file_generator_list(self, l):
-		output = ""
-		output += "graph {\n"
-		for item in l:
-			output += "%s;\n" % (item)
-		output += "}"
-		return output
-
 	def dot_file_to_graph(self, dotfile):
+		'''allows our assembler to take in a weighted DOT file instead of a reads file'''
 		with open(dotfile, "rU") as f:
 			for row in f:
 				row = row.strip()[:-1]
@@ -170,17 +166,33 @@ class Assembler:
 						pass
 					self.G[lkmer].outdegree += 1
 					self.G[rkmer].indegree += 1
-		roots = [x for x in self.G.iterkeys() if self.G[x].is_head()]
-		for root in roots:
-			self.populate_parents_dfs(self.G,root)
+
+		self.populate_parents()
+		self.keys = self.G.keys()
+
+		for item in self.G.iterkeys():
+			self.G[item].unique_neighbors = len(set([x for x in self.G[item].neighbors]))
+			self.G[item].unique_parents = len(set([x for x in self.G[item].parents]))
+			if self.G[item].is_branching():
+				self.branching_nodes += 1
+			if self.G[item].get_balance():
+				self.balanced_nodes += 1
+			elif self.G[item].get_semi_balance():
+				self.semi_balanced_nodes += 1
+			else:
+				self.unbalanced_nodes += 1
+
 		return self.G
 
+
 	def prettyprint(self):
+		'''prints out the graph to stdout'''
 		print "This is the graph!"
 		print "| Key  || Neighbors"
 		print "_"*78
 		for k,v in self.G.iteritems():
 			print "|", k, "||", [n for n in v.neighbors]
+
 
 	def eulerian_walk(self,start):
 		walk = []
@@ -203,13 +215,16 @@ class Assembler:
 		return walk
 
 	def find_leaves(self):
+		'''return a set of node names that are considered leaves'''
 		return set([x for x in self.G.iterkeys() if self.G[x].is_leaf()])
 
 	def get_eulerianess(self):
+		'''returns a boolean whether or not the main graph is eulerian or not'''
 		return ((self.unbalanced_nodes == 0 and self.semi_balanced_nodes == 0) or
 				(self.unbalanced_nodes == 0 and self.semi_balanced_nodes == 2))
 
 	def get_cycle(self, dbg):
+		'''finds and returns the first cycle in our graph'''
 		path = []
 		pathset = set()
 		visited = set()
@@ -226,8 +241,8 @@ class Assembler:
 					if neighbor in pathset or visit(neighbor):
 							return path
 				except RuntimeError as e:
-					"recursion depth exceeded"
 					pass
+
 			pathset.remove(node)
 			path.remove(node)
 
@@ -236,6 +251,7 @@ class Assembler:
 		return pathset, path
 
 	def bfs(self, dbg, start):
+		'''standard breadth-first search implemented for our graph'''
 		visited, q = set(), [start]
 		while q:
 			v = q.pop(0)
@@ -246,9 +262,11 @@ class Assembler:
 		return visited
 
 	def is_connected(self):
+		'''returns a boolean describing whether the graph is connected or not'''
 		return len([x for x in a.G.iterkeys() if a.G[x].is_head()]) == 1
 
 	def dfs(self, dbg, start):
+		'''standard depth-first search implemented for our graph'''
 		visited, stack = set(), [start]
 		while stack:
 			v = stack.pop()
@@ -259,6 +277,8 @@ class Assembler:
 		return visited
 
 	def populate_parents_dfs(self, dbg, start):
+		'''a DFS-based traversal of our graph that populates parental information
+		for each node.'''
 		visited, stack = [], [start]
 		while stack:
 			v = stack.pop()
@@ -271,12 +291,14 @@ class Assembler:
 		return visited
 
 	def populate_parents(self):
+		'''faster implementation of our DFS-based algorithm'''
 		for key in self.G:
 			for neighbor in self.G[key].neighbors:
 				self.G[neighbor].parents.append(key)
 
 	def merge_nodes(self,n1,n2):
-		#assume we are collapsing upwards i.e ATTGC + TTGCG = ATTGCG
+		'''stand alone node-merging function that assumes we are 
+		collapsing upwards (i.e ATTGC + TTGCG = ATTGCG)'''
 		newname = n1.name[0] + n2.name
 		newnode = Node(newname)
 		newnode.parents = n1.parents
@@ -287,7 +309,15 @@ class Assembler:
 		del self.G[n1.name]
 		del self.G[n2.name]
 
+	def concat_driver(self):
+		'''driver function for concat'''
+		for leaf in self.find_leaves():
+			self.concat(self.G[leaf])
+
+
 	def concat(self,node):
+		'''first iteration of our graph simplification algorithm
+		performs a bottom up concatenation of leaf nodes'''
 		contigs = []
 		if self.G[node.name].get_parents():
 			parents = self.G[node.name].get_parents()
@@ -324,82 +354,81 @@ class Assembler:
 						newnode = self.G[conc] = Node(conc)
 						newnode.name = conc
 			except KeyError,e:
-				print "keyerror"
+				if clargs.verbose:
+					print "keyerror"
 				pass
 
 
 	def collapse_driver(self):
-			if self.keys:
-				for k,v in self.G.items():
-					#print "current list of values in dict: ", [x for x in self.G.keys()]
-					#print "current list of nodes in dict: ", self.keys
-					cur, nbor_list = k, [x for x in v.neighbors]
-					#print "node: '", cur, "' neighbors: ", nbor_list
-					if nbor_list:
-						try:
+		'''second iteration of our concat function. Can collapse internal
+		nodes within graph'''
+		if self.keys:
+			for k,v in self.G.items():
+				cur, nbor_list = k, [x for x in v.neighbors]
+				if nbor_list:
+					try:
 
-							# if all nodes in the neighbors list for the current node are the same and they overlap,
-							# we can collapse the two nodes
+						# if all nodes in the neighbors list for the current node are the same and they overlap,
+						# we can collapse the two nodes
 
-							#print self.G[nbor_list[0]].unique_neighbors
-							#print len(self.G[cur].get_parents())
+						next_node = nbor_list[0]
+						if (nbor_list.count(next_node) == len(nbor_list)
+						and (cur[1:] == next_node[:(len(cur)-1)])
+						and (self.G[cur].unique_parents <= 1)
+						and (self.G[next_node].unique_parents <= 1)
+						and (self.G[cur].unique_neighbors <= 1)
+						and (self.G[next_node].unique_neighbors <= 1)):
 
-							next_node = nbor_list[0]
-							if (nbor_list.count(next_node) == len(nbor_list)
-							and (cur[1:] == next_node[:(len(cur)-1)])
-							and (self.G[cur].unique_parents <= 1)
-							and (self.G[next_node].unique_parents <= 1)
-							and (self.G[cur].unique_neighbors <= 1)
-							and (self.G[next_node].unique_neighbors <= 1)):
+							#print "Homogenous neighbor list AND",
+							#print "Should be identical (overlap): <" , cur[1:], "==", nbor_list[0][:(len(cur)-1)],">",
+							#print ", so merge these nodes: ", cur, "and ", nbor_list[0]
 
-								#print "Homogenous neighbor list AND",
-								#print "Should be identical (overlap): <" , cur[1:], "==", nbor_list[0][:(len(cur)-1)],">",
-								#print ", so merge these nodes: ", cur, "and ", nbor_list[0]
+							n1,n2 = self.G[cur], self.G[next_node]
+							newname = n1.name[0] + n2.name
 
-								n1,n2 = self.G[cur], self.G[next_node]
-								newname = n1.name[0] + n2.name
+							newnode = Node(newname)
+							newnode.parents = n1.parents
+							newnode.neighbors = n2.neighbors
+							newnode.unique_parents = len(set(n1.parents))
+							newnode.unique_neighbors = len(set(n2.neighbors))
 
-								newnode = Node(newname)
-								newnode.parents = n1.parents
-								newnode.neighbors = n2.neighbors
-								newnode.unique_parents = len(set(n1.parents))
-								newnode.unique_neighbors = len(set(n2.neighbors))
-
-								for parent in a.G[n1.name].parents:
-									a.G[parent].neighbors = [newnode.name if x == n1.name else x for x in a.G[parent].neighbors]
-
+							#update parents!
+							for parent in a.G[n1.name].parents:
+								a.G[parent].neighbors = [newnode.name if x == n1.name else x for x in a.G[parent].neighbors]
+							
+							if clargs.verbose:
 								print "DATA DUMP: ",
 								newnode.data_dump()
 
-								self.G[newname] = newnode
-								self.keys.append(newname)
+							self.G[newname] = newnode
+							self.keys.append(newname)
 
-								#if n1.name in self.keys:
-								self.keys.remove(n1.name)
-								#if n2.name in self.keys:
-								self.keys.remove(n2.name)
-								del self.G[n1.name]
-								del self.G[n2.name]
-								#print len(self.keys)
-								self.keys = self.G.keys()
-								self.collapse_driver()
+							self.keys.remove(n1.name)
+							self.keys.remove(n2.name)
+
+							del self.G[n1.name]
+							del self.G[n2.name]
+							self.keys = self.G.keys()
+							self.collapse_driver()
 
 
-							else:
-								#print "If False: ", nbor_list.count(nbor_list[0]) == len(nbor_list), "| AND",
-								#print "NOT identical: <" , cur[1:], nbor_list[0][:(len(cur)-1)],">",
-								#print "we won't merge these nodes: ", cur, "and ", nbor_list[0]
-								continue
+						else:
+							#print "If False: ", nbor_list.count(nbor_list[0]) == len(nbor_list), "| AND",
+							#print "NOT identical: <" , cur[1:], nbor_list[0][:(len(cur)-1)],">",
+							#print "we won't merge these nodes: ", cur, "and ", nbor_list[0]
+							continue
 
-						except KeyError,e:
-							print "ABORT ABORT: ", str(e)
-							break
-					else:
-						pass
+					except KeyError,e:
+						print "ABORT ABORT: ", str(e)
+						break
+				else:
+					pass
 
-			return self.G
+		return self.G
 
 	def trim_cycles(self):
+		'''a function that can delete cycles within the graph'''
+
 		if clargs.verbose:
 			print "Graph size pre-trim: ", len(self.G)
 		if self.get_cycle(self.G)[0]:
@@ -416,6 +445,9 @@ class Assembler:
 
 
 	def get_contigs(self):
+		'''function that finds contigs by finding the heads of each
+		disconnected graph in the forest and performing an eulerian walk
+		through it'''
 		roots = [x for x in self.G.iterkeys() if self.G[x].is_head()]
 		passed_over = 0
 		if clargs.verbose:
@@ -448,6 +480,7 @@ class Assembler:
 		return self.contigs, passed_over
 
 	def flush_contigs(self,contigs):
+		'''function to write found contigs to file'''
 		out = ""
 		with open("contigs.txt", "w") as f:
 			header = "> Contigs generated: "+str(len(self.contigs))+" | Contigs skipped due to cycles: "+str(contigs[1])+" | Source Header: '"+self.header[1:]+"'"
@@ -459,6 +492,7 @@ class Assembler:
 			print "Wrote contigs file to 'contigs.txt'"
 
 	def trimmer(self,node):
+		'''implementation of a trimming heuristic for tips'''
 		length_threshold = 2*self.k #cutoff for branch being considered junk
 		counter = 0
 		start = self.G[node]
@@ -468,26 +502,21 @@ class Assembler:
 		while cur.unique_neighbors != 0:
 			counter += 1
 			path.append(cur)
-			# print len(cur.neighbors)
-			#b = min(set(cur.neighbors) key=cur.neighbors.count)
 			least_common = Counter(cur.neighbors).most_common()[-1][0]
 			cur = a.G[least_common]
 
 		for node in path:
 			del a.G[node.name]
 
-
-
 	def trim_branches(self):
-		length_threshold = 2*self.k #cutoff for branch being considered junk
+		'''driver function for tip-trimming heuristic similar to the Velvet assembler'''
+		length_threshold = 2*self.k # cutoff for branch being considered junk
 		branch_nodes = [x for x in self.G.iterkeys() if a.G[x].is_branching() and a.G[x].unique_neighbors > 1]
-		merger_nodes = [x for x in self.G.iterkeys() if a.G[x].is_branching() and a.G[x].unique_parents > 1]
-		#print len(branch_nodes), len(merger_nodes)
-		to_trim = []
+		#merger_nodes = [x for x in self.G.iterkeys() if a.G[x].is_branching() and a.G[x].unique_parents > 1]
+
 		if clargs.verbose:
 			counter = len(branch_nodes)
 		for branch_root in branch_nodes:
-			# if the branch is below the 2k threshold as cited in Pevzner et al. 2001, mark it for trimming
 			if clargs.verbose:
 				if (counter % 25) == 0:
 					print counter, "Paths left"
@@ -528,7 +557,6 @@ if __name__ == "__main__":
 	runtime = stop-start
 
 	if clargs.verbose:
-
 		print "Initial graph statistics:"
 		print "\tInput file: ", clargs.read_file.name
 		print "\tUnbalanced nodes: ", a.unbalanced_nodes
@@ -541,111 +569,24 @@ if __name__ == "__main__":
 		print "\n"
 
 	if clargs.logging:
-			with open('log.csv', 'ab') as f:
-				writer = csv.writer(f)
-				row = (clargs.read_file.name, str(clargs.kmer_length),
-				str(a.unbalanced_nodes), str(a.balanced_nodes),
-				str(a.semi_balanced_nodes), str(len(a.G)),
-				str(a.branching_nodes), str(a.get_eulerianess()),runtime)
-				writer.writerow(row)
+		with open('log.csv', 'ab') as f:
+			writer = csv.writer(f)
+			row = (clargs.read_file.name, str(clargs.kmer_length),
+			str(a.unbalanced_nodes), str(a.balanced_nodes),
+			str(a.semi_balanced_nodes), str(len(a.G)),
+			str(a.branching_nodes), str(a.get_eulerianess()),runtime)
+			writer.writerow(row)
 
-	#print len(a.G)
+	print len(a.G)
+	a.collapse_driver()
+	print len(a.G)
 	#a.trim_branches()
-	#a.collapse_driver()
 	#print len(a.G)
 	#a.trim_cycles()
-	c = a.get_contigs()
-	a.flush_contigs(c)
-	#print [x for x in a.G.keys() if a.G[x].is_branching()]
+	#c = a.get_contigs()
+	#a.flush_contigs(c)
 
 
-	#if not a.is_connected():
-	# roots = [x for x in a.G.iterkeys() if a.G[x].is_head()]
-	# leaves = [x for x in a.G.iterkeys() if a.G[x].is_leaf()]
-	# print "There exist", len(roots), "roots"
-	# print "There exist", len(leaves), "leaves"
-	# 	for root in roots:
-	# 		sub = a.dfs(a.G,root)
-	# 		a.subgraphs.append(sub)
-	#print a.get_cycle()
-	# print len(a.subgraphs)
-	#print a.get_cycle(a.G)[1]
-
-	# to test eulerian walk output
-	#superstr = a.eulerian_walk()
-	#print len(superstr)
-	#print superstr
-	#superstring = superstr[0] + ''.join(map(lambda x: x[-1], superstr[1:]))
-	#print "Eulerian walk results: ", superstring
-
-	#for k,v in a.G.items():
-	#	print k, v.unique_neighbors, v.unique_parents
-	#a.collapse_driver()
-	# for k,v in a.G.items():
-	# 	print k,v.unique_neighbors, v.unique_parents
-
-
-	# Get all leaves in tree, collapse them!
-	#print len([x for x in dbg.iterkeys()])
-	#print "LEAVES: ", [x for x in a.find_leaves()]
-	# for leaf in a.find_leaves():
-	# 	#print leaf
-	# 	a.concat(a.G[leaf])
-	#print len([x for x in dbg.iterkeys()])
-
-	# find all roots in tree - tested this and works in all edge cases!!!!
-	#roots = [x for x in a.G.iterkeys() if a.G[x].is_head()]
-	#print "number of roots found: ", len(roots)
-	#print max(len(a.bfs(dbg,root)) for root in roots)
-
-	# find longest depth-first path in graph
-
-	# max_root = None
-	# max_len = 0
-	# for root in roots:
-	# 	z = len(a.dfs(a.G,root))
-	# 	if z > max_len:
-	# 		max_root = root
-	# 		max_len = z
-
-	# print "root with longest path: ", max_root, " has length: ", max_len
-
-	# rtd = [x for x in roots if x != max_root]
-	# for r in rtd:
-	# 	cur = a.G[r]
-	# 	nxt = a.G[cur.neighbors[0]]
-	# 	print cur.name,nxt.name
-	# 	while nxt.unique_parents < 2:
-	# 		try:
-	# 			del a.G[r]
-	# 			cur = nxt
-	# 		except KeyError,e:
-	# 			break
-
-
-	#dfsl = a.dfs(a.G, max_root)
-	# for i in range(len(dfsl)-1):
-	# 	if a.G[dfsl[i]].is_collapsible() and a.G[dfsl[i+1]].is_collapsible() and a.G[dfsl[i+1]] in a.G[dfsl[i]].neighbors:
-	# 		merge_nodes(a.G[dfsl[i]],a.G[dfsl[i+1]])
-
-	#dfs = [x.name for x in a.dfs(dbg,max_root)]
-	#print dfs
-	#bfs = [x.name for x in a.bfs(dbg,max_root)]
-	#print "depth first search results: ", dfs
-	#print "breadth first search results: ", bfs
-
-	#print "roots found through bfs: ", [x for x in bfs if a.G[x].is_head()]
-	#print "leaves found through bfs: ", [x for x in bfs if a.G[x].is_leaf()]
-	#print "roots found through bfs: ", [x for x in dfs if a.G[x].is_head()]
-	#print "leaves found through dfs: ", [x for x in dfs if a.G[x].is_leaf()]
-
-	# count = 0
-	# for x in dbg.iterkeys():
-	# 	if dbg[x].is_head():
-	# 		count +=1
-	# print count
-	#maxlen = max([len(x) for x in a.G.iterkeys()])
-	#contigs = [x for x in a.G.iterkeys() if len(x) == maxlen]
 	if clargs.weighted_dot:
 		dot = a.weighted_dot_file_generator(a.G)
 	else:
