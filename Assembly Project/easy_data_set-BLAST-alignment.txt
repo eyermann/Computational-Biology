@@ -1,0 +1,125 @@
+BLASTN 2.3.1+
+Reference: Zheng Zhang, Scott Schwartz, Lukas Wagner, and
+Webb Miller (2000), "A greedy algorithm for aligning DNA
+sequences", J Comput Biol 2000; 7(1-2):203-14.
+
+
+RID: DU9UKBYM114
+
+
+Query= contig 1
+
+Length=601
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_7067  totally random sequence generated (okay, not total...  1094    0.0  
+
+ALIGNMENTS
+>Query_7067 totally random sequence generated (okay, not totally random since 
+python's random module is actually semi-random) but should 
+eliminate repeats and motifs that make sequence assembly 
+challenging
+Length=1000
+
+ Score = 1094 bits (592),  Expect = 0.0
+ Identities = 592/592 (100%), Gaps = 0/592 (0%)
+ Strand=Plus/Plus
+
+Query  1    CCAATCACCCGCGCCCCAAACGAGCAATACGAATCCCGATTTGTCCAAGTATAGTTGGCA  60
+            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  10   CCAATCACCCGCGCCCCAAACGAGCAATACGAATCCCGATTTGTCCAAGTATAGTTGGCA  69
+
+Query  61   TCCTGGCGTACCGGCATTAGAAGCTACGGCATCGCGACACCCTTGGAACGCTCAAGGTAG  120
+            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  70   TCCTGGCGTACCGGCATTAGAAGCTACGGCATCGCGACACCCTTGGAACGCTCAAGGTAG  129
+
+Query  121  CTATGCCAACTTTCGTTTGTGGACGGGGGCGCTAGTAGGACAAGATCACACTAGATCGTA  180
+            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  130  CTATGCCAACTTTCGTTTGTGGACGGGGGCGCTAGTAGGACAAGATCACACTAGATCGTA  189
+
+Query  181  ACAGTAGTAGCAGCCACTGGTGCGGCCTCTACCGATCCGAACTACAAGGGCTACCTCCCC  240
+            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  190  ACAGTAGTAGCAGCCACTGGTGCGGCCTCTACCGATCCGAACTACAAGGGCTACCTCCCC  249
+
+Query  241  CCGACAAGACGAAAGAGTATCGTAGGGTGGCTATATAAAAGGCCGGAAGCTCCGGATCAG  300
+            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  250  CCGACAAGACGAAAGAGTATCGTAGGGTGGCTATATAAAAGGCCGGAAGCTCCGGATCAG  309
+
+Query  301  GTTGTCCAAAAACTACACCAGAACAAGCCAGCGAAGGTTGCTGTCAAAATAGCCGGTTCC  360
+            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  310  GTTGTCCAAAAACTACACCAGAACAAGCCAGCGAAGGTTGCTGTCAAAATAGCCGGTTCC  369
+
+Query  361  GCGTTTGCCCGCCTTCCAATCCTCATTTGCCAGATAGGGTACGCGCCAGAATGATCCCTC  420
+            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  370  GCGTTTGCCCGCCTTCCAATCCTCATTTGCCAGATAGGGTACGCGCCAGAATGATCCCTC  429
+
+Query  421  TACGGATCCGTGGAGGTGCGAGAGAACGATAATGTATTAAGATCGGTGGGGGATCGTATT  480
+            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  430  TACGGATCCGTGGAGGTGCGAGAGAACGATAATGTATTAAGATCGGTGGGGGATCGTATT  489
+
+Query  481  GCTCTCTTGGGCCTTCCCGCGGCGTACAACCCCGAGCATCTCATGTACGAGAGCATGCTC  540
+            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  490  GCTCTCTTGGGCCTTCCCGCGGCGTACAACCCCGAGCATCTCATGTACGAGAGCATGCTC  549
+
+Query  541  CGAACGTCTCTAGGTAGGGTTAGGGGTGACCGGGGTCAGTGGGAGCCGTCAG  592
+            ||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  550  CGAACGTCTCTAGGTAGGGTTAGGGGTGACCGGGGTCAGTGGGAGCCGTCAG  601
+
+
+Query= contig 2
+
+Length=407
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_7067  totally random sequence generated (okay, not total...  737     0.0  
+
+ALIGNMENTS
+>Query_7067 totally random sequence generated (okay, not totally random since 
+python's random module is actually semi-random) but should 
+eliminate repeats and motifs that make sequence assembly 
+challenging
+Length=1000
+
+ Score = 737 bits (399),  Expect = 0.0
+ Identities = 399/399 (100%), Gaps = 0/399 (0%)
+ Strand=Plus/Plus
+
+Query  1    TGCGGGTCTATGACATCTTCCACTCCCCGAAGGGTTAATTCGAACGATCTCACGGCAGTA  60
+            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  602  TGCGGGTCTATGACATCTTCCACTCCCCGAAGGGTTAATTCGAACGATCTCACGGCAGTA  661
+
+Query  61   AGTAGCAATGGACAACCCGTACCTCTGTTGACAAGTGAAACAGGGGTAGTGTGACATCAG  120
+            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  662  AGTAGCAATGGACAACCCGTACCTCTGTTGACAAGTGAAACAGGGGTAGTGTGACATCAG  721
+
+Query  121  CTCAATAGTCCGCTAGACCGGCCTGAAACACAGAGCGGAGTTGGAAAGGGCCCCTTGAAA  180
+            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  722  CTCAATAGTCCGCTAGACCGGCCTGAAACACAGAGCGGAGTTGGAAAGGGCCCCTTGAAA  781
+
+Query  181  CTGCGACGTACGCCGTCATAAAATTGCGATCTTCTAGTTGCCACTTTAGTAGTGACGCTC  240
+            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  782  CTGCGACGTACGCCGTCATAAAATTGCGATCTTCTAGTTGCCACTTTAGTAGTGACGCTC  841
+
+Query  241  GGTGTGCAACGACCCCCTAGCTGAGTAAAGTTTAAGAGTTTAAACGCATTACTGTTTCAC  300
+            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  842  GGTGTGCAACGACCCCCTAGCTGAGTAAAGTTTAAGAGTTTAAACGCATTACTGTTTCAC  901
+
+Query  301  TTTGGAGGAGCCTTACCCAGAGGCGTCCCTTATATTCCTGGACACTAGGAAAAATGTATA  360
+            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  902  TTTGGAGGAGCCTTACCCAGAGGCGTCCCTTATATTCCTGGACACTAGGAAAAATGTATA  961
+
+Query  361  TATTCACTACCCCGTAGCCGGCTACGACGAGTACCCGGG  399
+            |||||||||||||||||||||||||||||||||||||||
+Sbjct  962  TATTCACTACCCCGTAGCCGGCTACGACGAGTACCCGGG  1000
+
+
+
+
+
+

@@ -1,1 +1,0 @@
-> Contigs generated: 0 | Contigs skipped due to cycles: 1 | Source Header: 'gi|568815592:31575567-3157833| coverage: 10| read length: 50| error rate: 0.0|'

@@ -13,6 +13,7 @@ class Subgraph:
 		self.semi_balanced_nodes = 0
 		self.unbalanced_nodes = 0
 		self.branching_nodes = 0
+		self.total_nodes = len(self.g.keys())
 
 		for item in self.g.iterkeys():
 			self.g[item].unique_neighbors = len(set([x for x in self.g[item].neighbors]))
@@ -26,10 +27,10 @@ class Subgraph:
 			else:
 				self.unbalanced_nodes += 1
 
-		#self.data_dump()
+		self.data_dump()
 
 	def data_dump(self):
-		#print "|name: ", self.name,
+		print "|total_nodes: ", self.total_nodes,
 		print "|balanced_nodes: ", self.balanced_nodes,
 		print "|semi_balanced_nodes: ", self.semi_balanced_nodes,
 		print "|unbalanced_nodes: ", self.unbalanced_nodes,
@@ -136,7 +137,8 @@ class Assembler:
 			else:
 				self.unbalanced_nodes += 1
 
-		self.get_connected_components()
+		if clargs.connected:
+			self.get_connected_components()
 
 		return self.G
 
@@ -248,7 +250,7 @@ class Assembler:
 				next(nxt)
 			walk.append(node)
 		next(start)
-		walk = walk[::-1]
+		#walk = walk[::-1]
 		return walk
 
 	def find_leaves(self):
@@ -456,7 +458,8 @@ class Assembler:
 							continue
 
 					except KeyError,e:
-						print "ABORT ABORT: ", str(e)
+						#if clargs.verbose:
+						#	print "ABORT ABORT: ", str(e)
 						break
 				else:
 					pass
@@ -503,13 +506,10 @@ class Assembler:
 				#if clargs.verbose:
 					#print "CONTIG: ", results
 					#print "\n"
-					#print counter
 			except RuntimeError as e:
 				if clargs.verbose:
-					#print "cycle found - passing over this contig!\n"
 					passed_over += 1
 					counter -= 1
-					#print counter
 				continue
 		if clargs.verbose:
 			print "Finished generating contigs"
@@ -549,7 +549,6 @@ class Assembler:
 		'''driver function for tip-trimming heuristic similar to the Velvet assembler'''
 		length_threshold = 2*self.k # cutoff for branch being considered junk
 		branch_nodes = [x for x in self.G.iterkeys() if a.G[x].is_branching() and a.G[x].unique_neighbors > 1]
-		#merger_nodes = [x for x in self.G.iterkeys() if a.G[x].is_branching() and a.G[x].unique_parents > 1]
 
 		if clargs.verbose:
 			counter = len(branch_nodes)
@@ -561,16 +560,20 @@ class Assembler:
 			try:
 				self.trimmer(branch_root)
 			except KeyError,e:
-				#print "already removed this node"
 				pass
 
 	def get_connected_components(self):
 		gc = copy.deepcopy(self.G)
 
 		head_list = [x for x in gc.iterkeys() if gc[x].is_head()]
-
+		if clargs.verbose:
+			print "Potential number of eulerian subpaths: ",len(head_list)
 		for head in head_list:
-			path = self.eulerian_walk(head)
+			try:
+				path = self.eulerian_walk(head)
+			except RuntimeError,e:
+				continue
+
 			d = {}
 			for n in path:
 				try:
@@ -580,7 +583,7 @@ class Assembler:
 					pass
 			sub = Subgraph(d)
 			self.subgraphs.append(sub)
-		#print len(self.subgraphs)
+
 		return self.subgraphs
 
 
@@ -592,6 +595,7 @@ if __name__ == "__main__":
 	p.add_argument('-v', '--verbose', help="Print out some more info about the program at runtime", action="store_true")
 	p.add_argument('-l', '--logging', help="Write run information to log file", action="store_true")
 	p.add_argument('-w', '--weighted_dot', help="Output dot file with weighted edges instead of unweighted edges. Cleaner end result.", action="store_true")
+	p.add_argument('-c', '--connected', help="First steps for solving eulerian superpath problem. Huge hit to performance with large graphs. Enabling this feature will find all unique eulerian paths and create a list of subgraph objects.", action="store_true")
 	clargs = p.parse_args()
 
 	if clargs.kmer_length < 3:
@@ -635,7 +639,7 @@ if __name__ == "__main__":
 			writer.writerow(row)
 
 	#print [item.get_eulerianess() for item in a.subgraphs]
-	print a.subgraphs[0].get_eulerianess()
+	#print a.subgraphs[0].get_eulerianess()
 	#a.get_connected_components()
 	#print len(a.G)
 	#a.collapse_driver()
@@ -643,8 +647,8 @@ if __name__ == "__main__":
 	#a.trim_branches()
 	#print len(a.G)
 	#a.trim_cycles()
-	#c = a.get_contigs()
-	#a.flush_contigs(c)
+	c = a.get_contigs()
+	a.flush_contigs(c)
 
 
 	if clargs.weighted_dot:
