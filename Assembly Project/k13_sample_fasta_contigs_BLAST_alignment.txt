@@ -1,0 +1,2506 @@
+BLASTN 2.3.1+
+Reference: Zheng Zhang, Scott Schwartz, Lukas Wagner, and
+Webb Miller (2000), "A greedy algorithm for aligning DNA
+sequences", J Comput Biol 2000; 7(1-2):203-14.
+
+
+RID: DV4WY13N114
+
+
+Query= contig
+
+Length=522
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  122     5e-31
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 122 bits (66),  Expect = 5e-31
+ Identities = 76/80 (95%), Gaps = 3/80 (4%)
+ Strand=Plus/Plus
+
+Query  259   GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  318
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  9842  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  9901
+
+Query  319   ACAACCGGTACTTCTCGCAC  338
+                |||| ||||||||||||
+Sbjct  9902  ---ACCGTTACTTCTCGCAC  9918
+
+
+ Score = 113 bits (61),  Expect = 3e-28
+ Identities = 64/65 (98%), Gaps = 1/65 (2%)
+ Strand=Plus/Plus
+
+Query  340   CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATGATTCGG  399
+             |||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||
+Sbjct  9892  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATG-TTCGG  9950
+
+Query  400   AGGGT  404
+             |||||
+Sbjct  9951  AGGGT  9955
+
+
+ Score = 82.4 bits (44),  Expect = 8e-19
+ Identities = 57/62 (92%), Gaps = 5/62 (8%)
+ Strand=Plus/Plus
+
+Query  161   AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGCCGAGCGAAAGCGAAGAGA  220
+             |||||||||||||||||||||||||||||||||||||||||| |||  |  |||||||||
+Sbjct  9796  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGC-GAG--A--GCGAAGAGA  9850
+
+Query  221   TT  222
+             ||
+Sbjct  9851  TT  9852
+
+
+ Score = 75.0 bits (40),  Expect = 1e-16
+ Identities = 43/44 (98%), Gaps = 1/44 (2%)
+ Strand=Plus/Plus
+
+Query  118   CCGCCGCTCCTCGTTTAAACTCAGACCCCACGTGTCGGATTTTA  161
+             |||||||||||||||||||||||||||||| |||||||||||||
+Sbjct  9767  CCGCCGCTCCTCGTTTAAACTCAGACCCCA-GTGTCGGATTTTA  9809
+
+
+Query= contig
+
+Length=592
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  122     5e-31
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 122 bits (66),  Expect = 5e-31
+ Identities = 76/80 (95%), Gaps = 3/80 (4%)
+ Strand=Plus/Plus
+
+Query  329   GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  388
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  9842  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  9901
+
+Query  389   ACAACCGGTACTTCTCGCAC  408
+                |||| ||||||||||||
+Sbjct  9902  ---ACCGTTACTTCTCGCAC  9918
+
+
+ Score = 113 bits (61),  Expect = 3e-28
+ Identities = 64/65 (98%), Gaps = 1/65 (2%)
+ Strand=Plus/Plus
+
+Query  410   CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATGATTCGG  469
+             |||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||
+Sbjct  9892  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATG-TTCGG  9950
+
+Query  470   AGGGT  474
+             |||||
+Sbjct  9951  AGGGT  9955
+
+
+ Score = 82.4 bits (44),  Expect = 9e-19
+ Identities = 57/62 (92%), Gaps = 5/62 (8%)
+ Strand=Plus/Plus
+
+Query  231   AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGCCGAGCGAAAGCGAAGAGA  290
+             |||||||||||||||||||||||||||||||||||||||||| |||  |  |||||||||
+Sbjct  9796  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGC-GAG--A--GCGAAGAGA  9850
+
+Query  291   TT  292
+             ||
+Sbjct  9851  TT  9852
+
+
+ Score = 75.0 bits (40),  Expect = 2e-16
+ Identities = 43/44 (98%), Gaps = 1/44 (2%)
+ Strand=Plus/Plus
+
+Query  188   CCGCCGCTCCTCGTTTAAACTCAGACCCCACGTGTCGGATTTTA  231
+             |||||||||||||||||||||||||||||| |||||||||||||
+Sbjct  9767  CCGCCGCTCCTCGTTTAAACTCAGACCCCA-GTGTCGGATTTTA  9809
+
+
+Query= contig
+
+Length=2026
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  154     7e-40
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 154 bits (83),  Expect = 7e-40
+ Identities = 88/90 (98%), Gaps = 2/90 (2%)
+ Strand=Plus/Plus
+
+Query  192   CTTACTATGTGTCTGCTCGTACATACATCTGGTAAGTTAGACTACTTCAAGAACTAATAC  251
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  3366  CTTACTATGTGTCTGCTCGTACATACATCTGGTAAGTTAGACTACTTCAAGAACTAATAC  3425
+
+Query  252   GGGAGCAATGACGCCTCTCTTGCTCGGCTC  281
+             ||||||||||||||| | ||||||||||||
+Sbjct  3426  GGGAGCAATGACGCC-C-CTTGCTCGGCTC  3453
+
+
+ Score = 147 bits (79),  Expect = 1e-37
+ Identities = 84/86 (98%), Gaps = 1/86 (1%)
+ Strand=Plus/Plus
+
+Query  438   AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  497
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  3504  AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  3563
+
+Query  498   GATATATGGCGCCGTAGGTAAAGCTG  523
+             ||||||||||||||| |||| |||||
+Sbjct  3564  GATATATGGCGCCGT-GGTATAGCTG  3588
+
+
+ Score = 122 bits (66),  Expect = 2e-30
+ Identities = 76/80 (95%), Gaps = 3/80 (4%)
+ Strand=Plus/Plus
+
+Query  1056  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  1115
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  9842  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  9901
+
+Query  1116  ACAACCGGTACTTCTCGCAC  1135
+                |||| ||||||||||||
+Sbjct  9902  ---ACCGTTACTTCTCGCAC  9918
+
+
+ Score = 113 bits (61),  Expect = 1e-27
+ Identities = 64/65 (98%), Gaps = 1/65 (2%)
+ Strand=Plus/Plus
+
+Query  1137  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATGATTCGG  1196
+             |||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||
+Sbjct  9892  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATG-TTCGG  9950
+
+Query  1197  AGGGT  1201
+             |||||
+Sbjct  9951  AGGGT  9955
+
+
+ Score = 97.1 bits (52),  Expect = 1e-22
+ Identities = 55/56 (98%), Gaps = 1/56 (2%)
+ Strand=Plus/Plus
+
+Query  1780  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCCCGAATCCGCCA  1835
+             ||||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3864  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCC-GAATCCGCCA  3918
+
+
+ Score = 93.5 bits (50),  Expect = 1e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  543   GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCCCTGTAGCACGA  596
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3571  GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCC-TGTAGCACGA  3623
+
+
+ Score = 93.5 bits (50),  Expect = 1e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  1519  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCCCGTACTTACTA  1572
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3734  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCC-GTACTTACTA  3786
+
+
+ Score = 82.4 bits (44),  Expect = 3e-18
+ Identities = 57/62 (92%), Gaps = 5/62 (8%)
+ Strand=Plus/Plus
+
+Query  958   AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGCCGAGCGAAAGCGAAGAGA  1017
+             |||||||||||||||||||||||||||||||||||||||||| |||  |  |||||||||
+Sbjct  9796  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGC-GAG--A--GCGAAGAGA  9850
+
+Query  1018  TT  1019
+             ||
+Sbjct  9851  TT  9852
+
+
+ Score = 75.0 bits (40),  Expect = 5e-16
+ Identities = 43/44 (98%), Gaps = 1/44 (2%)
+ Strand=Plus/Plus
+
+Query  915   CCGCCGCTCCTCGTTTAAACTCAGACCCCACGTGTCGGATTTTA  958
+             |||||||||||||||||||||||||||||| |||||||||||||
+Sbjct  9767  CCGCCGCTCCTCGTTTAAACTCAGACCCCA-GTGTCGGATTTTA  9809
+
+
+ Score = 69.4 bits (37),  Expect = 2e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  1634  AGTGATTCACAAAGCCATCTGAACCCAGTGGGGCTTTATCT  1674
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  3807  AGTGATTCACAAAGCCATCTGAACCCAG-GGGGCTTTATCT  3846
+
+
+ Score = 69.4 bits (37),  Expect = 2e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  688   CCGCGGTCTCTAGCGCACCCATGACAGTCACAGGGCGTATA  728
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  9685  CCGCGGTCTCTAGCGCACCCATGACAGT-ACAGGGCGTATA  9724
+
+
+Query= contig
+
+Length=567
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  97.1    3e-23
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 97.1 bits (52),  Expect = 3e-23
+ Identities = 55/56 (98%), Gaps = 1/56 (2%)
+ Strand=Plus/Plus
+
+Query  327   ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCCCGAATCCGCCA  382
+             ||||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3864  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCC-GAATCCGCCA  3918
+
+
+ Score = 93.5 bits (50),  Expect = 4e-22
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  66    AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCCCGTACTTACTA  119
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3734  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCC-GTACTTACTA  3786
+
+
+ Score = 69.4 bits (37),  Expect = 7e-15
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  181   AGTGATTCACAAAGCCATCTGAACCCAGTGGGGCTTTATCT  221
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  3807  AGTGATTCACAAAGCCATCTGAACCCAG-GGGGCTTTATCT  3846
+
+
+Query= contig
+
+Length=1090
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  122     1e-30
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 122 bits (66),  Expect = 1e-30
+ Identities = 76/80 (95%), Gaps = 3/80 (4%)
+ Strand=Plus/Plus
+
+Query  439   GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  498
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  9842  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  9901
+
+Query  499   ACAACCGGTACTTCTCGCAC  518
+                |||| ||||||||||||
+Sbjct  9902  ---ACCGTTACTTCTCGCAC  9918
+
+
+ Score = 113 bits (61),  Expect = 6e-28
+ Identities = 64/65 (98%), Gaps = 1/65 (2%)
+ Strand=Plus/Plus
+
+Query  520   CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATGATTCGG  579
+             |||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||
+Sbjct  9892  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATG-TTCGG  9950
+
+Query  580   AGGGT  584
+             |||||
+Sbjct  9951  AGGGT  9955
+
+
+ Score = 97.1 bits (52),  Expect = 6e-23
+ Identities = 55/56 (98%), Gaps = 1/56 (2%)
+ Strand=Plus/Plus
+
+Query  850   ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCCCGAATCCGCCA  905
+             ||||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3864  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCC-GAATCCGCCA  3918
+
+
+ Score = 82.4 bits (44),  Expect = 2e-18
+ Identities = 57/62 (92%), Gaps = 5/62 (8%)
+ Strand=Plus/Plus
+
+Query  341   AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGCCGAGCGAAAGCGAAGAGA  400
+             |||||||||||||||||||||||||||||||||||||||||| |||  |  |||||||||
+Sbjct  9796  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGC-GAG--A--GCGAAGAGA  9850
+
+Query  401   TT  402
+             ||
+Sbjct  9851  TT  9852
+
+
+ Score = 75.0 bits (40),  Expect = 3e-16
+ Identities = 43/44 (98%), Gaps = 1/44 (2%)
+ Strand=Plus/Plus
+
+Query  298   CCGCCGCTCCTCGTTTAAACTCAGACCCCACGTGTCGGATTTTA  341
+             |||||||||||||||||||||||||||||| |||||||||||||
+Sbjct  9767  CCGCCGCTCCTCGTTTAAACTCAGACCCCA-GTGTCGGATTTTA  9809
+
+
+ Score = 71.3 bits (38),  Expect = 4e-15
+ Identities = 41/42 (98%), Gaps = 1/42 (2%)
+ Strand=Plus/Plus
+
+Query  703   CAGTGATTCACAAAGCCATCTGAACCCAGTGGGGCTTTATCT  744
+             ||||||||||||||||||||||||||||| ||||||||||||
+Sbjct  3806  CAGTGATTCACAAAGCCATCTGAACCCAG-GGGGCTTTATCT  3846
+
+
+ Score = 69.4 bits (37),  Expect = 1e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  71    CCGCGGTCTCTAGCGCACCCATGACAGTCACAGGGCGTATA  111
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  9685  CCGCGGTCTCTAGCGCACCCATGACAGT-ACAGGGCGTATA  9724
+
+
+Query= contig
+
+Length=714
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  97.1    4e-23
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 97.1 bits (52),  Expect = 4e-23
+ Identities = 55/56 (98%), Gaps = 1/56 (2%)
+ Strand=Plus/Plus
+
+Query  474   ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCCCGAATCCGCCA  529
+             ||||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3864  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCC-GAATCCGCCA  3918
+
+
+ Score = 93.5 bits (50),  Expect = 5e-22
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  213   AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCCCGTACTTACTA  266
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3734  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCC-GTACTTACTA  3786
+
+
+ Score = 69.4 bits (37),  Expect = 9e-15
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  328   AGTGATTCACAAAGCCATCTGAACCCAGTGGGGCTTTATCT  368
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  3807  AGTGATTCACAAAGCCATCTGAACCCAG-GGGGCTTTATCT  3846
+
+
+Query= contig
+
+Length=1800
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  147     1e-37
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 147 bits (79),  Expect = 1e-37
+ Identities = 84/86 (98%), Gaps = 1/86 (1%)
+ Strand=Plus/Plus
+
+Query  212   AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  271
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  3504  AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  3563
+
+Query  272   GATATATGGCGCCGTAGGTAAAGCTG  297
+             ||||||||||||||| |||| |||||
+Sbjct  3564  GATATATGGCGCCGT-GGTATAGCTG  3588
+
+
+ Score = 122 bits (66),  Expect = 2e-30
+ Identities = 76/80 (95%), Gaps = 3/80 (4%)
+ Strand=Plus/Plus
+
+Query  830   GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  889
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  9842  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  9901
+
+Query  890   ACAACCGGTACTTCTCGCAC  909
+                |||| ||||||||||||
+Sbjct  9902  ---ACCGTTACTTCTCGCAC  9918
+
+
+ Score = 113 bits (61),  Expect = 1e-27
+ Identities = 64/65 (98%), Gaps = 1/65 (2%)
+ Strand=Plus/Plus
+
+Query  911   CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATGATTCGG  970
+             |||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||
+Sbjct  9892  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATG-TTCGG  9950
+
+Query  971   AGGGT  975
+             |||||
+Sbjct  9951  AGGGT  9955
+
+
+ Score = 97.1 bits (52),  Expect = 1e-22
+ Identities = 55/56 (98%), Gaps = 1/56 (2%)
+ Strand=Plus/Plus
+
+Query  1554  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCCCGAATCCGCCA  1609
+             ||||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3864  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCC-GAATCCGCCA  3918
+
+
+ Score = 93.5 bits (50),  Expect = 1e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  317   GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCCCTGTAGCACGA  370
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3571  GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCC-TGTAGCACGA  3623
+
+
+ Score = 93.5 bits (50),  Expect = 1e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  1293  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCCCGTACTTACTA  1346
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3734  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCC-GTACTTACTA  3786
+
+
+ Score = 89.8 bits (48),  Expect = 2e-20
+ Identities = 53/55 (96%), Gaps = 2/55 (4%)
+ Strand=Plus/Plus
+
+Query  1     GTTAGACTACTTCAAGAACTAATACGGGAGCAATGACGCCTCTCTTGCTCGGCTC  55
+             |||||||||||||||||||||||||||||||||||||||| | ||||||||||||
+Sbjct  3401  GTTAGACTACTTCAAGAACTAATACGGGAGCAATGACGCC-C-CTTGCTCGGCTC  3453
+
+
+ Score = 82.4 bits (44),  Expect = 3e-18
+ Identities = 57/62 (92%), Gaps = 5/62 (8%)
+ Strand=Plus/Plus
+
+Query  732   AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGCCGAGCGAAAGCGAAGAGA  791
+             |||||||||||||||||||||||||||||||||||||||||| |||  |  |||||||||
+Sbjct  9796  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGC-GAG--A--GCGAAGAGA  9850
+
+Query  792   TT  793
+             ||
+Sbjct  9851  TT  9852
+
+
+ Score = 75.0 bits (40),  Expect = 5e-16
+ Identities = 43/44 (98%), Gaps = 1/44 (2%)
+ Strand=Plus/Plus
+
+Query  689   CCGCCGCTCCTCGTTTAAACTCAGACCCCACGTGTCGGATTTTA  732
+             |||||||||||||||||||||||||||||| |||||||||||||
+Sbjct  9767  CCGCCGCTCCTCGTTTAAACTCAGACCCCA-GTGTCGGATTTTA  9809
+
+
+ Score = 69.4 bits (37),  Expect = 2e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  1408  AGTGATTCACAAAGCCATCTGAACCCAGTGGGGCTTTATCT  1448
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  3807  AGTGATTCACAAAGCCATCTGAACCCAG-GGGGCTTTATCT  3846
+
+
+ Score = 69.4 bits (37),  Expect = 2e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  462   CCGCGGTCTCTAGCGCACCCATGACAGTCACAGGGCGTATA  502
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  9685  CCGCGGTCTCTAGCGCACCCATGACAGT-ACAGGGCGTATA  9724
+
+
+Query= contig
+
+Length=2181
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  172     2e-45
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 172 bits (93),  Expect = 2e-45
+ Identities = 103/107 (96%), Gaps = 4/107 (4%)
+ Strand=Plus/Plus
+
+Query  87    CCACGACGGTCAGCGCCGAAGGCGGCTCTCCCACCGTAACGTTGTATATCTGGATGTAGG  146
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  3195  CCACGACGGTCAGCGCCGAAGGCGGCTCTCCCACCGTAACGTTGTATATCTGGATGTAGG  3254
+
+Query  147   TCTCACATCACATGGCGTTAATCAATCTCTGGCGGGTCGCGGTTGGT  193
+             ||||||||||||||||||   |||||||||||||||| |||||||||
+Sbjct  3255  TCTCACATCACATGGCGT---TCAATCTCTGGCGGGT-GCGGTTGGT  3297
+
+
+ Score = 154 bits (83),  Expect = 7e-40
+ Identities = 88/90 (98%), Gaps = 2/90 (2%)
+ Strand=Plus/Plus
+
+Query  347   CTTACTATGTGTCTGCTCGTACATACATCTGGTAAGTTAGACTACTTCAAGAACTAATAC  406
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  3366  CTTACTATGTGTCTGCTCGTACATACATCTGGTAAGTTAGACTACTTCAAGAACTAATAC  3425
+
+Query  407   GGGAGCAATGACGCCTCTCTTGCTCGGCTC  436
+             ||||||||||||||| | ||||||||||||
+Sbjct  3426  GGGAGCAATGACGCC-C-CTTGCTCGGCTC  3453
+
+
+ Score = 147 bits (79),  Expect = 1e-37
+ Identities = 84/86 (98%), Gaps = 1/86 (1%)
+ Strand=Plus/Plus
+
+Query  593   AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  652
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  3504  AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  3563
+
+Query  653   GATATATGGCGCCGTAGGTAAAGCTG  678
+             ||||||||||||||| |||| |||||
+Sbjct  3564  GATATATGGCGCCGT-GGTATAGCTG  3588
+
+
+ Score = 122 bits (66),  Expect = 2e-30
+ Identities = 76/80 (95%), Gaps = 3/80 (4%)
+ Strand=Plus/Plus
+
+Query  1211  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  1270
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  9842  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  9901
+
+Query  1271  ACAACCGGTACTTCTCGCAC  1290
+                |||| ||||||||||||
+Sbjct  9902  ---ACCGTTACTTCTCGCAC  9918
+
+
+ Score = 113 bits (61),  Expect = 1e-27
+ Identities = 64/65 (98%), Gaps = 1/65 (2%)
+ Strand=Plus/Plus
+
+Query  1292  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATGATTCGG  1351
+             |||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||
+Sbjct  9892  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATG-TTCGG  9950
+
+Query  1352  AGGGT  1356
+             |||||
+Sbjct  9951  AGGGT  9955
+
+
+ Score = 97.1 bits (52),  Expect = 1e-22
+ Identities = 55/56 (98%), Gaps = 1/56 (2%)
+ Strand=Plus/Plus
+
+Query  1935  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCCCGAATCCGCCA  1990
+             ||||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3864  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCC-GAATCCGCCA  3918
+
+
+ Score = 93.5 bits (50),  Expect = 2e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  698   GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCCCTGTAGCACGA  751
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3571  GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCC-TGTAGCACGA  3623
+
+
+ Score = 93.5 bits (50),  Expect = 2e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  1674  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCCCGTACTTACTA  1727
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3734  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCC-GTACTTACTA  3786
+
+
+ Score = 82.4 bits (44),  Expect = 3e-18
+ Identities = 57/62 (92%), Gaps = 5/62 (8%)
+ Strand=Plus/Plus
+
+Query  1113  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGCCGAGCGAAAGCGAAGAGA  1172
+             |||||||||||||||||||||||||||||||||||||||||| |||  |  |||||||||
+Sbjct  9796  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGC-GAG--A--GCGAAGAGA  9850
+
+Query  1173  TT  1174
+             ||
+Sbjct  9851  TT  9852
+
+
+ Score = 75.0 bits (40),  Expect = 6e-16
+ Identities = 43/44 (98%), Gaps = 1/44 (2%)
+ Strand=Plus/Plus
+
+Query  1070  CCGCCGCTCCTCGTTTAAACTCAGACCCCACGTGTCGGATTTTA  1113
+             |||||||||||||||||||||||||||||| |||||||||||||
+Sbjct  9767  CCGCCGCTCCTCGTTTAAACTCAGACCCCA-GTGTCGGATTTTA  9809
+
+
+ Score = 69.4 bits (37),  Expect = 3e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  1789  AGTGATTCACAAAGCCATCTGAACCCAGTGGGGCTTTATCT  1829
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  3807  AGTGATTCACAAAGCCATCTGAACCCAG-GGGGCTTTATCT  3846
+
+
+ Score = 69.4 bits (37),  Expect = 3e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  843   CCGCGGTCTCTAGCGCACCCATGACAGTCACAGGGCGTATA  883
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  9685  CCGCGGTCTCTAGCGCACCCATGACAGT-ACAGGGCGTATA  9724
+
+
+Query= contig
+
+Length=1617
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  147     9e-38
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 147 bits (79),  Expect = 9e-38
+ Identities = 84/86 (98%), Gaps = 1/86 (1%)
+ Strand=Plus/Plus
+
+Query  35    AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  94
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  3504  AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  3563
+
+Query  95    GATATATGGCGCCGTAGGTAAAGCTG  120
+             ||||||||||||||| |||| |||||
+Sbjct  3564  GATATATGGCGCCGT-GGTATAGCTG  3588
+
+
+ Score = 122 bits (66),  Expect = 2e-30
+ Identities = 76/80 (95%), Gaps = 3/80 (4%)
+ Strand=Plus/Plus
+
+Query  653   GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  712
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  9842  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  9901
+
+Query  713   ACAACCGGTACTTCTCGCAC  732
+                |||| ||||||||||||
+Sbjct  9902  ---ACCGTTACTTCTCGCAC  9918
+
+
+ Score = 113 bits (61),  Expect = 9e-28
+ Identities = 64/65 (98%), Gaps = 1/65 (2%)
+ Strand=Plus/Plus
+
+Query  734   CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATGATTCGG  793
+             |||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||
+Sbjct  9892  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATG-TTCGG  9950
+
+Query  794   AGGGT  798
+             |||||
+Sbjct  9951  AGGGT  9955
+
+
+ Score = 97.1 bits (52),  Expect = 9e-23
+ Identities = 55/56 (98%), Gaps = 1/56 (2%)
+ Strand=Plus/Plus
+
+Query  1377  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCCCGAATCCGCCA  1432
+             ||||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3864  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCC-GAATCCGCCA  3918
+
+
+ Score = 93.5 bits (50),  Expect = 1e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  140   GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCCCTGTAGCACGA  193
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3571  GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCC-TGTAGCACGA  3623
+
+
+ Score = 93.5 bits (50),  Expect = 1e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  1116  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCCCGTACTTACTA  1169
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3734  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCC-GTACTTACTA  3786
+
+
+ Score = 82.4 bits (44),  Expect = 3e-18
+ Identities = 57/62 (92%), Gaps = 5/62 (8%)
+ Strand=Plus/Plus
+
+Query  555   AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGCCGAGCGAAAGCGAAGAGA  614
+             |||||||||||||||||||||||||||||||||||||||||| |||  |  |||||||||
+Sbjct  9796  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGC-GAG--A--GCGAAGAGA  9850
+
+Query  615   TT  616
+             ||
+Sbjct  9851  TT  9852
+
+
+ Score = 75.0 bits (40),  Expect = 4e-16
+ Identities = 43/44 (98%), Gaps = 1/44 (2%)
+ Strand=Plus/Plus
+
+Query  512   CCGCCGCTCCTCGTTTAAACTCAGACCCCACGTGTCGGATTTTA  555
+             |||||||||||||||||||||||||||||| |||||||||||||
+Sbjct  9767  CCGCCGCTCCTCGTTTAAACTCAGACCCCA-GTGTCGGATTTTA  9809
+
+
+ Score = 69.4 bits (37),  Expect = 2e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  1231  AGTGATTCACAAAGCCATCTGAACCCAGTGGGGCTTTATCT  1271
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  3807  AGTGATTCACAAAGCCATCTGAACCCAG-GGGGCTTTATCT  3846
+
+
+ Score = 69.4 bits (37),  Expect = 2e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  285   CCGCGGTCTCTAGCGCACCCATGACAGTCACAGGGCGTATA  325
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  9685  CCGCGGTCTCTAGCGCACCCATGACAGT-ACAGGGCGTATA  9724
+
+
+Query= contig
+
+Length=371
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  82.4    6e-19
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 82.4 bits (44),  Expect = 6e-19
+ Identities = 47/48 (98%), Gaps = 1/48 (2%)
+ Strand=Plus/Plus
+
+Query  178   CATTTAGCCTTTTCGACGTCAATCATCAGATATACACATTAAAGAAGA  225
+             |||||||||||||||||||||||||||||||||||| |||||||||||
+Sbjct  4909  CATTTAGCCTTTTCGACGTCAATCATCAGATATACA-ATTAAAGAAGA  4955
+
+
+Query= contig
+
+Length=375
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  97.1    2e-23
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 97.1 bits (52),  Expect = 2e-23
+ Identities = 55/56 (98%), Gaps = 1/56 (2%)
+ Strand=Plus/Plus
+
+Query  135   ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCCCGAATCCGCCA  190
+             ||||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3864  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCC-GAATCCGCCA  3918
+
+
+Query= contig
+
+Length=394
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  122     4e-31
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 122 bits (66),  Expect = 4e-31
+ Identities = 76/80 (95%), Gaps = 3/80 (4%)
+ Strand=Plus/Plus
+
+Query  131   GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  190
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  9842  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  9901
+
+Query  191   ACAACCGGTACTTCTCGCAC  210
+                |||| ||||||||||||
+Sbjct  9902  ---ACCGTTACTTCTCGCAC  9918
+
+
+ Score = 113 bits (61),  Expect = 2e-28
+ Identities = 64/65 (98%), Gaps = 1/65 (2%)
+ Strand=Plus/Plus
+
+Query  212   CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATGATTCGG  271
+             |||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||
+Sbjct  9892  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATG-TTCGG  9950
+
+Query  272   AGGGT  276
+             |||||
+Sbjct  9951  AGGGT  9955
+
+
+ Score = 82.4 bits (44),  Expect = 6e-19
+ Identities = 57/62 (92%), Gaps = 5/62 (8%)
+ Strand=Plus/Plus
+
+Query  33    AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGCCGAGCGAAAGCGAAGAGA  92
+             |||||||||||||||||||||||||||||||||||||||||| |||  |  |||||||||
+Sbjct  9796  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGC-GAG--A--GCGAAGAGA  9850
+
+Query  93    TT  94
+             ||
+Sbjct  9851  TT  9852
+
+
+Query= contig
+
+Length=651
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  97.1    4e-23
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 97.1 bits (52),  Expect = 4e-23
+ Identities = 55/56 (98%), Gaps = 1/56 (2%)
+ Strand=Plus/Plus
+
+Query  411   ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCCCGAATCCGCCA  466
+             ||||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3864  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCC-GAATCCGCCA  3918
+
+
+ Score = 93.5 bits (50),  Expect = 5e-22
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  150   AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCCCGTACTTACTA  203
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3734  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCC-GTACTTACTA  3786
+
+
+ Score = 69.4 bits (37),  Expect = 8e-15
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  265   AGTGATTCACAAAGCCATCTGAACCCAGTGGGGCTTTATCT  305
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  3807  AGTGATTCACAAAGCCATCTGAACCCAG-GGGGCTTTATCT  3846
+
+
+Query= contig
+
+Length=1782
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  147     1e-37
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 147 bits (79),  Expect = 1e-37
+ Identities = 84/86 (98%), Gaps = 1/86 (1%)
+ Strand=Plus/Plus
+
+Query  194   AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  253
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  3504  AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  3563
+
+Query  254   GATATATGGCGCCGTAGGTAAAGCTG  279
+             ||||||||||||||| |||| |||||
+Sbjct  3564  GATATATGGCGCCGT-GGTATAGCTG  3588
+
+
+ Score = 122 bits (66),  Expect = 2e-30
+ Identities = 76/80 (95%), Gaps = 3/80 (4%)
+ Strand=Plus/Plus
+
+Query  812   GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  871
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  9842  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  9901
+
+Query  872   ACAACCGGTACTTCTCGCAC  891
+                |||| ||||||||||||
+Sbjct  9902  ---ACCGTTACTTCTCGCAC  9918
+
+
+ Score = 113 bits (61),  Expect = 1e-27
+ Identities = 64/65 (98%), Gaps = 1/65 (2%)
+ Strand=Plus/Plus
+
+Query  893   CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATGATTCGG  952
+             |||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||
+Sbjct  9892  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATG-TTCGG  9950
+
+Query  953   AGGGT  957
+             |||||
+Sbjct  9951  AGGGT  9955
+
+
+ Score = 97.1 bits (52),  Expect = 1e-22
+ Identities = 55/56 (98%), Gaps = 1/56 (2%)
+ Strand=Plus/Plus
+
+Query  1536  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCCCGAATCCGCCA  1591
+             ||||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3864  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCC-GAATCCGCCA  3918
+
+
+ Score = 93.5 bits (50),  Expect = 1e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  299   GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCCCTGTAGCACGA  352
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3571  GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCC-TGTAGCACGA  3623
+
+
+ Score = 93.5 bits (50),  Expect = 1e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  1275  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCCCGTACTTACTA  1328
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3734  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCC-GTACTTACTA  3786
+
+
+ Score = 82.4 bits (44),  Expect = 3e-18
+ Identities = 57/62 (92%), Gaps = 5/62 (8%)
+ Strand=Plus/Plus
+
+Query  714   AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGCCGAGCGAAAGCGAAGAGA  773
+             |||||||||||||||||||||||||||||||||||||||||| |||  |  |||||||||
+Sbjct  9796  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGC-GAG--A--GCGAAGAGA  9850
+
+Query  774   TT  775
+             ||
+Sbjct  9851  TT  9852
+
+
+ Score = 75.0 bits (40),  Expect = 5e-16
+ Identities = 43/44 (98%), Gaps = 1/44 (2%)
+ Strand=Plus/Plus
+
+Query  671   CCGCCGCTCCTCGTTTAAACTCAGACCCCACGTGTCGGATTTTA  714
+             |||||||||||||||||||||||||||||| |||||||||||||
+Sbjct  9767  CCGCCGCTCCTCGTTTAAACTCAGACCCCA-GTGTCGGATTTTA  9809
+
+
+ Score = 69.4 bits (37),  Expect = 2e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  1390  AGTGATTCACAAAGCCATCTGAACCCAGTGGGGCTTTATCT  1430
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  3807  AGTGATTCACAAAGCCATCTGAACCCAG-GGGGCTTTATCT  3846
+
+
+ Score = 69.4 bits (37),  Expect = 2e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  444   CCGCGGTCTCTAGCGCACCCATGACAGTCACAGGGCGTATA  484
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  9685  CCGCGGTCTCTAGCGCACCCATGACAGT-ACAGGGCGTATA  9724
+
+
+Query= contig
+
+Length=1791
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  147     1e-37
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 147 bits (79),  Expect = 1e-37
+ Identities = 84/86 (98%), Gaps = 1/86 (1%)
+ Strand=Plus/Plus
+
+Query  203   AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  262
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  3504  AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  3563
+
+Query  263   GATATATGGCGCCGTAGGTAAAGCTG  288
+             ||||||||||||||| |||| |||||
+Sbjct  3564  GATATATGGCGCCGT-GGTATAGCTG  3588
+
+
+ Score = 122 bits (66),  Expect = 2e-30
+ Identities = 76/80 (95%), Gaps = 3/80 (4%)
+ Strand=Plus/Plus
+
+Query  821   GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  880
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  9842  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  9901
+
+Query  881   ACAACCGGTACTTCTCGCAC  900
+                |||| ||||||||||||
+Sbjct  9902  ---ACCGTTACTTCTCGCAC  9918
+
+
+ Score = 113 bits (61),  Expect = 1e-27
+ Identities = 64/65 (98%), Gaps = 1/65 (2%)
+ Strand=Plus/Plus
+
+Query  902   CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATGATTCGG  961
+             |||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||
+Sbjct  9892  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATG-TTCGG  9950
+
+Query  962   AGGGT  966
+             |||||
+Sbjct  9951  AGGGT  9955
+
+
+ Score = 97.1 bits (52),  Expect = 1e-22
+ Identities = 55/56 (98%), Gaps = 1/56 (2%)
+ Strand=Plus/Plus
+
+Query  1545  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCCCGAATCCGCCA  1600
+             ||||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3864  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCC-GAATCCGCCA  3918
+
+
+ Score = 93.5 bits (50),  Expect = 1e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  308   GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCCCTGTAGCACGA  361
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3571  GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCC-TGTAGCACGA  3623
+
+
+ Score = 93.5 bits (50),  Expect = 1e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  1284  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCCCGTACTTACTA  1337
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3734  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCC-GTACTTACTA  3786
+
+
+ Score = 82.4 bits (44),  Expect = 3e-18
+ Identities = 57/62 (92%), Gaps = 5/62 (8%)
+ Strand=Plus/Plus
+
+Query  723   AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGCCGAGCGAAAGCGAAGAGA  782
+             |||||||||||||||||||||||||||||||||||||||||| |||  |  |||||||||
+Sbjct  9796  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGC-GAG--A--GCGAAGAGA  9850
+
+Query  783   TT  784
+             ||
+Sbjct  9851  TT  9852
+
+
+ Score = 75.0 bits (40),  Expect = 5e-16
+ Identities = 43/44 (98%), Gaps = 1/44 (2%)
+ Strand=Plus/Plus
+
+Query  680   CCGCCGCTCCTCGTTTAAACTCAGACCCCACGTGTCGGATTTTA  723
+             |||||||||||||||||||||||||||||| |||||||||||||
+Sbjct  9767  CCGCCGCTCCTCGTTTAAACTCAGACCCCA-GTGTCGGATTTTA  9809
+
+
+ Score = 73.1 bits (39),  Expect = 2e-15
+ Identities = 44/46 (96%), Gaps = 2/46 (4%)
+ Strand=Plus/Plus
+
+Query  1     CTTCAAGAACTAATACGGGAGCAATGACGCCTCTCTTGCTCGGCTC  46
+             ||||||||||||||||||||||||||||||| | ||||||||||||
+Sbjct  3410  CTTCAAGAACTAATACGGGAGCAATGACGCC-C-CTTGCTCGGCTC  3453
+
+
+ Score = 69.4 bits (37),  Expect = 2e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  1399  AGTGATTCACAAAGCCATCTGAACCCAGTGGGGCTTTATCT  1439
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  3807  AGTGATTCACAAAGCCATCTGAACCCAG-GGGGCTTTATCT  3846
+
+
+ Score = 69.4 bits (37),  Expect = 2e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  453   CCGCGGTCTCTAGCGCACCCATGACAGTCACAGGGCGTATA  493
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  9685  CCGCGGTCTCTAGCGCACCCATGACAGT-ACAGGGCGTATA  9724
+
+
+Query= contig
+
+Length=477
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  124     1e-31
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 124 bits (67),  Expect = 1e-31
+ Identities = 70/71 (99%), Gaps = 1/71 (1%)
+ Strand=Plus/Plus
+
+Query  66    TGGCGGCGACGGGAAAGTTGTTTCGCAAAATCGTTACTCGTTGGGACTAACCGGGTTCAC  125
+             |||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |
+Sbjct  4796  TGGCGGCGACGGGAAAGTTGTTTCGCAAAATCGTTACTCGTTGGGACTAACCGGGTTC-C  4854
+
+Query  126   ATTGCCTCGTT  136
+             |||||||||||
+Sbjct  4855  ATTGCCTCGTT  4865
+
+
+ Score = 82.4 bits (44),  Expect = 7e-19
+ Identities = 47/48 (98%), Gaps = 1/48 (2%)
+ Strand=Plus/Plus
+
+Query  284   CATTTAGCCTTTTCGACGTCAATCATCAGATATACACATTAAAGAAGA  331
+             |||||||||||||||||||||||||||||||||||| |||||||||||
+Sbjct  4909  CATTTAGCCTTTTCGACGTCAATCATCAGATATACA-ATTAAAGAAGA  4955
+
+
+Query= contig
+
+Length=1833
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  150     8e-39
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 150 bits (81),  Expect = 8e-39
+ Identities = 86/88 (98%), Gaps = 2/88 (2%)
+ Strand=Plus/Plus
+
+Query  1     TACTATGTGTCTGCTCGTACATACATCTGGTAAGTTAGACTACTTCAAGAACTAATACGG  60
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  3368  TACTATGTGTCTGCTCGTACATACATCTGGTAAGTTAGACTACTTCAAGAACTAATACGG  3427
+
+Query  61    GAGCAATGACGCCTCTCTTGCTCGGCTC  88
+             ||||||||||||| | ||||||||||||
+Sbjct  3428  GAGCAATGACGCC-C-CTTGCTCGGCTC  3453
+
+
+ Score = 147 bits (79),  Expect = 1e-37
+ Identities = 84/86 (98%), Gaps = 1/86 (1%)
+ Strand=Plus/Plus
+
+Query  245   AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  304
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  3504  AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  3563
+
+Query  305   GATATATGGCGCCGTAGGTAAAGCTG  330
+             ||||||||||||||| |||| |||||
+Sbjct  3564  GATATATGGCGCCGT-GGTATAGCTG  3588
+
+
+ Score = 122 bits (66),  Expect = 2e-30
+ Identities = 76/80 (95%), Gaps = 3/80 (4%)
+ Strand=Plus/Plus
+
+Query  863   GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  922
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  9842  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  9901
+
+Query  923   ACAACCGGTACTTCTCGCAC  942
+                |||| ||||||||||||
+Sbjct  9902  ---ACCGTTACTTCTCGCAC  9918
+
+
+ Score = 113 bits (61),  Expect = 1e-27
+ Identities = 64/65 (98%), Gaps = 1/65 (2%)
+ Strand=Plus/Plus
+
+Query  944   CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATGATTCGG  1003
+             |||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||
+Sbjct  9892  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATG-TTCGG  9950
+
+Query  1004  AGGGT  1008
+             |||||
+Sbjct  9951  AGGGT  9955
+
+
+ Score = 97.1 bits (52),  Expect = 1e-22
+ Identities = 55/56 (98%), Gaps = 1/56 (2%)
+ Strand=Plus/Plus
+
+Query  1587  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCCCGAATCCGCCA  1642
+             ||||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3864  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCC-GAATCCGCCA  3918
+
+
+ Score = 93.5 bits (50),  Expect = 1e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  350   GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCCCTGTAGCACGA  403
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3571  GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCC-TGTAGCACGA  3623
+
+
+ Score = 93.5 bits (50),  Expect = 1e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  1326  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCCCGTACTTACTA  1379
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3734  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCC-GTACTTACTA  3786
+
+
+ Score = 82.4 bits (44),  Expect = 3e-18
+ Identities = 57/62 (92%), Gaps = 5/62 (8%)
+ Strand=Plus/Plus
+
+Query  765   AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGCCGAGCGAAAGCGAAGAGA  824
+             |||||||||||||||||||||||||||||||||||||||||| |||  |  |||||||||
+Sbjct  9796  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGC-GAG--A--GCGAAGAGA  9850
+
+Query  825   TT  826
+             ||
+Sbjct  9851  TT  9852
+
+
+ Score = 75.0 bits (40),  Expect = 5e-16
+ Identities = 43/44 (98%), Gaps = 1/44 (2%)
+ Strand=Plus/Plus
+
+Query  722   CCGCCGCTCCTCGTTTAAACTCAGACCCCACGTGTCGGATTTTA  765
+             |||||||||||||||||||||||||||||| |||||||||||||
+Sbjct  9767  CCGCCGCTCCTCGTTTAAACTCAGACCCCA-GTGTCGGATTTTA  9809
+
+
+ Score = 69.4 bits (37),  Expect = 2e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  1441  AGTGATTCACAAAGCCATCTGAACCCAGTGGGGCTTTATCT  1481
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  3807  AGTGATTCACAAAGCCATCTGAACCCAG-GGGGCTTTATCT  3846
+
+
+ Score = 69.4 bits (37),  Expect = 2e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  495   CCGCGGTCTCTAGCGCACCCATGACAGTCACAGGGCGTATA  535
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  9685  CCGCGGTCTCTAGCGCACCCATGACAGT-ACAGGGCGTATA  9724
+
+
+Query= contig
+
+Length=2055
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  154     7e-40
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 154 bits (83),  Expect = 7e-40
+ Identities = 88/90 (98%), Gaps = 2/90 (2%)
+ Strand=Plus/Plus
+
+Query  221   CTTACTATGTGTCTGCTCGTACATACATCTGGTAAGTTAGACTACTTCAAGAACTAATAC  280
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  3366  CTTACTATGTGTCTGCTCGTACATACATCTGGTAAGTTAGACTACTTCAAGAACTAATAC  3425
+
+Query  281   GGGAGCAATGACGCCTCTCTTGCTCGGCTC  310
+             ||||||||||||||| | ||||||||||||
+Sbjct  3426  GGGAGCAATGACGCC-C-CTTGCTCGGCTC  3453
+
+
+ Score = 147 bits (79),  Expect = 1e-37
+ Identities = 84/86 (98%), Gaps = 1/86 (1%)
+ Strand=Plus/Plus
+
+Query  467   AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  526
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  3504  AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  3563
+
+Query  527   GATATATGGCGCCGTAGGTAAAGCTG  552
+             ||||||||||||||| |||| |||||
+Sbjct  3564  GATATATGGCGCCGT-GGTATAGCTG  3588
+
+
+ Score = 122 bits (66),  Expect = 2e-30
+ Identities = 76/80 (95%), Gaps = 3/80 (4%)
+ Strand=Plus/Plus
+
+Query  1085  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  1144
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  9842  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  9901
+
+Query  1145  ACAACCGGTACTTCTCGCAC  1164
+                |||| ||||||||||||
+Sbjct  9902  ---ACCGTTACTTCTCGCAC  9918
+
+
+ Score = 113 bits (61),  Expect = 1e-27
+ Identities = 64/65 (98%), Gaps = 1/65 (2%)
+ Strand=Plus/Plus
+
+Query  1166  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATGATTCGG  1225
+             |||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||
+Sbjct  9892  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATG-TTCGG  9950
+
+Query  1226  AGGGT  1230
+             |||||
+Sbjct  9951  AGGGT  9955
+
+
+ Score = 99.0 bits (53),  Expect = 3e-23
+ Identities = 63/67 (94%), Gaps = 4/67 (6%)
+ Strand=Plus/Plus
+
+Query  1     GTTGTATATCTGGATGTAGGTCTCACATCACATGGCGTTAATCAATCTCTGGCGGGTCGC  60
+             ||||||||||||||||||||||||||||||||||||||   |||||||||||||||| ||
+Sbjct  3235  GTTGTATATCTGGATGTAGGTCTCACATCACATGGCGT---TCAATCTCTGGCGGGT-GC  3290
+
+Query  61    GGTTGGT  67
+             |||||||
+Sbjct  3291  GGTTGGT  3297
+
+
+ Score = 97.1 bits (52),  Expect = 1e-22
+ Identities = 55/56 (98%), Gaps = 1/56 (2%)
+ Strand=Plus/Plus
+
+Query  1809  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCCCGAATCCGCCA  1864
+             ||||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3864  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCC-GAATCCGCCA  3918
+
+
+ Score = 93.5 bits (50),  Expect = 2e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  572   GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCCCTGTAGCACGA  625
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3571  GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCC-TGTAGCACGA  3623
+
+
+ Score = 93.5 bits (50),  Expect = 2e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  1548  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCCCGTACTTACTA  1601
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3734  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCC-GTACTTACTA  3786
+
+
+ Score = 82.4 bits (44),  Expect = 3e-18
+ Identities = 57/62 (92%), Gaps = 5/62 (8%)
+ Strand=Plus/Plus
+
+Query  987   AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGCCGAGCGAAAGCGAAGAGA  1046
+             |||||||||||||||||||||||||||||||||||||||||| |||  |  |||||||||
+Sbjct  9796  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGC-GAG--A--GCGAAGAGA  9850
+
+Query  1047  TT  1048
+             ||
+Sbjct  9851  TT  9852
+
+
+ Score = 75.0 bits (40),  Expect = 5e-16
+ Identities = 43/44 (98%), Gaps = 1/44 (2%)
+ Strand=Plus/Plus
+
+Query  944   CCGCCGCTCCTCGTTTAAACTCAGACCCCACGTGTCGGATTTTA  987
+             |||||||||||||||||||||||||||||| |||||||||||||
+Sbjct  9767  CCGCCGCTCCTCGTTTAAACTCAGACCCCA-GTGTCGGATTTTA  9809
+
+
+ Score = 69.4 bits (37),  Expect = 3e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  1663  AGTGATTCACAAAGCCATCTGAACCCAGTGGGGCTTTATCT  1703
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  3807  AGTGATTCACAAAGCCATCTGAACCCAG-GGGGCTTTATCT  3846
+
+
+ Score = 69.4 bits (37),  Expect = 3e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  717   CCGCGGTCTCTAGCGCACCCATGACAGTCACAGGGCGTATA  757
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  9685  CCGCGGTCTCTAGCGCACCCATGACAGT-ACAGGGCGTATA  9724
+
+
+Query= contig
+
+Length=4460
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  172     4e-45
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 172 bits (93),  Expect = 4e-45
+ Identities = 103/107 (96%), Gaps = 4/107 (4%)
+ Strand=Plus/Plus
+
+Query  2366  CCACGACGGTCAGCGCCGAAGGCGGCTCTCCCACCGTAACGTTGTATATCTGGATGTAGG  2425
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  3195  CCACGACGGTCAGCGCCGAAGGCGGCTCTCCCACCGTAACGTTGTATATCTGGATGTAGG  3254
+
+Query  2426  TCTCACATCACATGGCGTTAATCAATCTCTGGCGGGTCGCGGTTGGT  2472
+             ||||||||||||||||||   |||||||||||||||| |||||||||
+Sbjct  3255  TCTCACATCACATGGCGT---TCAATCTCTGGCGGGT-GCGGTTGGT  3297
+
+
+ Score = 154 bits (83),  Expect = 1e-39
+ Identities = 88/90 (98%), Gaps = 2/90 (2%)
+ Strand=Plus/Plus
+
+Query  2626  CTTACTATGTGTCTGCTCGTACATACATCTGGTAAGTTAGACTACTTCAAGAACTAATAC  2685
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  3366  CTTACTATGTGTCTGCTCGTACATACATCTGGTAAGTTAGACTACTTCAAGAACTAATAC  3425
+
+Query  2686  GGGAGCAATGACGCCTCTCTTGCTCGGCTC  2715
+             ||||||||||||||| | ||||||||||||
+Sbjct  3426  GGGAGCAATGACGCC-C-CTTGCTCGGCTC  3453
+
+
+ Score = 147 bits (79),  Expect = 2e-37
+ Identities = 84/86 (98%), Gaps = 1/86 (1%)
+ Strand=Plus/Plus
+
+Query  2872  AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  2931
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  3504  AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  3563
+
+Query  2932  GATATATGGCGCCGTAGGTAAAGCTG  2957
+             ||||||||||||||| |||| |||||
+Sbjct  3564  GATATATGGCGCCGT-GGTATAGCTG  3588
+
+
+ Score = 122 bits (66),  Expect = 4e-30
+ Identities = 76/80 (95%), Gaps = 3/80 (4%)
+ Strand=Plus/Plus
+
+Query  1946  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  2005
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  9842  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  9901
+
+Query  2006  ACAACCGGTACTTCTCGCAC  2025
+                |||| ||||||||||||
+Sbjct  9902  ---ACCGTTACTTCTCGCAC  9918
+
+
+ Score = 122 bits (66),  Expect = 4e-30
+ Identities = 76/80 (95%), Gaps = 3/80 (4%)
+ Strand=Plus/Plus
+
+Query  3490  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  3549
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  9842  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  9901
+
+Query  3550  ACAACCGGTACTTCTCGCAC  3569
+                |||| ||||||||||||
+Sbjct  9902  ---ACCGTTACTTCTCGCAC  9918
+
+
+ Score = 113 bits (61),  Expect = 3e-27
+ Identities = 64/65 (98%), Gaps = 1/65 (2%)
+ Strand=Plus/Plus
+
+Query  2027  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATGATTCGG  2086
+             |||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||
+Sbjct  9892  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATG-TTCGG  9950
+
+Query  2087  AGGGT  2091
+             |||||
+Sbjct  9951  AGGGT  9955
+
+
+ Score = 113 bits (61),  Expect = 3e-27
+ Identities = 64/65 (98%), Gaps = 1/65 (2%)
+ Strand=Plus/Plus
+
+Query  3571  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATGATTCGG  3630
+             |||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||
+Sbjct  9892  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATG-TTCGG  9950
+
+Query  3631  AGGGT  3635
+             |||||
+Sbjct  9951  AGGGT  9955
+
+
+ Score = 97.1 bits (52),  Expect = 3e-22
+ Identities = 55/56 (98%), Gaps = 1/56 (2%)
+ Strand=Plus/Plus
+
+Query  1270  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCCCGAATCCGCCA  1325
+             ||||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3864  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCC-GAATCCGCCA  3918
+
+
+ Score = 97.1 bits (52),  Expect = 3e-22
+ Identities = 55/56 (98%), Gaps = 1/56 (2%)
+ Strand=Plus/Plus
+
+Query  4214  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCCCGAATCCGCCA  4269
+             ||||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3864  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCC-GAATCCGCCA  3918
+
+
+ Score = 93.5 bits (50),  Expect = 3e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  2977  GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCCCTGTAGCACGA  3030
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3571  GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCC-TGTAGCACGA  3623
+
+
+ Score = 93.5 bits (50),  Expect = 3e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  1009  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCCCGTACTTACTA  1062
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3734  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCC-GTACTTACTA  3786
+
+
+ Score = 93.5 bits (50),  Expect = 3e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  3953  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCCCGTACTTACTA  4006
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3734  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCC-GTACTTACTA  3786
+
+
+ Score = 86.1 bits (46),  Expect = 5e-19
+ Identities = 66/74 (89%), Gaps = 8/74 (11%)
+ Strand=Plus/Plus
+
+Query  474   AACCCTCGGTTATACCTCTCGTCGCTGGAGCTGTATTAATGGTCAGACGCAGACCTCAAG  533
+             |||||||||||||||||||||||||||||||||||||||||| ||||| |     |||||
+Sbjct  9504  AACCCTCGGTTATACCTCTCGTCGCTGGAGCTGTATTAATGG-CAGAC-C-----TCAAG  9556
+
+Query  534   TCGACATGCAGTGG  547
+             | ||||||||||||
+Sbjct  9557  T-GACATGCAGTGG  9569
+
+
+ Score = 82.4 bits (44),  Expect = 7e-18
+ Identities = 49/51 (96%), Gaps = 1/51 (2%)
+ Strand=Plus/Plus
+
+Query  637   GGGGTCCGTATTTCCTCTGGGGCGGAACAAGTGAACGAGACACGGTAACGA  687
+             |||||||||||||||||||||||||||||||| |||||||||||| |||||
+Sbjct  9587  GGGGTCCGTATTTCCTCTGGGGCGGAACAAGT-AACGAGACACGGAAACGA  9636
+
+
+ Score = 82.4 bits (44),  Expect = 7e-18
+ Identities = 57/62 (92%), Gaps = 5/62 (8%)
+ Strand=Plus/Plus
+
+Query  1848  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGCCGAGCGAAAGCGAAGAGA  1907
+             |||||||||||||||||||||||||||||||||||||||||| |||  |  |||||||||
+Sbjct  9796  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGC-GAG--A--GCGAAGAGA  9850
+
+Query  1908  TT  1909
+             ||
+Sbjct  9851  TT  9852
+
+
+ Score = 82.4 bits (44),  Expect = 7e-18
+ Identities = 57/62 (92%), Gaps = 5/62 (8%)
+ Strand=Plus/Plus
+
+Query  3392  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGCCGAGCGAAAGCGAAGAGA  3451
+             |||||||||||||||||||||||||||||||||||||||||| |||  |  |||||||||
+Sbjct  9796  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGC-GAG--A--GCGAAGAGA  9850
+
+Query  3452  TT  3453
+             ||
+Sbjct  9851  TT  9852
+
+
+ Score = 75.0 bits (40),  Expect = 1e-15
+ Identities = 40/40 (100%), Gaps = 0/40 (0%)
+ Strand=Plus/Plus
+
+Query  175   TGTGCGCGGTCGCCACCAAACGGGACCGAGAACTTCTCTC  214
+             ||||||||||||||||||||||||||||||||||||||||
+Sbjct  9369  TGTGCGCGGTCGCCACCAAACGGGACCGAGAACTTCTCTC  9408
+
+
+ Score = 75.0 bits (40),  Expect = 1e-15
+ Identities = 43/44 (98%), Gaps = 1/44 (2%)
+ Strand=Plus/Plus
+
+Query  1805  CCGCCGCTCCTCGTTTAAACTCAGACCCCACGTGTCGGATTTTA  1848
+             |||||||||||||||||||||||||||||| |||||||||||||
+Sbjct  9767  CCGCCGCTCCTCGTTTAAACTCAGACCCCA-GTGTCGGATTTTA  9809
+
+
+ Score = 75.0 bits (40),  Expect = 1e-15
+ Identities = 43/44 (98%), Gaps = 1/44 (2%)
+ Strand=Plus/Plus
+
+Query  3349  CCGCCGCTCCTCGTTTAAACTCAGACCCCACGTGTCGGATTTTA  3392
+             |||||||||||||||||||||||||||||| |||||||||||||
+Sbjct  9767  CCGCCGCTCCTCGTTTAAACTCAGACCCCA-GTGTCGGATTTTA  9809
+
+
+ Score = 69.4 bits (37),  Expect = 6e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  1124  AGTGATTCACAAAGCCATCTGAACCCAGTGGGGCTTTATCT  1164
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  3807  AGTGATTCACAAAGCCATCTGAACCCAG-GGGGCTTTATCT  3846
+
+
+ Score = 69.4 bits (37),  Expect = 6e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  4068  AGTGATTCACAAAGCCATCTGAACCCAGTGGGGCTTTATCT  4108
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  3807  AGTGATTCACAAAGCCATCTGAACCCAG-GGGGCTTTATCT  3846
+
+
+ Score = 69.4 bits (37),  Expect = 6e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  1578  CCGCGGTCTCTAGCGCACCCATGACAGTCACAGGGCGTATA  1618
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  9685  CCGCGGTCTCTAGCGCACCCATGACAGT-ACAGGGCGTATA  9724
+
+
+ Score = 69.4 bits (37),  Expect = 6e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  3122  CCGCGGTCTCTAGCGCACCCATGACAGTCACAGGGCGTATA  3162
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  9685  CCGCGGTCTCTAGCGCACCCATGACAGT-ACAGGGCGTATA  9724
+
+
+Query= contig
+
+Length=160
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  71.3    5e-16
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 71.3 bits (38),  Expect = 5e-16
+ Identities = 41/42 (98%), Gaps = 1/42 (2%)
+ Strand=Plus/Plus
+
+Query  1     GCACCTGTTAGTTCCAAGCCCCAGGGAGATGATTCGGAGGGT  42
+             ||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  9915  GCACCTGTTAGTTCCAAGCCCCAGGGAGATG-TTCGGAGGGT  9955
+
+
+Query= contig
+
+Length=243
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  82.4    4e-19
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 82.4 bits (44),  Expect = 4e-19
+ Identities = 47/48 (98%), Gaps = 1/48 (2%)
+ Strand=Plus/Plus
+
+Query  50    CATTTAGCCTTTTCGACGTCAATCATCAGATATACACATTAAAGAAGA  97
+             |||||||||||||||||||||||||||||||||||| |||||||||||
+Sbjct  4909  CATTTAGCCTTTTCGACGTCAATCATCAGATATACA-ATTAAAGAAGA  4955
+
+
+Query= contig
+
+Length=1450
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  122     1e-30
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 122 bits (66),  Expect = 1e-30
+ Identities = 76/80 (95%), Gaps = 3/80 (4%)
+ Strand=Plus/Plus
+
+Query  486   GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  545
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  9842  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  9901
+
+Query  546   ACAACCGGTACTTCTCGCAC  565
+                |||| ||||||||||||
+Sbjct  9902  ---ACCGTTACTTCTCGCAC  9918
+
+
+ Score = 113 bits (61),  Expect = 8e-28
+ Identities = 64/65 (98%), Gaps = 1/65 (2%)
+ Strand=Plus/Plus
+
+Query  567   CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATGATTCGG  626
+             |||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||
+Sbjct  9892  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATG-TTCGG  9950
+
+Query  627   AGGGT  631
+             |||||
+Sbjct  9951  AGGGT  9955
+
+
+ Score = 97.1 bits (52),  Expect = 8e-23
+ Identities = 55/56 (98%), Gaps = 1/56 (2%)
+ Strand=Plus/Plus
+
+Query  1210  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCCCGAATCCGCCA  1265
+             ||||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3864  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCC-GAATCCGCCA  3918
+
+
+ Score = 93.5 bits (50),  Expect = 1e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  949   AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCCCGTACTTACTA  1002
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3734  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCC-GTACTTACTA  3786
+
+
+ Score = 82.4 bits (44),  Expect = 2e-18
+ Identities = 57/62 (92%), Gaps = 5/62 (8%)
+ Strand=Plus/Plus
+
+Query  388   AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGCCGAGCGAAAGCGAAGAGA  447
+             |||||||||||||||||||||||||||||||||||||||||| |||  |  |||||||||
+Sbjct  9796  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGC-GAG--A--GCGAAGAGA  9850
+
+Query  448   TT  449
+             ||
+Sbjct  9851  TT  9852
+
+
+ Score = 75.0 bits (40),  Expect = 4e-16
+ Identities = 43/44 (98%), Gaps = 1/44 (2%)
+ Strand=Plus/Plus
+
+Query  345   CCGCCGCTCCTCGTTTAAACTCAGACCCCACGTGTCGGATTTTA  388
+             |||||||||||||||||||||||||||||| |||||||||||||
+Sbjct  9767  CCGCCGCTCCTCGTTTAAACTCAGACCCCA-GTGTCGGATTTTA  9809
+
+
+ Score = 69.4 bits (37),  Expect = 2e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  1064  AGTGATTCACAAAGCCATCTGAACCCAGTGGGGCTTTATCT  1104
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  3807  AGTGATTCACAAAGCCATCTGAACCCAG-GGGGCTTTATCT  3846
+
+
+ Score = 69.4 bits (37),  Expect = 2e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  118   CCGCGGTCTCTAGCGCACCCATGACAGTCACAGGGCGTATA  158
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  9685  CCGCGGTCTCTAGCGCACCCATGACAGT-ACAGGGCGTATA  9724
+
+
+ Score = 60.2 bits (32),  Expect = 1e-11
+ Identities = 32/32 (100%), Gaps = 0/32 (0%)
+ Strand=Plus/Plus
+
+Query  27    GCCTGTAGCACGACTCCCCGCCACTTACGGGA  58
+             ||||||||||||||||||||||||||||||||
+Sbjct  3611  GCCTGTAGCACGACTCCCCGCCACTTACGGGA  3642
+
+
+Query= contig
+
+Length=1916
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  154     6e-40
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 154 bits (83),  Expect = 6e-40
+ Identities = 88/90 (98%), Gaps = 2/90 (2%)
+ Strand=Plus/Plus
+
+Query  82    CTTACTATGTGTCTGCTCGTACATACATCTGGTAAGTTAGACTACTTCAAGAACTAATAC  141
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  3366  CTTACTATGTGTCTGCTCGTACATACATCTGGTAAGTTAGACTACTTCAAGAACTAATAC  3425
+
+Query  142   GGGAGCAATGACGCCTCTCTTGCTCGGCTC  171
+             ||||||||||||||| | ||||||||||||
+Sbjct  3426  GGGAGCAATGACGCC-C-CTTGCTCGGCTC  3453
+
+
+ Score = 147 bits (79),  Expect = 1e-37
+ Identities = 84/86 (98%), Gaps = 1/86 (1%)
+ Strand=Plus/Plus
+
+Query  328   AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  387
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  3504  AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  3563
+
+Query  388   GATATATGGCGCCGTAGGTAAAGCTG  413
+             ||||||||||||||| |||| |||||
+Sbjct  3564  GATATATGGCGCCGT-GGTATAGCTG  3588
+
+
+ Score = 122 bits (66),  Expect = 2e-30
+ Identities = 76/80 (95%), Gaps = 3/80 (4%)
+ Strand=Plus/Plus
+
+Query  946   GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  1005
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  9842  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  9901
+
+Query  1006  ACAACCGGTACTTCTCGCAC  1025
+                |||| ||||||||||||
+Sbjct  9902  ---ACCGTTACTTCTCGCAC  9918
+
+
+ Score = 113 bits (61),  Expect = 1e-27
+ Identities = 64/65 (98%), Gaps = 1/65 (2%)
+ Strand=Plus/Plus
+
+Query  1027  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATGATTCGG  1086
+             |||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||
+Sbjct  9892  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATG-TTCGG  9950
+
+Query  1087  AGGGT  1091
+             |||||
+Sbjct  9951  AGGGT  9955
+
+
+ Score = 97.1 bits (52),  Expect = 1e-22
+ Identities = 55/56 (98%), Gaps = 1/56 (2%)
+ Strand=Plus/Plus
+
+Query  1670  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCCCGAATCCGCCA  1725
+             ||||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3864  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCC-GAATCCGCCA  3918
+
+
+ Score = 93.5 bits (50),  Expect = 1e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  433   GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCCCTGTAGCACGA  486
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3571  GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCC-TGTAGCACGA  3623
+
+
+ Score = 93.5 bits (50),  Expect = 1e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  1409  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCCCGTACTTACTA  1462
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3734  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCC-GTACTTACTA  3786
+
+
+ Score = 82.4 bits (44),  Expect = 3e-18
+ Identities = 57/62 (92%), Gaps = 5/62 (8%)
+ Strand=Plus/Plus
+
+Query  848   AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGCCGAGCGAAAGCGAAGAGA  907
+             |||||||||||||||||||||||||||||||||||||||||| |||  |  |||||||||
+Sbjct  9796  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGC-GAG--A--GCGAAGAGA  9850
+
+Query  908   TT  909
+             ||
+Sbjct  9851  TT  9852
+
+
+ Score = 75.0 bits (40),  Expect = 5e-16
+ Identities = 43/44 (98%), Gaps = 1/44 (2%)
+ Strand=Plus/Plus
+
+Query  805   CCGCCGCTCCTCGTTTAAACTCAGACCCCACGTGTCGGATTTTA  848
+             |||||||||||||||||||||||||||||| |||||||||||||
+Sbjct  9767  CCGCCGCTCCTCGTTTAAACTCAGACCCCA-GTGTCGGATTTTA  9809
+
+
+ Score = 69.4 bits (37),  Expect = 2e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  1524  AGTGATTCACAAAGCCATCTGAACCCAGTGGGGCTTTATCT  1564
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  3807  AGTGATTCACAAAGCCATCTGAACCCAG-GGGGCTTTATCT  3846
+
+
+ Score = 69.4 bits (37),  Expect = 2e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  578   CCGCGGTCTCTAGCGCACCCATGACAGTCACAGGGCGTATA  618
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  9685  CCGCGGTCTCTAGCGCACCCATGACAGT-ACAGGGCGTATA  9724
+
+
+Query= contig
+
+Length=546
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  124     1e-31
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 124 bits (67),  Expect = 1e-31
+ Identities = 70/71 (99%), Gaps = 1/71 (1%)
+ Strand=Plus/Plus
+
+Query  135   TGGCGGCGACGGGAAAGTTGTTTCGCAAAATCGTTACTCGTTGGGACTAACCGGGTTCAC  194
+             |||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |
+Sbjct  4796  TGGCGGCGACGGGAAAGTTGTTTCGCAAAATCGTTACTCGTTGGGACTAACCGGGTTC-C  4854
+
+Query  195   ATTGCCTCGTT  205
+             |||||||||||
+Sbjct  4855  ATTGCCTCGTT  4865
+
+
+ Score = 82.4 bits (44),  Expect = 8e-19
+ Identities = 47/48 (98%), Gaps = 1/48 (2%)
+ Strand=Plus/Plus
+
+Query  353   CATTTAGCCTTTTCGACGTCAATCATCAGATATACACATTAAAGAAGA  400
+             |||||||||||||||||||||||||||||||||||| |||||||||||
+Sbjct  4909  CATTTAGCCTTTTCGACGTCAATCATCAGATATACA-ATTAAAGAAGA  4955
+
+
+Query= contig
+
+Length=347
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  97.1    2e-23
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 97.1 bits (52),  Expect = 2e-23
+ Identities = 55/56 (98%), Gaps = 1/56 (2%)
+ Strand=Plus/Plus
+
+Query  107   ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCCCGAATCCGCCA  162
+             ||||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3864  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCC-GAATCCGCCA  3918
+
+
+Query= contig
+
+Length=559
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  97.1    3e-23
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 97.1 bits (52),  Expect = 3e-23
+ Identities = 55/56 (98%), Gaps = 1/56 (2%)
+ Strand=Plus/Plus
+
+Query  319   ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCCCGAATCCGCCA  374
+             ||||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3864  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCC-GAATCCGCCA  3918
+
+
+ Score = 93.5 bits (50),  Expect = 4e-22
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  58    AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCCCGTACTTACTA  111
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3734  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCC-GTACTTACTA  3786
+
+
+ Score = 69.4 bits (37),  Expect = 7e-15
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  173   AGTGATTCACAAAGCCATCTGAACCCAGTGGGGCTTTATCT  213
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  3807  AGTGATTCACAAAGCCATCTGAACCCAG-GGGGCTTTATCT  3846
+
+
+Query= contig
+
+Length=690
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  122     6e-31
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 122 bits (66),  Expect = 6e-31
+ Identities = 76/80 (95%), Gaps = 3/80 (4%)
+ Strand=Plus/Plus
+
+Query  427   GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  486
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  9842  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  9901
+
+Query  487   ACAACCGGTACTTCTCGCAC  506
+                |||| ||||||||||||
+Sbjct  9902  ---ACCGTTACTTCTCGCAC  9918
+
+
+ Score = 113 bits (61),  Expect = 4e-28
+ Identities = 64/65 (98%), Gaps = 1/65 (2%)
+ Strand=Plus/Plus
+
+Query  508   CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATGATTCGG  567
+             |||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||
+Sbjct  9892  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATG-TTCGG  9950
+
+Query  568   AGGGT  572
+             |||||
+Sbjct  9951  AGGGT  9955
+
+
+ Score = 82.4 bits (44),  Expect = 1e-18
+ Identities = 57/62 (92%), Gaps = 5/62 (8%)
+ Strand=Plus/Plus
+
+Query  329   AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGCCGAGCGAAAGCGAAGAGA  388
+             |||||||||||||||||||||||||||||||||||||||||| |||  |  |||||||||
+Sbjct  9796  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGC-GAG--A--GCGAAGAGA  9850
+
+Query  389   TT  390
+             ||
+Sbjct  9851  TT  9852
+
+
+ Score = 75.0 bits (40),  Expect = 2e-16
+ Identities = 43/44 (98%), Gaps = 1/44 (2%)
+ Strand=Plus/Plus
+
+Query  286   CCGCCGCTCCTCGTTTAAACTCAGACCCCACGTGTCGGATTTTA  329
+             |||||||||||||||||||||||||||||| |||||||||||||
+Sbjct  9767  CCGCCGCTCCTCGTTTAAACTCAGACCCCA-GTGTCGGATTTTA  9809
+
+
+ Score = 69.4 bits (37),  Expect = 8e-15
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  59    CCGCGGTCTCTAGCGCACCCATGACAGTCACAGGGCGTATA  99
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  9685  CCGCGGTCTCTAGCGCACCCATGACAGT-ACAGGGCGTATA  9724
+
+
+Query= contig
+
+Length=1799
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  147     1e-37
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 147 bits (79),  Expect = 1e-37
+ Identities = 84/86 (98%), Gaps = 1/86 (1%)
+ Strand=Plus/Plus
+
+Query  211   AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  270
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  3504  AATAGCGAGCCGTTTAGGCCGGGATCCTAGGTGTGCGTACAGAAGCAGTCTCTTCCGAAG  3563
+
+Query  271   GATATATGGCGCCGTAGGTAAAGCTG  296
+             ||||||||||||||| |||| |||||
+Sbjct  3564  GATATATGGCGCCGT-GGTATAGCTG  3588
+
+
+ Score = 122 bits (66),  Expect = 2e-30
+ Identities = 76/80 (95%), Gaps = 3/80 (4%)
+ Strand=Plus/Plus
+
+Query  829   GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  888
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  9842  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  9901
+
+Query  889   ACAACCGGTACTTCTCGCAC  908
+                |||| ||||||||||||
+Sbjct  9902  ---ACCGTTACTTCTCGCAC  9918
+
+
+ Score = 113 bits (61),  Expect = 1e-27
+ Identities = 64/65 (98%), Gaps = 1/65 (2%)
+ Strand=Plus/Plus
+
+Query  910   CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATGATTCGG  969
+             |||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||
+Sbjct  9892  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATG-TTCGG  9950
+
+Query  970   AGGGT  974
+             |||||
+Sbjct  9951  AGGGT  9955
+
+
+ Score = 97.1 bits (52),  Expect = 1e-22
+ Identities = 55/56 (98%), Gaps = 1/56 (2%)
+ Strand=Plus/Plus
+
+Query  1553  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCCCGAATCCGCCA  1608
+             ||||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3864  ATCGCTACCTCCAGCGGGGTCAAGGAACTGTTACCGAAATCTGCC-GAATCCGCCA  3918
+
+
+ Score = 93.5 bits (50),  Expect = 1e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  316   GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCCCTGTAGCACGA  369
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3571  GGCGCCGTGGTATAGCTGCCACTGCATTGTCAAACTTGGGGCC-TGTAGCACGA  3623
+
+
+ Score = 93.5 bits (50),  Expect = 1e-21
+ Identities = 53/54 (98%), Gaps = 1/54 (2%)
+ Strand=Plus/Plus
+
+Query  1292  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCCCGTACTTACTA  1345
+             ||||||||||||||||||||||||||||||||||||||||||| ||||||||||
+Sbjct  3734  AGGTCACTGTTATAAGTGACAAAGTAGCTAAATATTGATCGCC-GTACTTACTA  3786
+
+
+ Score = 87.9 bits (47),  Expect = 6e-20
+ Identities = 52/54 (96%), Gaps = 2/54 (4%)
+ Strand=Plus/Plus
+
+Query  1     TTAGACTACTTCAAGAACTAATACGGGAGCAATGACGCCTCTCTTGCTCGGCTC  54
+             ||||||||||||||||||||||||||||||||||||||| | ||||||||||||
+Sbjct  3402  TTAGACTACTTCAAGAACTAATACGGGAGCAATGACGCC-C-CTTGCTCGGCTC  3453
+
+
+ Score = 82.4 bits (44),  Expect = 3e-18
+ Identities = 57/62 (92%), Gaps = 5/62 (8%)
+ Strand=Plus/Plus
+
+Query  731   AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGCCGAGCGAAAGCGAAGAGA  790
+             |||||||||||||||||||||||||||||||||||||||||| |||  |  |||||||||
+Sbjct  9796  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGC-GAG--A--GCGAAGAGA  9850
+
+Query  791   TT  792
+             ||
+Sbjct  9851  TT  9852
+
+
+ Score = 75.0 bits (40),  Expect = 5e-16
+ Identities = 43/44 (98%), Gaps = 1/44 (2%)
+ Strand=Plus/Plus
+
+Query  688   CCGCCGCTCCTCGTTTAAACTCAGACCCCACGTGTCGGATTTTA  731
+             |||||||||||||||||||||||||||||| |||||||||||||
+Sbjct  9767  CCGCCGCTCCTCGTTTAAACTCAGACCCCA-GTGTCGGATTTTA  9809
+
+
+ Score = 69.4 bits (37),  Expect = 2e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  1407  AGTGATTCACAAAGCCATCTGAACCCAGTGGGGCTTTATCT  1447
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  3807  AGTGATTCACAAAGCCATCTGAACCCAG-GGGGCTTTATCT  3846
+
+
+ Score = 69.4 bits (37),  Expect = 2e-14
+ Identities = 40/41 (98%), Gaps = 1/41 (2%)
+ Strand=Plus/Plus
+
+Query  461   CCGCGGTCTCTAGCGCACCCATGACAGTCACAGGGCGTATA  501
+             |||||||||||||||||||||||||||| ||||||||||||
+Sbjct  9685  CCGCGGTCTCTAGCGCACCCATGACAGT-ACAGGGCGTATA  9724
+
+
+Query= contig
+
+Length=483
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  122     4e-31
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 122 bits (66),  Expect = 4e-31
+ Identities = 76/80 (95%), Gaps = 3/80 (4%)
+ Strand=Plus/Plus
+
+Query  220   GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  279
+             ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  9842  GCGAAGAGATTCGCCTTGAAGGAGTCATCCGACGATCTCTGGGCATTCGGCGGGGGCAAG  9901
+
+Query  280   ACAACCGGTACTTCTCGCAC  299
+                |||| ||||||||||||
+Sbjct  9902  ---ACCGTTACTTCTCGCAC  9918
+
+
+ Score = 113 bits (61),  Expect = 3e-28
+ Identities = 64/65 (98%), Gaps = 1/65 (2%)
+ Strand=Plus/Plus
+
+Query  301   CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATGATTCGG  360
+             |||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||
+Sbjct  9892  CGGGGGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATG-TTCGG  9950
+
+Query  361   AGGGT  365
+             |||||
+Sbjct  9951  AGGGT  9955
+
+
+ Score = 82.4 bits (44),  Expect = 7e-19
+ Identities = 57/62 (92%), Gaps = 5/62 (8%)
+ Strand=Plus/Plus
+
+Query  122   AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGCCGAGCGAAAGCGAAGAGA  181
+             |||||||||||||||||||||||||||||||||||||||||| |||  |  |||||||||
+Sbjct  9796  AGTGTCGGATTTTAAGCATAAGGCACCCTACAGTTTTTTGGC-GAG--A--GCGAAGAGA  9850
+
+Query  182   TT  183
+             ||
+Sbjct  9851  TT  9852
+
+
+ Score = 75.0 bits (40),  Expect = 1e-16
+ Identities = 43/44 (98%), Gaps = 1/44 (2%)
+ Strand=Plus/Plus
+
+Query  79    CCGCCGCTCCTCGTTTAAACTCAGACCCCACGTGTCGGATTTTA  122
+             |||||||||||||||||||||||||||||| |||||||||||||
+Sbjct  9767  CCGCCGCTCCTCGTTTAAACTCAGACCCCA-GTGTCGGATTTTA  9809
+
+
+Query= contig
+
+Length=179
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+Query_211237  SigmaKappaOmega9 genome, assume each position is...  106     2e-26
+
+ALIGNMENTS
+>Query_211237 SigmaKappaOmega9 genome, assume each position is iid uniformly 
+randomly chosen
+Length=10000
+
+ Score = 106 bits (57),  Expect = 2e-26
+ Identities = 60/61 (98%), Gaps = 1/61 (2%)
+ Strand=Plus/Plus
+
+Query  1     GGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATGATTCGGAGGG  60
+             |||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||
+Sbjct  9896  GGCAAGACCGTTACTTCTCGCACCTGTTAGTTCCAAGCCCCAGGGAGATG-TTCGGAGGG  9954
+
+Query  61    T  61
+             |
+Sbjct  9955  T  9955
+
+
+
+
+
+
