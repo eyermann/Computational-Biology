@@ -1,7 +1,7 @@
 README FOR PROGRAMMING PROJECT 3
+Authors: Charles Eyermann and Sam Hinh
 
-USAGE:
-
+================================================================================
 usage: simulator.py [-h] [-v]
                     fasta_sequence_file coverage read_length error_rate
 
@@ -17,6 +17,8 @@ positional arguments:
 optional arguments:
   -h, --help           show this help message and exit
   -v, --verbose        Print out some more info about the program at runtime
+
+================================================================================
 
   usage: assembler.py [-h] [-v] [-l] [-w] [-c] read_file kmer_length
 
@@ -38,4 +40,11 @@ optional arguments:
                         feature will find all unique eulerian paths and create a
                         list of subgraph objects.
 
-Our Simulator
+================================================================================
+Our Simulator does no graph simplification by default, it must be uncommented.
+We recommend only running one simplification algorithm per run due to the issue
+with updating neighbors during runtime. This is a bit messy to achieve due to
+the immutability of dictionaries and lists in python during iteration. Sometimes
+our simplification algorithms will hang when encountering certain types of
+cycles. For now, just pick another k value that is close to the one that causes
+the program to hang.
