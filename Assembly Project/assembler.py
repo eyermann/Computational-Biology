@@ -532,8 +532,8 @@ class Assembler:
 		'''function to write found contigs to file'''
 		out = ""
 		with open("contigs.txt", "w") as f:
-			header = "> Contigs generated: "+str(len(self.contigs))+" | Contigs skipped due to cycles: "+str(contigs[1])+" | Source Header: '"+self.header[1:]+"'"
-			out += header+"\n"
+			#header = "> Contigs generated: "+str(len(self.contigs))+" | Contigs skipped due to cycles: "+str(contigs[1])+" | Source Header: '"+self.header[1:]+"'"
+			#out += header+"\n"
 			for contig in self.contigs:
 				out += contig[::-1]+"\n"
 			f.write(out)
