@@ -1,6 +1,15 @@
 README FOR PROGRAMMING PROJECT 3
 Authors: Charles Eyermann and Sam Hinh
 
+The usage cases below for the python scripts are analagous to the included shell
+scripts. Simply replace "python simulator.py --args" w/ "./simulator.sh --args".
+Same for the assembler.
+
+EXAMPLE USAGE: "./assembler.sh -vlw tnf_reads.txt 13"
+    - Run the assembler in verbose mode with logging enabled. Also output a
+    weighted DOT file instead of the default unweighted to compress the file.
+    Assemble the reads in "tnf_reads.txt" with k-mers of length 13.
+    
 ================================================================================
 usage: simulator.py [-h] [-v]
                     fasta_sequence_file coverage read_length error_rate
