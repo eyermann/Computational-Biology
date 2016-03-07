@@ -7,6 +7,8 @@ import argparse, copy, csv, timeit
 from collections import Counter
 
 class Subgraph:
+	'''a subgraph class to allow for separating main graph into
+	its connected components'''
 	def __init__(self,graph):
 		self.g = graph
 		self.balanced_nodes = 0
@@ -27,7 +29,8 @@ class Subgraph:
 			else:
 				self.unbalanced_nodes += 1
 
-		self.data_dump()
+		if clargs.verbose:
+			self.data_dump()
 
 	def data_dump(self):
 		print "|total_nodes: ", self.total_nodes,
@@ -243,12 +246,16 @@ class Assembler:
 		def next(node):
 			#print [x.name for x in self.G[node].get_neighbors()]
 			#print len(self.G[node].get_neighbors())
-			neighbors = gc[node].get_neighbors()
-			while len(neighbors) > 0:
-				#print neighbors
-				nxt = neighbors.pop()
-				next(nxt)
-			walk.append(node)
+			try:
+				neighbors = gc[node].get_neighbors()
+				while len(neighbors) > 0:
+					#print neighbors
+					nxt = neighbors.pop()
+					next(nxt)
+				walk.append(node)
+			except KeyError,e:
+				#skip if node already removed
+				pass
 		next(start)
 		#walk = walk[::-1]
 		return walk
@@ -435,9 +442,9 @@ class Assembler:
 							for parent in a.G[n1.name].parents:
 								a.G[parent].neighbors = [newnode.name if x == n1.name else x for x in a.G[parent].neighbors]
 							
-							if clargs.verbose:
-								print "DATA DUMP: ",
-								newnode.data_dump()
+							# if clargs.verbose:
+							# 	print "DATA DUMP: ",
+							# 	newnode.data_dump()
 
 							self.G[newname] = newnode
 							self.keys.append(newname)
@@ -471,15 +478,19 @@ class Assembler:
 
 		if clargs.verbose:
 			print "Graph size pre-trim: ", len(self.G)
-		if self.get_cycle(self.G)[0]:
-			while self.get_cycle(self.G)[0]:
-				lst_set =  self.get_cycle(self.G)[0]
-				lst1 = [x for x in self.get_cycle(self.G)[1]]
-				for item in lst_set:
-					del self.G[item]
-				out = lst1[0]
-				for i in range(1, len(lst1)):
-					out += lst1[i]
+		try:
+			if self.get_cycle(self.G)[0]:
+				while self.get_cycle(self.G)[0]:
+					lst_set =  self.get_cycle(self.G)[0]
+					lst1 = [x for x in self.get_cycle(self.G)[1]]
+					for item in lst_set:
+						del self.G[item]
+					out = lst1[0]
+					for i in range(1, len(lst1)):
+						out += lst1[i]
+
+		except KeyError,e:
+			pass
 		if clargs.verbose:
 			print "Graph size post-trim: ", len(self.G)
 
@@ -500,12 +511,13 @@ class Assembler:
 				for i in range(1,len(superstr)):
 					if superstr[i] != superstr[i-1]:
 						results += superstr[i][-1]
-				self.contigs.append(results)
 				counter -= 1
-
-				#if clargs.verbose:
-					#print "CONTIG: ", results
-					#print "\n"
+				if len(results) > (2*self.k):
+					self.contigs.append(results)
+					
+					if clargs.verbose:
+						print "CONTIG: ", results
+						print "\n"
 			except RuntimeError as e:
 				if clargs.verbose:
 					passed_over += 1
@@ -567,11 +579,12 @@ class Assembler:
 
 		head_list = [x for x in gc.iterkeys() if gc[x].is_head()]
 		if clargs.verbose:
-			print "Potential number of eulerian subpaths: ",len(head_list)
+			print "Potential number of individual connected components: ",len(head_list)
 		for head in head_list:
 			try:
 				path = self.eulerian_walk(head)
 			except RuntimeError,e:
+				#passing on cycles
 				continue
 
 			d = {}
@@ -580,6 +593,7 @@ class Assembler:
 					d[n] = gc[n]
 					del gc[n]
 				except KeyError,e:
+					#ignore paths with parts that have been removed already
 					pass
 			sub = Subgraph(d)
 			self.subgraphs.append(sub)
@@ -638,15 +652,14 @@ if __name__ == "__main__":
 			str(a.branching_nodes), str(a.get_eulerianess()),runtime)
 			writer.writerow(row)
 
-	#print [item.get_eulerianess() for item in a.subgraphs]
-	#print a.subgraphs[0].get_eulerianess()
-	#a.get_connected_components()
-	#print len(a.G)
-	#a.collapse_driver()
-	#print len(a.G)
-	#a.trim_branches()
-	#print len(a.G)
-	#a.trim_cycles()
+
+	# print len(a.G)
+	# a.collapse_driver()
+	# print len(a.G)
+	# a.trim_branches()
+	# print len(a.G)
+	# a.trim_cycles()
+	# print len(a.G)
 	c = a.get_contigs()
 	a.flush_contigs(c)
 
