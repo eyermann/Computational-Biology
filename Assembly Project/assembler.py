@@ -6,6 +6,41 @@ from node import *
 import argparse, copy, csv, timeit
 from collections import Counter
 
+class Subgraph:
+	def __init__(self,graph):
+		self.g = graph
+		self.balanced_nodes = 0
+		self.semi_balanced_nodes = 0
+		self.unbalanced_nodes = 0
+		self.branching_nodes = 0
+
+		for item in self.g.iterkeys():
+			self.g[item].unique_neighbors = len(set([x for x in self.g[item].neighbors]))
+			self.g[item].unique_parents = len(set([x for x in self.g[item].parents]))
+			if self.g[item].is_branching():
+				self.branching_nodes += 1
+			if self.g[item].get_balance():
+				self.balanced_nodes += 1
+			elif self.g[item].get_semi_balance():
+				self.semi_balanced_nodes += 1
+			else:
+				self.unbalanced_nodes += 1
+
+		#self.data_dump()
+
+	def data_dump(self):
+		#print "|name: ", self.name,
+		print "|balanced_nodes: ", self.balanced_nodes,
+		print "|semi_balanced_nodes: ", self.semi_balanced_nodes,
+		print "|unbalanced_nodes: ", self.unbalanced_nodes,
+		print "|branching_nodes: ", self.branching_nodes,
+		print "|Eulerianess: ", self.get_eulerianess()
+
+
+	def get_eulerianess(self):
+		'''returns a boolean whether or not the main graph is eulerian or not'''
+		return ((self.unbalanced_nodes == 0 and self.semi_balanced_nodes == 0) or
+				(self.unbalanced_nodes == 0 and self.semi_balanced_nodes == 2))
 
 class Assembler:
 
@@ -100,6 +135,8 @@ class Assembler:
 				self.semi_balanced_nodes += 1
 			else:
 				self.unbalanced_nodes += 1
+
+		self.get_connected_components()
 
 		return self.G
 
@@ -196,7 +233,7 @@ class Assembler:
 
 	def eulerian_walk(self,start):
 		walk = []
-		gc = copy.deepcopy(a.G)
+		gc = copy.deepcopy(self.G)
 		#choose random node
 		#start = random.choice(self.G.keys())
 		#start = self.G.iterkeys().next()
@@ -527,6 +564,25 @@ class Assembler:
 				#print "already removed this node"
 				pass
 
+	def get_connected_components(self):
+		gc = copy.deepcopy(self.G)
+
+		head_list = [x for x in gc.iterkeys() if gc[x].is_head()]
+
+		for head in head_list:
+			path = self.eulerian_walk(head)
+			d = {}
+			for n in path:
+				try:
+					d[n] = gc[n]
+					del gc[n]
+				except KeyError,e:
+					pass
+			sub = Subgraph(d)
+			self.subgraphs.append(sub)
+		#print len(self.subgraphs)
+		return self.subgraphs
+
 
 if __name__ == "__main__":
 	# BEGIN ARGPARSE CODE
@@ -565,6 +621,7 @@ if __name__ == "__main__":
 		print "\tTotal nodes: ", a.unbalanced_nodes + a.balanced_nodes + a.semi_balanced_nodes
 		print "\tBranching nodes: ", a.branching_nodes
 		print "\tGraph is Eulerian: ", a.get_eulerianess()
+		print "\tNumber of disconnected subgraphs: ", len(a.subgraphs)
 		print "\tGraph generation time: ", runtime
 		print "\n"
 
@@ -577,9 +634,12 @@ if __name__ == "__main__":
 			str(a.branching_nodes), str(a.get_eulerianess()),runtime)
 			writer.writerow(row)
 
-	print len(a.G)
-	a.collapse_driver()
-	print len(a.G)
+	#print [item.get_eulerianess() for item in a.subgraphs]
+	print a.subgraphs[0].get_eulerianess()
+	#a.get_connected_components()
+	#print len(a.G)
+	#a.collapse_driver()
+	#print len(a.G)
 	#a.trim_branches()
 	#print len(a.G)
 	#a.trim_cycles()
