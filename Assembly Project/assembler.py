@@ -506,6 +506,7 @@ if __name__ == "__main__":
 	p.add_argument('kmer_length', type=int, help="Desired k-mer length (integer value).")
 	p.add_argument('-v', '--verbose', help="Print out some more info about the program at runtime", action="store_true")
 	p.add_argument('-l', '--logging', help="Write run information to log file", action="store_true")
+	p.add_argument('-w', '--weighted_dot', help="Output dot file with weighted edges instead of unweighted edges. Cleaner end result.", action="store_true")
 	clargs = p.parse_args()
 
 	if clargs.kmer_length < 3:
@@ -588,7 +589,7 @@ if __name__ == "__main__":
 	#print len([x for x in dbg.iterkeys()])
 	#print "LEAVES: ", [x for x in a.find_leaves()]
 	# for leaf in a.find_leaves():
-	# 	print leaf
+	# 	#print leaf
 	# 	a.concat(a.G[leaf])
 	#print len([x for x in dbg.iterkeys()])
 
@@ -645,8 +646,10 @@ if __name__ == "__main__":
 	# print count
 	#maxlen = max([len(x) for x in a.G.iterkeys()])
 	#contigs = [x for x in a.G.iterkeys() if len(x) == maxlen]
-
-	dot = a.weighted_dot_file_generator(a.G)
+	if clargs.weighted_dot:
+		dot = a.weighted_dot_file_generator(a.G)
+	else:
+		dot = a.dot_file_generator(a.G)
 
 	with open("out.dot", "w") as f:
 		f.write(dot)
