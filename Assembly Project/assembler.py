@@ -343,7 +343,7 @@ class Assembler:
 				self.G[neighbor].parents.append(key)
 
 	def merge_nodes(self,n1,n2):
-		'''stand alone node-merging function that assumes we are 
+		'''stand alone node-merging function that assumes we are
 		collapsing upwards (i.e ATTGC + TTGCG = ATTGCG)'''
 		newname = n1.name[0] + n2.name
 		newnode = Node(newname)
@@ -441,7 +441,7 @@ class Assembler:
 							#update parents!
 							for parent in a.G[n1.name].parents:
 								a.G[parent].neighbors = [newnode.name if x == n1.name else x for x in a.G[parent].neighbors]
-							
+
 							# if clargs.verbose:
 							# 	print "DATA DUMP: ",
 							# 	newnode.data_dump()
@@ -514,7 +514,7 @@ class Assembler:
 				counter -= 1
 				if len(results) > (2*self.k):
 					self.contigs.append(results)
-					
+
 					if clargs.verbose:
 						print "CONTIG: ", results
 						print "\n"
@@ -617,6 +617,13 @@ if __name__ == "__main__":
 		print "\n"
 		print "FATAL: kmer length must be 3 or more! - suggested to use kmer length of 4 at minimum."
 		sys.exit(1)
+
+	if clargs.read_file:
+		acceptable_start_chars = ["A","T","C","G",">","a","t","c","g"]
+		if clargs.read_file.next()[0] not in acceptable_start_chars:
+			print "\n"
+			print "FATAL: unrecognized input file format! - please check your input file."
+			sys.exit(1)
 	# END ARGPARSE CODE
 
 	# BEGIN MAIN CODE

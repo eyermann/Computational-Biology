@@ -1,3 +1,41 @@
-Currently the simulator works but has no user interface, so the python file must be edited directly to change parameters. CLI support will come at a later date.
+README FOR PROGRAMMING PROJECT 3
 
-Usage: python simulator.py
+USAGE:
+
+usage: simulator.py [-h] [-v]
+                    fasta_sequence_file coverage read_length error_rate
+
+Sequence Read Simulator. Written by Charles Eyermann and Sam Hinh for CS362
+Winter 2016
+
+positional arguments:
+  fasta_sequence_file  The input file should be in FASTA format
+  coverage             How many times the entire genome should be sequenced
+  read_length          The length of each read generated
+  error_rate           Error rate between 0 and 1
+
+optional arguments:
+  -h, --help           show this help message and exit
+  -v, --verbose        Print out some more info about the program at runtime
+
+  usage: assembler.py [-h] [-v] [-l] [-w] [-c] read_file kmer_length
+
+  de Bruijn Graph-Driven Sequence Assembler. Written by Charles Eyermann and Sam
+  Hinh for CS362 Winter 2016
+
+  positional arguments:
+    read_file           This should be the file containing your sequence reads
+    kmer_length         Desired k-mer length (integer value).
+
+  optional arguments:
+    -h, --help          show this help message and exit
+    -v, --verbose       Print out some more info about the program at runtime
+    -l, --logging       Write run information to log file
+    -w, --weighted_dot  Output dot file with weighted edges instead of
+                        unweighted edges. Cleaner end result.
+    -c, --connected     First steps for solving eulerian superpath problem. Huge
+                        hit to performance with large graphs. Enabling this
+                        feature will find all unique eulerian paths and create a
+                        list of subgraph objects.
+
+Our Simulator
